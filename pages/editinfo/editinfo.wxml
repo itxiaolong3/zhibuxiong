@@ -1,0 +1,42 @@
+<view class="info-container" hidden="{{load == 0}}">
+  <view class="title-container">修改资料</view>
+  <view class="list-container">
+    <view class="item border-b">
+      <text class="title">头像</text>
+      <image src="{{headerimg}}" catchtap="tap_avatar" />
+    </view>
+    <view class="item border-b">
+      <text class="title">昵称</text>
+      <input class="content" value="{{nickname}}" placeholder="待完善" placeholder-class="content" 
+       maxlength="20" data-id="0" bindinput="input_value" />
+    </view>
+    <picker mode="date" bindchange="change_picker" value="{{bsday}}" data-id="0">
+      <view class="item border-b">
+        <text class="title">生日</text>
+        <input class="content" value="{{bsday}}" placeholder="待完善" placeholder-class="content" disabled="true" />
+      </view>
+    </picker>
+     <view class="item border-b">
+      <text class="title">微信号</text>
+      <input class="content" value="{{wechat}}" placeholder="待完善" placeholder-class="content"
+      maxlength="20" data-id="1" bindinput="input_value" />
+    </view>
+    <picker bindchange="change_picker" range="{{sex_data}}" value="{{sex_state}}" data-id="1">
+      <view class="item border-b">
+        <text class="title">性别</text>
+        <input class="content" value="{{sex_data[sex_state] ? sex_data[sex_state] : sex}}" placeholder="待完善" placeholder-class="content" disabled="true" />
+      </view>
+    </picker>
+    <view class="item border-b">
+      <text class="title">学校</text>
+      <view style="display: flex;">
+        <input class="content" value="{{ishow == 0 ? school : '****'}}" placeholder="待完善" placeholder-class="content"
+        maxlength="20" data-id="2" bindinput="input_value"  />
+        <view class="label" catchtap="tap_show">{{ishow == 0 ? '显示' : '隐藏'}}</view>
+      </view>
+    </view>
+    <view class="updatainfo" catchtap="tap_submit">
+      提交修改
+    </view>
+  </view>
+</view>

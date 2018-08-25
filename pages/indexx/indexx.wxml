@@ -1,0 +1,107 @@
+<view class="index-container {{mask ? 'unable-move' : ''}}" hidden="{{load == 0}}">
+  <view class="mask {{mask ? 'mask-in' : 'mask-out'}}" catchtap="set_mask"></view>
+  <view class="dialog-container" wx:if="{{mask}}">
+    <view class="content">
+      亲爱的家长朋友和小朋友，为了维护良好的网络环境，做一个遵纪守法的网民，上传图片和故事时，禁止上传包含：盗版、篡改、涉黄、淫秽、辱骂等违反法律法规的信息，谢谢您的配合，么么哒！
+    </view>
+    <view class="btn" catchtap="tap_maskbtn">
+      好的，一定遵守
+    </view>
+  </view>
+  <view class="search-container">
+    <navigator class="search" hover-class="none" url="../search/search">
+      <image src="/images/icon/search.png" />
+      <text>搜索作者、故事</text>
+    </navigator>
+  </view>
+  <swiper class="swiper-container" autoplay="true" circular="true">
+    <swiper-item style="background-color: #ddd;" wx:for="{{swiper}}" wx:key="key">
+      <image src="{{item.img}}" lazy-load="true" bindtap='goother' data-aid="{{item.adid}}" data-appid="{{item.gourl}}" />
+    </swiper-item>
+  </swiper>
+  <view class="btn-container">
+    <view class="btn border-r" catchtap="tap_speak">
+      <image src="/images/icon/speak.png" />
+      <text>我要讲故事</text>
+    </view>
+    <navigator class="btn" hover-class="none" url="../listen/listen">
+      <image src="/images/icon/listen.png" />
+      <text>我要听故事</text>
+    </navigator>
+  </view>
+  <view class="story-list">
+    <view class="list-title border-b">
+      热门故事
+    </view>
+    <view class="list-container">
+      <block wx:for="{{gushilist}}" wx:for-item="gushi" wx:key="key">
+        <view class="story" hover-class="none" bindtap='detailgushi' data-id="{{gushi.id}}" data-checked="{{gushi.checked}}">
+          <text class="top ellipsis">{{gushi.title}}</text>
+          <image class="middle" src="{{gushi.img[0]}}" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/earphone.png" />
+                <text>{{gushi.listennum}}</text>
+              </view>
+              <!-- 点赞 -->
+              <!-- <view>
+                <image src="/images/icon/flower.png" />
+                <text>{{gushi.goodnum}}</text>
+              </view> -->
+            </view>
+            <!-- <view catchtap='shoucang' >
+              <image class="right" src="{{gushi.checked==true?'/images/icon/like.png':'/images/icon/dislike.png'}}" />
+            </view> -->
+          </view>
+        </view>
+      </block>
+
+    </view>
+     <navigator url="../listen/listen" hover-class="none" class="list-state th-active">
+     查看更多
+     </navigator>
+  </view>
+  <view class="zhubo-list">
+    <view class="list-title border-b">
+      热门小主播
+    </view>
+    <view class="list-container">
+     <block wx:for="{{hotuser}}" wx:for-item="u" wx:key="key">
+      <view class="zhubo" bindtap='detailgushi' data-id="{{u.id}}" data-checked="false">
+        <view class="top">
+          <text class='ellipsis'>{{u.nickname}}</text>
+          <!-- <image src="/images/icon/dislike.png" /> -->
+        </view>
+        <image class="middle" src="{{u.headerimg}}" />
+        <view class="bottom">
+          <text>作品 {{u.gscount}}</text>
+        </view>
+      </view>
+      </block>
+      <!-- <view class="zhubo">
+        <view class="top">
+          <text>周小明</text>
+          <image src="/images/icon/dislike.png" />
+        </view>
+        <image class="middle" src="/images/other/zhubo.jpg" />
+        <view class="bottom">
+          <text>作品 1546</text>
+        </view>
+      </view>
+      <view class="zhubo">
+        <view class="top">
+          <text>周小明</text>
+          <image src="/images/icon/dislike.png" />
+        </view>
+        <image class="middle" src="/images/other/zhubo.jpg" />
+        <view class="bottom">
+          <text>作品 1207</text>
+        </view>
+      </view> -->
+    </view>
+    <view class="list-state">
+      没有更多了
+    </view>
+  </view>
+</view>

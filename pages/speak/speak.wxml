@@ -1,0 +1,78 @@
+<view class="speak-container">
+  <!--在线图库弹出框  -->
+    <view class="mask {{mask ? 'mask-in' : 'mask-out'}}" catchtap="set_mask"></view>
+    <view class="dialog-container" wx:if="{{mask}}">
+        <view class="content">
+            亲爱的小作者，你上传的图片将被收录到织布熊图库中，全世界的小伙伴都将看到你的作品，用你的作品讲故事哦！你愿意吗？
+        </view>
+        <view class="btn" catchtap="tap_maskbtn">
+            我愿意！
+        </view>
+        <image src="/images/icon/close.png" catchtap="set_mask" />
+    </view>
+  <!--选择语种弹出框  -->
+    <view class="mask {{mask2 ? 'mask-in' : 'mask-out'}}" catchtap="set_mask2"></view>
+    <view class="dialog-container2" wx:if="{{mask2}}">
+        <input placeholder="请填写语种..." placeholder-class="placeholder" focus="true"
+         maxlength="20" value="{{language}}" data-id="1" bindinput="input_value" />
+        <view class="btn" catchtap="tap_mask2btn">
+            提交
+        </view>
+        <image src="/images/icon/close.png" catchtap="set_mask2" />
+    </view>
+  <!--背景音乐提示弹出框  -->
+      <view class="mask {{mask3 ? 'mask-in' : 'mask-out'}}" catchtap="set_mask3"></view>
+    <view class="dialog-container" wx:if="{{mask3}}">
+        <view class="content">
+            温馨提示：戴耳机讲故事是不会录入背景音乐的哦~
+        </view>
+        <view class="btn" catchtap="tap_mask3btn">
+            知道了
+        </view>
+        <image src="/images/icon/close.png" catchtap="set_mask3" />
+    </view>
+    <view class="upload-container border-b">
+        <text>上传图片</text>
+        <view class="img-container">
+            <view class="img" wx:for="{{imgs}}" wx:key="key">
+                <image class="delete" src="/images/icon/close.png" catchtap="delete" data-inde="{{index}}" />
+                <image class="body" src="{{item}}"/>
+            </view>
+            <image class="upload" src="/images/other/upload.png" catchtap="tap_upload" wx:if="{{imgs.length < 9}}" />
+        </view>
+    </view>
+    <view class="text-1"><text>（jpg、png格式，最多9张）\t \n禁止发布色情，违法，反政府等不良言论、图片和音频。一经发现，我们将删除并报警处理!</text></view>
+    <view class="text-2" hover-class="none" bindtap='gotuku'>
+        没有合适图片？→在线图库
+    </view>
+    <view class="text-3">如果小朋友没有合适的图片，可从在线图库中选择图片讲故事。</view>
+    <view class="upload-container border-b">
+        <input placeholder="给你的故事起个名字吧" placeholder-class="placeholder" maxlength="20" value="{{name}}" data-id="0" bindinput="input_value" />
+    </view>
+    <view class="upload-container border-b" style="padding-top: 15rpx;">
+        <input placeholder="选择一个背景音乐吧" value='{{bjtitle}}'  placeholder-class="placeholder" disabled="true" />
+        <view class="select" catchtap="gomusic">
+            选 择
+        </view>
+    </view>
+    <view class="radio-container">
+        <view class="title">
+            故事语言：
+        </view>
+        <view class="radio" catchtap="tap_radio" data-id="0">
+            <image src="/images/icon/{{radio == 0 ? 'select.png' : 'unselect.png'}}" />
+            <text>中文</text>
+        </view>
+        <view class="radio" catchtap="tap_radio" data-id="1">
+            <image src="/images/icon/{{radio == 1 ? 'select.png' : 'unselect.png'}}" />
+            <text>英文</text>
+        </view>
+        <view class="radio" catchtap="tap_radio" data-id="2">
+            <image src="/images/icon/{{radio == 2 ? 'select.png' : 'unselect.png'}}" />
+            <text>其他</text>
+        </view>
+    </view>
+    <view class="btn-container" catchtap="tap_btn">
+        开始讲故事
+    </view>
+</view>

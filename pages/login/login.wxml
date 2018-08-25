@@ -1,0 +1,11 @@
+<view class="container">
+    <view class="top border-b">
+        <image src="/images/other/avatar.png" />
+        <text>织布熊故事</text>
+    </view>
+    <view class="bottom">
+        <text class="text-1">小程序由该公司开发，请确认授权以下信息</text>
+        <text class="text-2"> · 获得你的公开信息（昵称、头像等）</text>
+        <button class="btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击授权</button>
+    </view>
+</view>

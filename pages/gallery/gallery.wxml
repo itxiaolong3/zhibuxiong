@@ -1,0 +1,24 @@
+<view class="gallery-container" hidden="{{load == 0}}">
+    <view class="title-container">在线图库</view>
+    <view class="nav-container">
+        <block wx:for="{{nav_data}}" wx:key="key">
+            <view class="nav {{(index+1) == nav_data.length ? '' : 'border-r'}}"
+            catchtap="tap_nav" data-index="{{index}}" data-name="{{item.typename}}">
+                <text class="{{nav_state == index ? 'th-active' : ''}}">{{item.typename}}</text>
+            </view>
+        </block>
+    </view>
+    <view class="image-list">
+        <view class="item" wx:for="{{list_data}}" wx:key="key" catchtap="tap_item" data-index="{{index}}" data-id="{{item.id}}">
+            <text>{{item.imgtitle}}</text>
+            <image class="image" src="{{item.imgurl}}" />
+            <image class="cover" src="/images/other/gallery_cover.png" wx:if="{{item.checked}}" />
+        </view>
+        <view wx:if='{{list_data.length==0}}' class='th-state'>
+         无数据
+        </view>
+    </view>
+    <view class="footer-container" bindtap='next'>
+        <image src="/images/other/gallery_footer.jpg" />
+    </view>
+</view>

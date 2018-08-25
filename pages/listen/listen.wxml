@@ -1,0 +1,91 @@
+<view class="index-container">
+    <view class="search-container">
+        <navigator class="search" hover-class="none" url="../search/search">
+            <image src="/images/icon/search.png" />
+            <text>搜索作者、故事</text>
+        </navigator>
+    </view>
+    <view class="btn-container">
+        <view class="btn border-r" catchtap="tap_nav" data-id="0">
+            <text class="{{nav_state == 0 ? 'th-active' : ''}}">织布熊故事</text>
+        </view>
+        <view class="btn" catchtap="tap_nav" data-id="1">
+            <text class="{{nav_state == 1 ? 'th-active' : ''}}">小主播故事</text>
+        </view>
+    </view>
+    <view class="sort-container">
+        <view class="title border-b">
+            <text class="left">{{nav_state == 0 ? '织布熊故事' : '小主播故事'}}</text>
+            <view class="right" catchtap="tap_sort">
+                <text>{{sort_state == 0 ? '综合排序' : sort_state == 1 ? '收听量' : '点赞量'}}</text>
+                <image src="/images/icon/{{sort ? 'up_1' : 'down_1'}}.png" />
+            </view>
+        </view>
+        <view class="sort" wx:if="{{sort}}">
+            <view class="item border-b" catchtap="tap_sortitem" data-id="0">综合排序</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="1">收听量</view>
+            <!-- <view class="item border-b" catchtap="tap_sortitem" data-id="2">点赞量</view> -->
+        </view>
+    </view>
+    <view wx:if='{{gushilist.length==0}}' class='th-state'>
+         无数据
+        </view>
+    <view class="story-list" wx:else style="{{gushilist.length > 4 ? 'margin-top: 90rpx' : ''}}">
+        <view class="list-container">
+        <block wx:for="{{gushilist}}" wx:for-item="gushi" wx:key="key">
+            <view class="story" bindtap='detailgushi' data-id="{{gushi.id}}" data-checked="{{gushi.checked}}">
+                <text class="top ellipsis">{{gushi.title}}</text>
+                <image class="middle" src="{{gushi.img[0]}}" />
+                <view class="bottom">
+                    <view class="left">
+                        <view style="margin-right: 20rpx;">
+                            <image src="/images/icon/earphone.png" />
+                            <text>{{gushi.listennum}}</text>
+                        </view>
+                        <!-- <view>
+                            <image src="/images/icon/flower.png" />
+                            <text>{{gushi.goodnum}}</text>
+                        </view> -->
+                    </view>
+                     <image class="right" src="{{gushi.checked==true?'/images/icon/like.png':'/images/icon/dislike.png'}}" />
+                </view>
+            </view>
+         </block>
+           
+            <!-- <view class="story">
+                <text class="top">戴眼镜的小人</text>
+                <image class="middle" src="/images/other/story_3.jpg" />
+                <view class="bottom">
+                    <view class="left">
+                        <view style="margin-right: 20rpx;">
+                            <image src="/images/icon/earphone.png" />
+                            <text>142</text>
+                        </view>
+                        <view>
+                            <image src="/images/icon/flower.png" />
+                            <text>6789</text>
+                        </view>
+                    </view>
+                    <image class="right" src="/images/icon/dislike.png" />
+                </view>
+            </view> -->
+            <!-- <view class="story">
+                <text class="top">海底世界</text>
+                <image class="middle" src="/images/other/story_2.jpg" />
+                <view class="bottom">
+                    <view class="left">
+                        <view style="margin-right: 20rpx;">
+                            <image src="/images/icon/earphone.png" />
+                            <text>142</text>
+                        </view>
+                        <view>
+                            <image src="/images/icon/flower.png" />
+                            <text>6789</text>
+                        </view>
+                    </view>
+                    <image class="right" src="/images/icon/dislike.png" />
+                </view>
+            </view> -->
+        </view>
+    </view>
+</view>

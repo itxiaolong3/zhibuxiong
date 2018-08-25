@@ -1,0 +1,32 @@
+<view class="index-container">
+    <view class="search-container">
+        <view class="search">
+            <image  bindtap='gosearch' src="/images/icon/search.png"  />
+            <input placeholder="搜索作者、故事" placeholder-style="color:#b3b3b3;" maxlength="20" focus="true" bindinput='keywords'  />
+        </view>
+        <view class="btn" bindtap='gosearch'>搜索</view>
+    </view>
+    <view class="result-container">
+        <view class="title-container">搜索结果</view>
+        <view class="list-container">
+        <block wx:for="{{gushi}}" wx:for-item="gs">
+            <view class="item border-b" data-id="{{gs.id}}" data-checked="{{gs.checked}}" bindtap='detail'>
+                <image class="image" src="{{gs.img[0]}}"  />
+                <view class="info">
+                    <text class="name">{{gs.title}}</text>
+                    <view class="bottom">
+                        <view style="margin-right: 20rpx;">
+                            <image src="/images/icon/earphone.png"  />
+                            <text>{{gs.listennum}}</text>
+                        </view>
+                        <view>
+                            <image src="/images/icon/flower.png"  />
+                            <text>{{gs.goodnum}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+             </block>
+        </view>
+    </view>
+</view>

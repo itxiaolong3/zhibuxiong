@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="">
+
+    <application setting="false">
+        <name><![CDATA[童话故事]]></name>
+
+        <identifie><![CDATA[tonghuagushi]]></identifie>
+
+        <version><![CDATA[1.0.0]]></version>
+
+        <ability><![CDATA[童话故事]]></ability>
+
+        <type><![CDATA[business]]></type>
+
+        <description><![CDATA[一起来听讲故事]]></description>
+
+        <author><![CDATA[xiaolong]]></author>
+
+        <url><![CDATA[https://pj.dede1.com]]></url>
+
+        <setting><![CDATA[]]></setting>
+
+    </application>
+
+
+    <platform>
+      <subscribes>
+		</subscribes>
+		<handles>
+		</handles>
+        <rule embed="false"/>
+
+        <rule embed="false"/>
+
+        <supports>
+
+            <item type="wxapp"/>
+        </supports>
+
+    </platform>
+
+
+    <bindings>
+        <menu>
+            <entry title="管理中心" do="site" state="" direct="false"/>
+        </menu>
+        <page>
+            <entry title="首页" do="/gushi/pages/index/index" state="" direct=""/>
+            <entry title="个人中心" do="/gushi/pages/my/my" state="" direct=""/>
+        </page>
+    </bindings>
+
+    <install><![CDATA[
+
+DROP TABLE I EXISTS `ims_story_config`;
+CREATE TABLE `ims_story_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ims_story_banner`;
+CREATE TABLE `ims_story_banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `addtime` int(11) NOT NULL,
+  `comment` varchar(255) NOT NULL COMMENT '图片备注',
+  `img` varchar(255) NOT NULL COMMENT '轮播图图片',
+  `gourl` text NOT NULL COMMENT '跳转地址',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ims_story_gushi`;
+CREATE TABLE `ims_story_gushi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `g_addtime` int(11) NOT NULL,
+  `goodnum` int(20) NOT NULL DEFAULT '0' COMMENT '点赞数',
+  `listennum` int(10) NOT NULL DEFAULT '0' COMMENT '收听数',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '故事标题',
+  `storyimg` text NOT NULL COMMENT '故事图片',
+  `yuyinurl` text NOT NULL COMMENT '内容语音链接',
+  `b_id` int(11) NOT NULL COMMENT '主播id',
+  `g_status` int(11) NOT NULL COMMENT '点赞状态',
+  `orders` int(11) NOT NULL COMMENT '排序',
+  `languages` varchar(20) CHARACTER SET utf8mb4 NOT NULL COMMENT '语言类型',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ims_story_liuyan`;
+CREATE TABLE `ims_story_liuyan` (
+  `l_id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `title` varchar(20) NOT NULL,
+  `phone` varchar(12) NOT NULL,
+  `content` text NOT NULL,
+  `uniacid` int(11) NOT NULL,
+  `l_addtime` int(20) NOT NULL,
+  `rep_content` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ims_story_middlepinlun`;
+CREATE TABLE `ims_story_middlepinlun` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `send_uid` int(10) NOT NULL DEFAULT '0' COMMENT '发送用户id',
+  `rep_uid` int(10) NOT NULL DEFAULT '0' COMMENT '接收用户id',
+  `g_id` int(10) NOT NULL COMMENT '故事评论表id',
+  `pl_id` int(10) NOT NULL,
+  `uniacid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ims_story_pinlun`;
+CREATE TABLE `ims_story_pinlun` (
+  `pl_id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `gp_addtime` int(11) NOT NULL,
+  `g_id` int(10) NOT NULL COMMENT '故事id',
+  `nickname` varchar(255) NOT NULL COMMENT '用户昵称',
+  `headerimg` text NOT NULL COMMENT '用户头像',
+  `content` text NOT NULL COMMENT '评论内容',
+  `uid` int(10) NOT NULL COMMENT '用户id',
+  `f_uid` int(11) NOT NULL COMMENT '被回复的用户id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='评论表';
+
+DROP TABLE IF EXISTS `ims_story_shareafter`;
+CREATE TABLE `ims_story_shareafter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) NOT NULL DEFAULT '',
+  `uniacid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ims_story_shoucang`;
+CREATE TABLE `ims_story_shoucang` (
+  `sc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(10) NOT NULL,
+  `g_id` int(10) NOT NULL,
+  `addtime` int(20) NOT NULL,
+  `uniacid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ims_story_shoutingstory`;
+CREATE TABLE `ims_story_shoutingstory` (
+  `st_id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(10) NOT NULL,
+  `g_id` int(10) NOT NULL,
+  `addtime` int(11) NOT NULL,
+  `uniacid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ims_story_tuku`;
+CREATE TABLE `ims_story_tuku` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `t_addtime` int(11) NOT NULL,
+  `imgtitle` varchar(100) NOT NULL COMMENT '图片标题',
+  `type` varchar(255) NOT NULL COMMENT '图片类型',
+  `imgurl` text NOT NULL COMMENT '图片链接',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `ims_story_user`;
+CREATE TABLE `ims_story_user` (
+  `u_id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `u_addtime` int(11) NOT NULL,
+  `wechat` varchar(50) NOT NULL COMMENT '微信号',
+  `nickname` varchar(255) NOT NULL COMMENT '用户昵称',
+  `headerimg` text NOT NULL COMMENT '用户头像',
+  `bsday` varchar(20) NOT NULL COMMENT '生日',
+  `sex` int(2) NOT NULL COMMENT '性别',
+  `school` char(11) NOT NULL COMMENT '学校',
+  `is_delete` smallint(2) NOT NULL,
+  PRIMARY KEY (`u_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+    ]]></install>
+    <uninstall><![CDATA[
+    DROP TABLE IF EXISTS `ims_story_config`;
+    DROP TABLE IF EXISTS `ims_story_banner`;
+	DROP TABLE IF EXISTS `ims_story_gushi`;
+	DROP TABLE IF EXISTS `ims_story_liuyan`;
+	DROP TABLE IF EXISTS `ims_story_middlepinlun`;
+	DROP TABLE IF EXISTS `ims_story_pinlun`;
+	DROP TABLE IF EXISTS `ims_story_shareafter`;
+	DROP TABLE IF EXISTS `ims_story_shoucang`;
+	DROP TABLE IF EXISTS `ims_story_shoutingstory`;
+	DROP TABLE IF EXISTS `ims_story_tuku`;
+	DROP TABLE IF EXISTS `ims_story_user`;
+
+    ]]></uninstall>
+    <upgrade><![CDATA[]]></upgrade>
+</manifest>

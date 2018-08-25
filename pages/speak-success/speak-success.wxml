@@ -1,0 +1,32 @@
+<view class="success-container">
+    <view class="mask {{mask ? 'mask-in' : 'mask-out'}}"></view>
+    <view class="dialog-container" wx:if="{{mask}}">
+        <image class="close" src="/images/icon/close_2.png" catchtap="set_mask" />
+        <canvas canvas-id="shareCanvas" />
+        <image class="download" src="/images/other/download.png" catchtap="tap_maskbtn" />
+    </view>
+    <view class="dialog-container2" wx:if="{{mask && save}}">
+        <view class="left border-r">
+            <image src="/images/other/success.png" />
+            <text>保存成功</text>
+            <text>快分享到朋友圈吧</text>
+        </view>
+        <view class="right">
+            <image class="close" src="/images/icon/close_3.png" catchtap="set_mask" />
+            <image class="code" src="{{shareafterqrcode}}" />
+            <text>（扫码二维码，领取更多惊喜！）</text>
+        </view>
+    </view>
+    <image class="icon" src="/images/other/success.png" />
+    <text class="text-1">发布成功</text>
+    <navigator class="text-2" hover-class="none" url="../speak/speak" open-type="redirect">
+        <image src="/images/icon/arrow.png" />
+        <text>继续讲故事</text>
+    </navigator>
+    <view class="btn-container">
+        <button class='btn-1' open-type="share" hover-class="none">分享到微信</button>
+        <view class="btn-2" catchtap="tap_btn2">
+            分享到朋友圈
+        </view>
+    </view>
+</view>

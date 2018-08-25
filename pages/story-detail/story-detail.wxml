@@ -1,0 +1,149 @@
+<view class="detail-container {{mask ? 'unable-move' : ''}}">
+    <view class="mask {{mask ? 'mask-in' : 'mask-out'}}" catchtap="set_mask"></view>
+    <view class="dialog-container" wx:if="{{mask}}">
+        <textarea placeholder="请输入评论内容..." placeholder-class="placeholder" show-confirm-bar="{{false}}"
+         focus="true" value="{{comment}}" data-id="0" bindinput="input_value" />
+        <view class="btn" catchtap="tap_maskbtn">
+            提交
+        </view>
+        <image src="/images/icon/close.png" catchtap="set_mask" />
+    </view>
+    <!-- <image class="ad" src="/images/other/story_ad.jpg" /> -->
+     <swiper class="swiper-container" autoplay="true" circular="true">
+    <swiper-item style="background-color: #ddd;" wx:for="{{swiper}}" wx:key="key">
+     <image src="{{item.img}}" lazy-load="true" bindtap='goother' data-aid="{{item.adid}}"/>
+    </swiper-item>
+  </swiper>
+    <view class="header-container">
+        <view class="title">
+            {{gushi.title}}
+        </view>
+        <view class="cover">
+          <swiper class="swiper-container" autoplay="true" circular="true" vertical="true">
+            <swiper-item style="background-color: #ddd;" wx:for="{{imgs}}" wx:key="key">
+                <image src="{{item}}" lazy-load="true" />
+            </swiper-item>
+           </swiper>
+           <text>{{gushi.title}}</text>
+        </view>
+    </view>
+    <view class="nav-container border-b" wx:if="{{!list_state}}">
+        <text class="title">故事列表</text>
+        <view class="right" catchtap="tap_arrow">
+            <text>{{gushicount}}个故事</text>
+            <image src="/images/icon/right.png" />
+        </view>
+    </view>
+    <view class="nav-container border-b" wx:else>
+        <view class="left" catchtap="tap_arrow">
+            <image src="/images/icon/left.png" />
+        </view>
+        <text class="text2">{{gushicount}}个故事</text>
+        <view style="min-width: 80rpx;"></view>
+    </view>
+    <view class="body-container" wx:if="{{!list_state}}">
+        <view class="info">
+            <image class="left" src="{{gushi.headerimg}}" />
+            <view class="middle">
+                <view class="top">
+                    <text>{{gushi.nickname}}</text>
+                    <view class="label">首发</view>
+                </view>
+                <view class="bottom">
+                    <view style="margin-right: 20rpx;">
+                        <image src="/images/icon/earphone.png" />
+                        <text>{{gushi.listennum}}</text>
+                    </view>
+                    <view>
+                        <!-- <image src="/images/icon/flower.png" /> -->
+                        <!-- <text wx:if='{{gushi.goodnum>10000}}'>{{gushi.goodnum/10000}}万</text> -->
+                        <!-- <text wx:else>{{gushi.goodnum}}</text> -->
+                    </view>
+                </view>
+            </view>
+            <view bindtap='shoucang'>
+            <image class="right" src="{{shoucangstatus=='true'?'/images/icon/like.png':'/images/icon/dislike.png'}}" />
+            </view>
+        </view>
+        <view class="audio">
+         <image class="play" bindtap='play'  src="{{thisplaystatus==true?'/images/icon/story_stop.png':'/images/icon/story_play.png'}}" />
+          <view class="time" wx:if="{{curmin<=9}}">
+            <text wx:if="{{cursecond<=9}}">0{{curmin}}:0{{cursecond}}</text>
+            <text wx:else>0{{curmin}}:{{cursecond}}</text>
+          </view>
+           <view class="time" wx:elif="{{curmin>=10}}">
+            <text wx:if="{{cursecond<=9}}">{{curmin}}:0{{cursecond}}</text>
+            <text wx:else>{{curmin}}:{{cursecond}}</text>
+          </view>
+          <view class="time" wx:elif="{{cursecond>=10}}">
+            <text wx:if="{{curmin<=9}}">0{{curmin}}:{{cursecond}}</text>
+          </view>
+          <view class="time" wx:elif="{{cursecond>=10}}">
+            <text wx:if="{{curmin>=10}}">{{curmin}}:{{cursecond}}</text>
+          </view>
+              <wxzx-slider class='test1' id='wxzxSlider6' value='{{changeduration}}' max='{{duration==0?100:duration}}' width='460' bind:sliderTap="sliderTap" bind:sliderStart="sliderStart" bind:sliderChange="sliderChange" bind:sliderEnd="sliderEnd" bind:sliderCancel="sliderCancel" disabled='{{disabled}}' block-color='#FEB504' block-size='15' active-color='#FEB504' style='z-index: 3;'></wxzx-slider>
+        </view>
+         
+        <view class="footer">
+            <navigator url="../feedback/feedback?gid={{gushi.id}}" hover-class="none" class="left">
+                <image src="/images/icon/warn.png" />
+                <text>我要投诉</text>
+            </navigator>
+            <view class="right">
+                <image src="/images/icon/edit.png" catchtap="set_mask" data-type='gushi'/>
+              <!-- <image bindtap='good' src="{{isgood?'/images/icon/goodflower.png':'/images/icon/flower.png'}}" /> -->
+            </view>
+        </view>
+        <view class="comment-title">
+            评论
+        </view>
+       <block wx:for="{{pinlunlist}}" wx:for-item="pl">
+        <view class="comment-item">
+            <image class="avatar" src="{{pl.headerimg}}" />
+            <view class="content">
+                <view class="left">
+                    <text class="top">{{pl.nickname}}</text>
+                    <text class="bottom">{{pl.content}}</text>
+                </view>
+                <view class="right">{{pl.addtime}}</view>
+            </view>
+        </view>
+        <view class="footer border-b">
+            <navigator url="../feedback/feedback" hover-class="none" class="left">
+                <image src="/images/icon/warn.png" />
+                <text>我要投诉</text>
+            </navigator>
+            <view class="right">
+                <image src="/images/icon/edit.png" catchtap="set_mask" data-uid='{{pl.uid}}' data-type='pinlun'/>
+                <!-- <image src="/images/icon/flower.png" /> -->
+            </view>
+        </view>
+        </block>
+        
+    </view>
+    <view class="list-container" wx:else>
+     <block wx:for="{{persongushilist}}" wx:for-item="gushi" wx:key="key">
+        <view class="story" bindtap='detail' data-id='{{gushi.id}}'>
+            <text class="top">{{gushi.title}}</text>
+            <image class="middle" src="{{gushi.img[0]}}" />
+            <view class="bottom">
+                <view class="left">
+                    <view style="margin-right: 20rpx;">
+                        <image src="/images/icon/earphone.png" />
+                        <text>{{gushi.listennum}}</text>
+                    </view>
+                    <!-- <view>
+                        <image src="/images/icon/flower.png" />
+                        <text>{{gushi.goodnum}}</text>
+                    </view> -->
+                </view>
+            </view>
+        </view>
+      </block>
+       
+    </view>
+    <view class="footer-container">
+        <image src="/images/other/detail_footer.png" />
+        <navigator hover-class="none" url="../speak/speak" open-type="redirect"></navigator>
+    </view>
+</view>

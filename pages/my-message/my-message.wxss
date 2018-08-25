@@ -1,0 +1,149 @@
+.btn-container {
+    display: flex;
+    height: 95rpx;
+    background-color: #fff;
+    padding: 15rpx 0;
+    box-shadow: 0px 1px 1px #dddddd;
+}
+
+.btn-container .btn {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-container .btn text {
+    color: #b3b3b3;
+    font-size: 30rpx;
+}
+
+.nav-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    height: 80rpx;
+}
+
+.nav-container view {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-right: 30rpx;
+    z-index: 2;
+}
+
+.nav-container image {
+    width: 35rpx;
+    height: 35rpx;
+    margin-right: 10rpx;
+}
+
+.nav-container text {
+    color: #b3b3b3;
+    font-size: 25rpx;
+}
+
+.list-container {
+    padding: 0 25rpx 180rpx;
+}
+
+.list-container .item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 25rpx 0;
+}
+
+.list-container .item .story {
+    z-index: 2;
+}
+
+.list-container .item .story .checkbox {
+    align-self:center;
+    width: 30rpx;
+    height: 30rpx;
+    padding-left: 10rpx;
+    padding-right: 15rpx;
+}
+
+.list-container .item .story .image {
+    width: 100rpx;
+    height: 100rpx;
+    margin-right: 10rpx;
+}
+
+.list-container .item .story .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.list-container .item .story .info .name {
+    color: #333;
+    font-size: 28rpx;
+}
+
+.list-container .item .story .info .bottom {
+    display: flex;
+}
+
+.list-container .item .story .info .bottom view {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.list-container .item .story .info .bottom image {
+    width: 25rpx;
+    height: 25rpx;
+    margin-right: 5rpx;
+}
+
+.list-container .item .story .info .bottom text {
+    color: #b3b3b3;
+    font-size: 25rpx;
+}
+
+.list-container .item .middle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: -5rpx;
+    z-index: 2;
+}
+
+.list-container .item .middle .open {
+    display: flex;
+    align-items: center;
+    width: 100rpx;
+}
+
+.list-container .item .middle .open text {
+    color: #b3b3b3;
+    font-size: 28rpx;
+}
+
+.list-container .item .middle .open image {
+    width: 30rpx;
+    height: 15rpx;
+    margin-left: 10rpx;
+}
+
+.list-container .item .comment {
+    margin-left: 50rpx;
+    margin-top: 10rpx;
+    line-height: 30rpx;
+}
+
+.list-container .item .comment .time {
+    color: #b3b3b3;
+    font-size: 25rpx;
+    margin-right: 15rpx;
+}
+
+.list-container .item .comment .content {
+    color: #333;
+    font-size: 28rpx;
+}

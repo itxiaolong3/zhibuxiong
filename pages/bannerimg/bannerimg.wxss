@@ -1,0 +1,8 @@
+/* pages/bannerimg/bannerimg.wxss */
+.content{
+  padding: 30rpx;
+}
+.content2{
+  text-align: center;
+  padding-top: 100rpx;
+}

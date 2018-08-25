@@ -1,0 +1,39 @@
+<view class="story-container">
+    <view class="title-container">我的收藏</view>
+     <view wx:if='{{items.length==0}}' class='th-state'>
+         无数据
+        </view>
+    <view class="nav-container border-b" wx:else>
+        <view catchtap="tap_all">
+            <image src="/images/icon/{{all == items.length ? 'check' : 'uncheck'}}.png"  />
+            <text>全选</text>
+        </view>
+        <view catchtap="tap_delete">
+            <image src="/images/icon/delete.png"  />
+            <text>删除</text>
+        </view>
+    </view>
+        <view class="list-container">
+        <view class="item border-b" wx:for="{{items}}" wx:key="key" catchtap="tap_item" data-id="{{index}}" data-gsid="{{item.id}}">
+            <image class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png"  />
+            <image class="image" src="{{item.img[0]}}"  />
+            <view class="info">
+                <text class="name">{{item.title}}</text>
+                <view class="bottom">
+                    <view style="margin-right: 20rpx;">
+                        <image src="/images/icon/earphone.png"  />
+                        <text>{{item.listennum}}</text>
+                    </view>
+                    <view>
+                        <image src="/images/icon/flower.png"  />
+                        <text>{{item.goodnum}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="footer-container">
+        <image src="/images/other/my_footer.png" />
+        <navigator hover-class="none" url="../speak/speak" open-type="redirect"></navigator>
+    </view>
+</view>

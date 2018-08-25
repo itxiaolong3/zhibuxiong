@@ -1,0 +1,463 @@
+.ad {
+    width: 100%;
+    height: 180rpx;
+}
+
+.header-container {
+    padding: 20rpx 25rpx;
+    box-shadow: 0px 1px 1px #dddddd;
+    background-color: #fff;
+}
+
+.header-container .title {
+    color: #333;
+    font-size: 33rpx;
+}
+
+.header-container .swiper-container {
+    position: relative;
+    width: 100%;
+    height: 425rpx;
+    margin-top: 20rpx;
+    border-radius: 10px;  
+}
+
+.header-container .swiper-container swiper-item,
+.header-container .swiper-container swiper-item image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; 
+}
+
+.header-container .swiper-container text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+    font-size: 25rpx;
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    box-sizing: border-box;
+    padding-left: 20rpx;
+    background-color: rgba(0,0,0,0.5);
+    border-bottom-left-radius: 10px;    
+    border-bottom-right-radius: 10px;    
+}
+
+.header-container .cover {
+    position: relative;
+    width: 100%;
+    height: 425rpx;
+    margin-top: 20rpx;
+}
+
+.header-container .cover image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;    
+}
+
+.header-container .cover text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+    font-size: 25rpx;
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    box-sizing: border-box;
+    padding-left: 20rpx;
+    background-color: rgba(0,0,0,0.5);
+    border-bottom-left-radius: 10px;    
+    border-bottom-right-radius: 10px;    
+}
+
+.nav-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80rpx;
+    padding: 0 30rpx;
+}
+
+.nav-container .title {
+    color: #666;
+    font-size: 30rpx;
+}
+
+.nav-container .right {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+.nav-container .right text {
+    color: #ccc;
+    font-size: 30rpx;
+    margin-right: 15rpx;
+}
+
+.nav-container image {
+    width: 20rpx;
+    height: 35rpx;
+}
+
+.nav-container .left {
+    display: flex;
+    align-items: center;
+    width: 80rpx;
+    height: 80rpx;
+    z-index: 2;
+}
+
+.nav-container .text2 {
+    color: #333;
+    font-size: 30rpx;
+}
+
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 13rpx 13rpx 180rpx;
+}
+
+.list-container .story {
+    flex: 0 0 33.3%;
+    display: flex;
+    flex-direction: column;
+    padding: 10rpx 13rpx;
+}
+
+.list-container .story .top {
+    color: #333;
+    font-size: 25rpx;
+}
+
+.list-container .story .middle {
+    width: 100%;
+    height: 215rpx;
+    margin: 5rpx 0;
+    border-radius: 10px;
+}
+
+.list-container .story .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40rpx;
+    padding: 0 5rpx;
+}
+
+.list-container .story .bottom .left {
+    display: flex;
+}
+
+.list-container .story .bottom .left view {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.list-container .story .bottom .left image {
+    width: 25rpx;
+    height: 25rpx;
+    margin-right: 5rpx;
+}
+
+.list-container .story .bottom .left text {
+    color: #b3b3b3;
+    font-size: 25rpx;
+}
+
+.list-container .story .bottom .right {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.body-container {
+    padding: 0 25rpx 180rpx;
+}
+
+.body-container .info {
+    display: flex;
+    align-items: center;
+    padding: 30rpx 0;
+}
+
+.body-container .info .left {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
+
+.body-container .info .middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.body-container .info .middle .top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rpx;
+}
+
+.body-container .info .middle .top text {
+    color: #333;
+    font-size: 30rpx;
+    margin-right: 15rpx;
+}
+
+.body-container .info .middle .top .label {
+    color: #fff;
+    font-size: 28rpx;
+    padding: 0 5rpx;
+    border-radius: 3px;
+    background-color: #f00;
+}
+
+.body-container .info .middle .bottom {
+    display: flex;
+}
+
+.body-container .info .middle .bottom view {
+    display: flex;
+    align-items: center;
+    height: 40rpx;
+}
+
+.body-container .info .middle .bottom image {
+    width: 25rpx;
+    height: 25rpx;
+    margin-right: 5rpx;
+}
+
+.body-container .info .middle .bottom text {
+    color: #b3b3b3;
+    font-size: 25rpx;
+}
+
+.body-container .info .right {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.body-container .audio {
+    display: flex;
+    align-items: center;
+    padding: 15rpx 20rpx;
+    border: 1px solid #ddd;
+}
+
+.body-container .audio .play {
+    min-width: 80rpx;
+    min-height: 80rpx;
+    max-width: 80rpx;
+    max-height: 80rpx;
+    z-index: 3;
+}
+
+.body-container .audio .time {
+    color: #888;
+    font-size: 30rpx;
+    min-width: 100rpx;
+    max-width: 100rpx;
+    margin-left: 20rpx;
+     z-index: 3;
+}
+
+.body-container .audio .progress {
+    flex: 1;
+     z-index: 3;
+}
+
+.body-container .footer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20rpx 20rpx 10rpx;
+}
+
+.body-container .footer .left,.body-container .footer .right {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+.body-container .footer .left image {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 5rpx;
+}
+
+.body-container .footer .left text {
+    color: #b6b6b6;
+    font-size: 30rpx;
+}
+
+.body-container .footer .right image {
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 25rpx;
+    z-index: 2;
+}
+
+.body-container .comment-title {
+    display: flex;
+    align-items: flex-end;
+    height: 80rpx;
+    padding-bottom: 10rpx;
+    color: #666;
+    font-size: 33rpx;
+    border-bottom: 1px solid #dddddd;
+}
+
+.body-container .comment-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 20rpx;
+}
+
+.body-container .comment-item .avatar {
+    width: 70rpx;
+    height: 70rpx;
+    margin-right: 20rpx;
+     border-radius: 50%;
+}
+
+.body-container .comment-item .content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.body-container .comment-item .content .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.body-container .comment-item .content .left .top {
+    color: #333;
+    font-size: 30rpx;
+    margin-bottom: 5rpx;
+}
+
+.body-container .comment-item .content .left .bottom {
+    color: #666;
+    font-size: 28rpx;
+}
+
+.body-container .comment-item .content .right {
+    color: #b3b3b3;
+    font-size: 22rpx;
+}
+
+.footer-container {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 170rpx;
+    z-index: 3;
+}
+
+.footer-container image {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 170rpx;
+}
+
+.footer-container navigator {
+    min-width: 140rpx;
+    min-height: 170rpx;
+    z-index: 3;
+}
+
+/*导航条部分  */
+.landspace_slider {
+  margin-top: 100rpx;
+  width: 650rpx; 
+  height: 100%;
+  margin-left: 50rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.title_view2 {
+  color: gray;
+  font-size: 40rpx;
+}
+
+.dialog-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 200rpx;
+    margin: auto;
+    width: 80%;
+    height: 400rpx;
+    padding: 15rpx;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 3rpx solid #b3b3b3;
+    z-index: 9;
+}
+
+.dialog-container textarea {
+    color: #333;
+    font-size: 28rpx;
+    border: 1px solid #ddd;
+    padding: 10rpx 15rpx;
+    width:calc(100% - 30rpx);
+    height:290rpx;
+}
+
+.dialog-container .btn {
+    float: right;
+	width: 150rpx;
+	height: 50rpx;
+    line-height: 50rpx;
+	color: #fff;
+	font-size: 25rpx;
+	text-align: center;
+	border-radius: 20px;
+    background-color: #ffb300;
+    margin-top: 10rpx;
+}
+
+.dialog-container image {
+    position: relative;
+    left: 100%;
+    bottom: 380rpx;
+    width: 35rpx;
+    height: 35rpx;
+}
+
+.jia-content {
+    padding: 20rpx 25rpx;
+    color: #333;
+    font-size: 25rpx;
+}
+/*轮播图 */
+.swiper-container {
+    width: 100%;
+    height: 280rpx;
+}
+
+.swiper-container image {
+    width: 100%;
+    height: 100%;
+}

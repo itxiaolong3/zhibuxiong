@@ -1,0 +1,18 @@
+<view class="feedback-container">
+    <view class="title">
+        标题
+    </view>
+    <input placeholder="请输入标题" placeholder-class="placeholder" value="{{title}}" maxlength="20" data-id="0" bindinput="input_value" />
+    <view class="title">
+        联系方式
+    </view>
+    <input placeholder="邮箱或手机号" placeholder-class="placeholder" value="{{phone}}" maxlength="20" data-id="1" bindinput="input_value" />
+    <view class="title" wx:if='{{gid>0}}'>
+        投诉内容
+    </view>
+    <view class="title" wx:else>留言</view>
+    <textarea placeholder="{{gid>0?'请输入您的投诉内容':'请输入您对熊熊的留言'}}" placeholder-class="placeholder" value="{{content}}" data-id="2" bindinput="input_value" />
+    <view class="btn-container" catchtap="tap_btn">
+        提交
+    </view>
+</view>

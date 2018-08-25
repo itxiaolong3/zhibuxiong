@@ -1,0 +1,32 @@
+
+
+<swiper class="swiper-container" autoplay="true" circular="true" indicator-dots="true">
+    <swiper-item style="background-color: #ddd;" wx:for="{{[1,2]}}" wx:key="key">
+       <image src="/images/other/jia_{{item}}.jpg" lazy-load="true" />
+    </swiper-item>
+</swiper>
+
+<view class="list-container">
+    <view class="item">
+        <image src="/images/icon/my-info.png" />
+        <text>公司介绍</text>
+    </view>
+    <view class="content">
+       织布熊总部位于长江中游地区重要的中心城市，一直秉承着把快乐分享给世界的宗旨，一切为了孩子，如果您对我们的服务有兴趣，请拨打我们的电话，热诚欢迎各界朋友前来参观、考察、洽谈业务。
+    </view>
+</view>
+<view class="list-container">
+    <view class="item border-b">
+        <image src="/images/icon/feedback.png" />
+        <text>合作电话：18933284405</text>
+    </view>
+    <view class="item border-b">
+        <image src="/images/icon/my-collect.png" />
+        <text>营业时间：09:00-21:00</text>
+    </view>
+    <view class="item">
+        <image src="/images/icon/my-message.png" />
+        <text>公司地址：长沙市高新开发区文轩路27号</text>
+    </view>
+</view>
+<image src="/images/other/jia_3.jpg" style="width: 100%;" mode="widthFix" />

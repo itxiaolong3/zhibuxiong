@@ -1,0 +1,30 @@
+<view class="info-container" hidden="{{load == 0}}">
+  <view class="title-container">我的资料</view>
+  <view class="list-container">
+    <view class="item border-b">
+      <text class="title">头像</text>
+      <image src="{{userinfo.headerimg}}" />
+    </view>
+    <view class="item border-b">
+      <text class="title">昵称</text>
+      <input class="content" value="{{userinfo.nickname}}" placeholder="待完善" placeholder-class="content" disabled="true" />
+    </view>
+    <view class="item border-b">
+      <text class="title">生日</text>
+      <input class="content" value="{{userinfo.bsday}}" placeholder="待完善" placeholder-class="content" disabled="true" />
+    </view>
+     <view class="item border-b">
+      <text class="title">微信号</text>
+      <input class="content" value="{{userinfo.wechat}}" placeholder="待完善" placeholder-class="content" disabled="true" />
+    </view>
+    <view class="item border-b">
+      <text class="title">性别</text>
+      <input class="content" value="{{userinfo.sex}}" placeholder="待完善" placeholder-class="content" disabled="true" />
+    </view>
+    <view class="item border-b">
+      <text class="title">学校</text>
+      <input class="content" value="{{userinfo.ishow == 0 ? userinfo.school : '****'}}" placeholder="待完善" placeholder-class="content" disabled="true" />
+    </view>
+    <navigator class="updatainfo" hover-class="none" url="../editinfo/editinfo">修改资料</navigator>
+  </view>
+</view>

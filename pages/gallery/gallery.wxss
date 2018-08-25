@@ -1,0 +1,72 @@
+.title-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100rpx;
+    color: #333;
+    font-size: 33rpx;
+    box-shadow: 0px 1px 1px #dddddd;
+}
+
+.nav-container {
+    display: flex;
+    height: 80rpx;
+    padding: 15rpx 0;
+}
+
+.nav-container .nav {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.nav-container .nav text {
+    color: #b3b3b3;
+    font-size: 30rpx;
+}
+
+.image-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 15rpx;
+}
+
+.image-list .item {
+    position: relative;
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 10rpx;
+}
+
+.image-list .item text {
+    color: #333;
+    font-size: 33rpx;
+    margin-bottom: 5rpx;
+}
+
+.image-list .item .image {
+    width: 100%;
+    height: 200rpx;
+    border-radius: 5px;
+}
+
+.image-list .item .cover {
+    position: absolute;
+    bottom: 10rpx;
+    width: calc(100% - 18rpx);
+    height: 200rpx;
+    border-radius: 5px;
+}
+
+.footer-container,
+.footer-container image {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 125rpx;
+}

@@ -1,0 +1,257 @@
+page {
+    width: 100%;
+    height: 100%;
+}
+
+view,navigator {
+    box-sizing: border-box;
+}
+
+text {
+    font-family: Microsoft YaHei;
+}
+
+/*弹性盒子*/
+
+.flex-row {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row nowrap;
+    flex-flow: row nowrap;
+    word-break: break-all;
+}
+
+.flex-row-wrap {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row nowrap;
+    flex-flow: row wrap;
+    word-break: break-all;
+}
+
+.flex-col {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    flex-flow: column;
+    word-break: break-all;
+}
+
+.flex-1 {
+    height: 100%;
+    flex: 1;
+}
+
+.flex-2 {
+    height: 100%;
+    flex: 2;
+}
+
+.flex-3 {
+    height: 100%;
+    flex: 3;
+}
+
+.flex-jus {
+    justify-content: center;
+}
+
+.flex-ali {
+    align-items: center;
+}
+
+/*自动隐藏文字*/
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ellipsis-2 {
+    display: -webkit-box !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.ellipsis-3 {
+    display: -webkit-box !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+
+/*清除浮动*/
+
+.clear-fix:after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+
+/*显示隐藏*/
+
+.hide {
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.show {
+    display: block !important;
+}
+
+.inline {
+    display: inline-block;
+}
+
+
+/*边框*/
+
+.border:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #dddddd;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+
+.border-t:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top: 1px solid #dddddd;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+
+.border-b:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #dddddd;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+
+.border-l:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 1px solid #dddddd;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+
+.border-r:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-right: 1px solid #dddddd;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+
+/*遮罩*/
+
+.mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    z-index: 7;
+    visibility: hidden;
+    -webkit-transition: opacity .3s,-webkit-transform .3s;
+    transition: opacity .3s,transform .3s;
+}
+
+.mask.mask-in {
+    visibility: visible;
+    opacity: 1;
+}
+
+.mask.mask-out {
+    opacity: 0;
+}
+
+/*禁止滑动*/
+
+.unable-move {
+    overflow: hidden;
+    height: 100%;
+}
+
+/*童画故事样式*/
+
+.index-container {
+    height: 100%;
+    background-color: #f2f2f2;
+}
+
+.th-active {
+    color: #ffb300 !important;
+}
+
+.th-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 100rpx;
+    color: #999;
+    font-size: 30rpx;
+    width: 100%;
+}

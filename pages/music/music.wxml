@@ -1,0 +1,19 @@
+<view class="story-container">
+    <view class="title-container">在线乐库</view>
+    <view class="list-container">
+        <view class="item" wx:for="{{items}}" wx:key="key">
+            <view class="left">
+                <image src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png" catchtap="tap_check" data-index="{{index}}" data-id="{{item.id}}" data-url="{{item.url}}" data-title="{{item.name}}"/>
+                <view>
+                    <text class="name">{{item.name}}</text>
+                    <text class="author">未知</text>
+                </view>
+            </view>
+            <image class="right" src="/images/icon/music_{{item.played ? 'stop' : 'play'}}.png" catchtap="tap_play" data-index="{{index}}" data-id="{{item.id}}" data-url="{{item.url}}"  />
+        </view>
+    </view>
+    <view class="footer-container">
+        <image src="/images/other/music_footer.png" />
+        <view catchtap="tap_btn"></view>
+    </view>
+</view>

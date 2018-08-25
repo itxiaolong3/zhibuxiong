@@ -1,0 +1,162 @@
+.success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 150rpx 20rpx;
+}
+
+.success-container .icon {
+    width: 230rpx;
+    height: 230rpx;
+    margin-bottom: 20rpx;
+}
+
+.success-container .text-1 {
+    color: #888;
+    font-size: 50rpx;
+    margin-bottom: 80rpx;
+}
+
+.success-container .text-2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60rpx;
+}
+
+.success-container .text-2 image {
+    width: 40rpx;
+    height: 25rpx;
+    margin-right: 10rpx;
+}
+
+.success-container .text-2 text {
+    color: #ffb300;
+    font-size: 35rpx;
+}
+
+.success-container .btn-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.btn-container .btn-1 {
+    width: 275rpx;
+    height: 55rpx;
+    line-height: 55rpx;
+	color: #ffb300;
+	font-size: 30rpx;
+	text-align: center;
+	border-radius: 20px;
+    border: 1px solid #ffb300;
+    background-color: #fff;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.btn-container .btn-2 {
+    width: 275rpx;
+    height: 55rpx;
+    line-height: 55rpx;
+	color: #fff;
+	font-size: 30rpx;
+	text-align: center;
+	border-radius: 20px;
+    background-color: #ffb300;
+}
+
+.dialog-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 1200rpx;
+    z-index: 8;
+}
+
+.dialog-container canvas {
+
+    width: 100%;
+    height: 980rpx;
+     /* background-color: #ffb915;  */
+}
+
+.dialog-container .close {
+  margin-top: 30rpx;
+    width: 35rpx;
+    height: 35rpx;
+    align-self: flex-end;
+    margin-right: 10rpx;
+    margin-bottom: 10rpx;
+}
+
+.dialog-container .download {
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.dialog-container2 {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    height: 300rpx;
+    background-color: #fff;
+    z-index: 9;
+}
+
+.dialog-container2 .left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 330rpx;
+}
+
+.dialog-container2 .left image {
+    width: 95rpx;
+    height: 95rpx;
+    margin-bottom: 10rpx;
+}
+
+.dialog-container2 .left text {
+    color: #4d4d4d;
+    font-size: 25rpx;
+    margin-bottom: 10rpx;
+}
+
+.dialog-container2 .right {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dialog-container2 .right .close {
+    width: 30rpx;
+    height: 30rpx;
+    align-self: flex-end;
+    margin-top: 10rpx;
+    margin-right: 10rpx;
+}
+
+.dialog-container2 .right .code {
+    width: 185rpx;
+    height: 185rpx;
+    margin-bottom: 10rpx;
+}
+
+.dialog-container2 .right text {
+    color: #4d4d4d;
+    font-size: 25rpx;
+}

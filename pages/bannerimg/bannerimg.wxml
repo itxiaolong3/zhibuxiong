@@ -1,0 +1,6 @@
+<view wx:if="{{contents!=''}}" class='content'>
+  <rich-text nodes="{{contents}}"></rich-text>
+</view>
+<view wx:else class='content2'>
+  暂无
+</view>

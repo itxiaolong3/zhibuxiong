@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "我要听故事",
+    "usingComponents": {
+      "wxzx-slider": "../../component/wxzx-slider/wxzx-slider"
+    }
+}

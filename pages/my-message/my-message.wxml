@@ -1,0 +1,61 @@
+<view class="message-container">
+    <view class="btn-container">
+        <view class="btn border-r" catchtap="tap_nav" data-id="0">
+            <text class="{{nav_state == 0 ? 'th-active' : ''}}">发出的评论</text>
+        </view>
+        <view class="btn" catchtap="tap_nav" data-id="1">
+            <text class="{{nav_state == 1 ? 'th-active' : ''}}">收到的评论</text>
+        </view>
+    </view>
+  <view wx:if='{{items.length==0}}' class='th-state'>
+         无数据
+        </view>
+    <view class="nav-container border-b" wx:else>
+        <view catchtap="tap_all">
+            <image src="/images/icon/{{all == items.length ? 'check' : 'uncheck'}}.png"  />
+            <text>全选</text>
+        </view>
+       <view catchtap="tap_delete">
+            <image src="/images/icon/delete.png"  />
+            <text>删除</text>
+        </view>
+    </view>
+    <view class="list-container">
+        <view class="item border-b" wx:for="{{items}}" wx:key="key">
+            <view class="story flex-row" catchtap="tap_item" data-id="{{index}}">
+                <image class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png"  />
+                <image class="image" src="{{item.img[0]}}"  />
+                <view class="info">
+                    <text class="name">{{item.title}}</text>
+                    <view class="bottom">
+                        <view style="margin-right: 20rpx;">
+                            <image src="/images/icon/earphone.png"  />
+                            <text>{{item.listennum}}</text>
+                        </view>
+                        <view>
+                            <image src="/images/icon/flower.png"  />
+                            <text>{{item.goodnum}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="middle">
+                <view class="open" catchtap="tap_open" data-id="{{index}}" data-gsid="{{item.g_id}}">
+                    <text>{{item.open ? '收起' : '展开'}}</text>
+                    <image src="/images/icon/{{item.open ? 'up_2' : 'down_2'}}.png" />
+                </view>
+            </view>
+             <view class="comment">
+                <text class="time">{{item.gp_addtime}}</text>
+                <text class="content">你评论了\t {{item.nickname}}{{item.content}}                  </text>
+            </view>
+            <view class="comment" wx:if="{{item.open}}">
+              <view wx:for="{{comment}}">
+                <text class="time">{{item.gp_addtime}}</text>
+                <text class="content">{{item.nickname}}评论了你\t {{item.content}}                        </text>
+              </view>  
+            </view>
+            
+        </view>
+    </view>
+</view>

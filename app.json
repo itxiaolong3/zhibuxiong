@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/shen/shen",
+    "pages/index/index",
+    "pages/indexx/indexx",
+    "pages/my/my",
+    "pages/speak/speak",
+    "pages/listen/listen",
+    "pages/search/search",
+    "pages/gallery/gallery",
+    "pages/speak-record/speak-record",
+    "pages/speak-success/speak-success",
+    "pages/story-detail/story-detail",
+    "pages/zhubo-detail/zhubo-detail",
+    "pages/my-story/my-story",
+    "pages/my-history/my-history",
+    "pages/my-collect/my-collect",
+    "pages/my-message/my-message",
+    "pages/my-info/my-info",
+    "pages/feedback/feedback",
+    "pages/login/login",
+    "pages/music/music",
+    "pages/editinfo/editinfo",
+    "pages/bannerimg/bannerimg"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 0
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/indexx/indexx",
+        "text": "首页",
+        "iconPath": "images/tab/index.png",
+        "selectedIconPath": "images/tab/index_hl.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/tab/my.png",
+        "selectedIconPath": "images/tab/my_hl.png"
+      }
+    ],
+    "color": "#666",
+    "selectedColor": "#ffb300"
+  }
+}
