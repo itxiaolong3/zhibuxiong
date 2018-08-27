@@ -15,7 +15,7 @@ Page({
     },
 
     onLoad: function () {
-        
+      
         this.getshen();
         wx.showNavigationBarLoading()
         this.get_swiper()

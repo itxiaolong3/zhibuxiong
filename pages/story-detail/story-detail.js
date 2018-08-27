@@ -2,7 +2,7 @@
 const app = getApp()
 const api = require('../../api.js')
 const bgAudioManager = wx.getBackgroundAudioManager()
-
+//const bgAudioManager =wx.createInnerAudioContext()
 
 //let interval
 Page({
@@ -55,10 +55,9 @@ Page({
       console.log('进来的总长度' + app.globalData.duration);
       console.log('进来的当前总' + this.data.duration);
       console.log('当前的进度条长度：' + app.globalData.changeduration);
-      this.setData({
-        duration: app.globalData.duration,
-        //thisplaystatus: true,
-      })
+      // this.setData({
+      //   duration: app.globalData.duration,
+      // })
       if (app.globalData.playstatus){
         this.setData({
           curmin: app.globalData.min,
@@ -93,9 +92,7 @@ Page({
             cursecond: app.globalData.second,
             changeduration: app.globalData.changeduration
           })
-          // console.log('changeduration==' + app.globalData.changeduration);
-          // console.log('min==' + app.globalData.min);
-          // console.log('second==' + app.globalData.second);
+         
         }, 1000)
       }
       
@@ -218,8 +215,6 @@ Page({
       let curmin = app.globalData.min;
       let cursecond = app.globalData.second;
       console.log('暂时当前的值==' + app.globalData.min + '--' + app.globalData.second);
-      // app.globalData.min = curmin;
-      // app.globalData.second = cursecond;
       app.globalData.playstatus = false;
       that.setData({
         curmin: curmin,
@@ -235,6 +230,7 @@ Page({
     }
     console.log(app.globalData.playstatus + '全局后--当前' + that.data.thisplaystatus);
     if (app.globalData.playstatus) {
+     
       //暂停
       bgAudioManager.pause();
       clearInterval(app.globalData.interval)
@@ -242,8 +238,6 @@ Page({
       let curmin = app.globalData.min;
       let cursecond = app.globalData.second;
       console.log('暂时当前的值==' + app.globalData.min + '--' + app.globalData.second);
-      // app.globalData.min = curmin;
-      // app.globalData.second = cursecond;
       app.globalData.playstatus=false;
       that.setData({
         curmin: curmin,
@@ -285,6 +279,12 @@ Page({
     
       if (app.globalData.isfristplay == 1) {
         clearInterval(app.globalData.interval)
+        let time = that.data.duration;
+        let initmin = Math.floor(time / 60);
+        let initsecond = Math.floor(time % 60);
+        app.globalData.min=initmin;
+        app.globalData.second=initsecond;
+        app.globalData.changeduration=0;
         app.globalData.interval2 = setInterval(function () {
           app.globalData.changeduration = app.globalData.changeduration + 1
           if (app.globalData.min != 0) {
@@ -308,11 +308,13 @@ Page({
 
             }
           }
+          console.log('initmin='+that.data.initmin+'----initsecond='+that.data.initsecond);
           that.setData({
             curmin: app.globalData.min,
             cursecond: app.globalData.second,
             changeduration: app.globalData.changeduration
           })
+          
           wx.onBackgroundAudioStop(function () {
             console.log('音频停止事件22');
             //结束播放
@@ -328,9 +330,7 @@ Page({
               cursecond: 0
             })
           });
-          // console.log('changeduration2==' + app.globalData.changeduration);
-          // console.log('min2==' + app.globalData.min);
-          // console.log('second2==' + app.globalData.second);
+         
         }, 1000)
         //第二次播放
        // if (app.globalData.min != 0 && app.globalData.second != 0) {
@@ -349,8 +349,19 @@ Page({
         }
 
       } else {
+        
         //第一次播放
         app.globalData.isfristplay=1
+        if (app.globalData.second == 0 && app.globalData.min == 0) {
+          that.setData({
+            curmin: 0,
+            cursecond: 0,
+            changeduration: app.globalData.changeduration
+          })
+          wx.showLoading({
+            title: '正在加载...',
+          })
+        }
         setTimeout(function () {
           app.globalData.curplaygsid = that.data.gsid;
           console.log("that.data.duration获取音频的长度：" + app.globalData.duration);
@@ -394,6 +405,7 @@ Page({
                   },1500)
                   console.log('此时的分为' + app.globalData.min + '秒' + app.globalData.second);
               }else{
+                wx.hideLoading();
                 //////////
                 if (app.globalData.min != 0) {
                   if (app.globalData.second <= 0) {
@@ -435,9 +447,7 @@ Page({
                       cursecond:0
                     })
                   });
-                // console.log('changeduration==' + app.globalData.changeduration);
-                // console.log('min1==' + app.globalData.min);
-                // console.log('second1==' + app.globalData.second);
+               
               }
               
             }, 1000)
@@ -852,11 +862,7 @@ Page({
       console.log("快进后的数分钟" + chamin + "==秒" + chasecond);
      
       let duration = this.data.duration;
-      // this.setData({
-      //   min: chamin,
-      //   second: chasecond,
-      //   changeduration: getvalue
-      // });
+
       app.globalData.min = chamin;
       app.globalData.second = chasecond;
       app.globalData.changeduration = getvalue;
@@ -944,14 +950,21 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+   
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    let that=this;
+    if (!app.globalData.playstatus) {
+      console.log('onUnload看不到你了');
+      bgAudioManager.stop();
+      app.initdata();
+    
+    }
+    
   },
 
   /**
