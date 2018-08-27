@@ -352,6 +352,11 @@ Page({
         
         //第一次播放
         app.globalData.isfristplay=1
+        that.setData({
+          curmin:0,
+          cursecond: 0,
+         
+        })
         if (app.globalData.second == 0 && app.globalData.min == 0) {
           that.setData({
             curmin: 0,

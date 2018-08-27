@@ -198,9 +198,18 @@ Page({
                                                 })
                                             } else {
                                                 wx.showToast({
-                                                    title: '发布失败',
+                                                    title: '发布失败,请重新授权登录',
                                                     icon: 'none'
                                                 })
+                                                setTimeout(function(){
+                                                  wx.clearStorageSync('u_id');
+                                                  wx.clearStorageSync('nickname');
+                                                  wx.clearStorageSync('userheaderimg');
+                                                  wx.navigateTo({
+                                                    url: '/pages/login/login'
+                                                  })
+                                                },1000)
+                                              
                                             }
                                         }
                                     })

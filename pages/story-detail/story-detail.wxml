@@ -68,18 +68,18 @@
         <view class="audio">
          <image class="play" bindtap='play'  src="{{thisplaystatus==true?'/images/icon/story_stop.png':'/images/icon/story_play.png'}}" />
           <view class="time" wx:if="{{curmin<=9}}">
-            <text wx:if="{{cursecond<=9}}">0{{curmin}}:0{{cursecond}}</text>
-            <text wx:else>0{{curmin}}:{{cursecond}}</text>
+            <text wx:if="{{cursecond<=9}}">0{{curmin=='null'? 0 :curmin}}:0{{cursecond=='null'? 0 :cursecond}}</text>
+            <text wx:else>0{{curmin=='null'? 0 :curmin}}:{{cursecond=='null'? 0 :cursecond}}</text>
           </view>
            <view class="time" wx:elif="{{curmin>=10}}">
-            <text wx:if="{{cursecond<=9}}">{{curmin}}:0{{cursecond}}</text>
-            <text wx:else>{{curmin}}:{{cursecond}}</text>
+            <text wx:if="{{cursecond<=9}}">{{curmin=='null'? 0 :curmin}}:0{{cursecond=='null'? 0 :cursecond}}</text>
+            <text wx:else>{{curmin=='null'? 0 :curmin}}:{{cursecond=='null'? 0 :cursecond}}</text>
           </view>
           <view class="time" wx:elif="{{cursecond>=10}}">
-            <text wx:if="{{curmin<=9}}">0{{curmin}}:{{cursecond}}</text>
+            <text wx:if="{{curmin<=9}}">0{{curmin=='null'? 0 :curmin}}:{{cursecond=='null'? 0 :cursecond}}</text>
           </view>
           <view class="time" wx:elif="{{cursecond>=10}}">
-            <text wx:if="{{curmin>=10}}">{{curmin}}:{{cursecond}}</text>
+            <text wx:if="{{curmin>=10}}">{{curmin=='null'? 0 :curmin}}:{{cursecond=='null'? 0 :cursecond}}</text>
           </view>
               <wxzx-slider class='test1' id='wxzxSlider6' value='{{changeduration}}' max='{{duration==0?100:duration}}' width='460' bind:sliderTap="sliderTap" bind:sliderStart="sliderStart" bind:sliderChange="sliderChange" bind:sliderEnd="sliderEnd" bind:sliderCancel="sliderCancel" disabled='{{disabled}}' block-color='#FEB504' block-size='15' active-color='#FEB504' style='z-index: 3;'></wxzx-slider>
         </view>
