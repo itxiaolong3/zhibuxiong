@@ -45,14 +45,14 @@
                 <text>{{gushi.listennum}}</text>
               </view>
               <!-- 点赞 -->
-              <!-- <view>
+              <view>
                 <image src="/images/icon/flower.png" />
                 <text>{{gushi.goodnum}}</text>
-              </view> -->
+              </view>
             </view>
-            <!-- <view catchtap='shoucang' >
+            <view catchtap='shoucang' >
               <image class="right" src="{{gushi.checked==true?'/images/icon/like.png':'/images/icon/dislike.png'}}" />
-            </view> -->
+            </view>
           </view>
         </view>
       </block>

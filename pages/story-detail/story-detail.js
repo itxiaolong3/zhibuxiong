@@ -951,6 +951,18 @@ Page({
     //清除计时器  即清除setInter
     clearInterval(that.data.interval)
   },
+  togospeak: function () {
+    console.log('点击了');
+    if (wx.getStorageSync('u_id')) {
+      wx.redirectTo({
+        url: '../speak/speak',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
