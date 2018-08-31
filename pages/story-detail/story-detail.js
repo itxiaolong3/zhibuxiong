@@ -462,6 +462,19 @@ Page({
             cursecond: that.data.initsecond,
           })
         }, 800)
+        //添加首次收听出现null的代码
+        if (that.data.curmin == 'null' || that.data.cursecond=='null'){
+          wx.showLoading({
+            title: '首次播放请稍等',
+          })
+          setTimeout(function () {
+            that.setData({
+              curmin: that.data.initmin,
+              cursecond: that.data.initsecond,
+            })
+            wx.hideLoading()
+          }, 1000)
+        }
         app.globalData.playstatus = true;
         that.setData({
           thisplaystatus: true
