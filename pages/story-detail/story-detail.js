@@ -474,6 +474,19 @@ Page({
          }
           
         }, 800)
+        //添加首次收听出现null的代码
+        if (that.data.curmin == 'null' || that.data.cursecond=='null'){
+          wx.showLoading({
+            title: '首次播放请稍等',
+          })
+          setTimeout(function () {
+            that.setData({
+              curmin: that.data.initmin,
+              cursecond: that.data.initsecond,
+            })
+            wx.hideLoading()
+          }, 1000)
+        }
         app.globalData.playstatus = true;
         that.setData({
           thisplaystatus: true
@@ -962,6 +975,18 @@ Page({
     var that = this;
     //清除计时器  即清除setInter
     clearInterval(that.data.interval)
+  },
+  togospeak: function () {
+    console.log('点击了');
+    if (wx.getStorageSync('u_id')) {
+      wx.redirectTo({
+        url: '../speak/speak',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login'
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面隐藏

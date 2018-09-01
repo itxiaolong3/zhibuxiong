@@ -23,7 +23,6 @@ Page({
     onShareAppMessage: function () {
     
     },
-    
     set_mask: function () {
         this.setData({
             mask: !this.data.mask

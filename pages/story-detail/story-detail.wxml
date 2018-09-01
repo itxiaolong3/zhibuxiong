@@ -55,9 +55,9 @@
                         <text>{{gushi.listennum}}</text>
                     </view>
                     <view>
-                        <!-- <image src="/images/icon/flower.png" /> -->
-                        <!-- <text wx:if='{{gushi.goodnum>10000}}'>{{gushi.goodnum/10000}}万</text> -->
-                        <!-- <text wx:else>{{gushi.goodnum}}</text> -->
+                        <image src="/images/icon/flower.png" />
+                        <text wx:if='{{gushi.goodnum>10000}}'>{{gushi.goodnum/10000}}万</text>
+                        <text wx:else>{{gushi.goodnum}}</text>
                     </view>
                 </view>
             </view>
@@ -91,7 +91,7 @@
             </navigator>
             <view class="right">
                 <image src="/images/icon/edit.png" catchtap="set_mask" data-type='gushi'/>
-              <!-- <image bindtap='good' src="{{isgood?'/images/icon/goodflower.png':'/images/icon/flower.png'}}" /> -->
+              <image bindtap='good' src="{{isgood?'/images/icon/goodflower.png':'/images/icon/flower.png'}}" />
             </view>
         </view>
         <view class="comment-title">
@@ -143,7 +143,6 @@
        
     </view>
     <view class="footer-container">
-        <image src="/images/other/detail_footer.png" />
-        <navigator hover-class="none" url="../speak/speak" open-type="redirect"></navigator>
+        <image src="/images/other/detail_footer.png" bindtap='togospeak' />
     </view>
 </view>
