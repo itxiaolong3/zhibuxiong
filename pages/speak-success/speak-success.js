@@ -17,7 +17,8 @@ Page({
     gushipic:'',//故事图片
     headerimg:'',
     pwidth:0,
-    pheight:0
+    pheight:0,
+    shareimg: ''
     
   },
 
@@ -52,7 +53,18 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    var that=this;
+    let getgid = that.data.gsid;
+    return {
+      title: '我在织布熊故事讲了个故事',
+      path: '/pages/story-detail/story-detail?id=' + getgid + '&shoucangstatus=' + false,
+      imageUrl: this.data.shareimg,
+      success(e) {
+        console.log('分享成功=' + getgid);
+      }, fail(e) {
+        console.log('分享失败');
+      }
+    }
   },
 
   set_mask: function () {
@@ -278,5 +290,22 @@ Page({
       }
     })
   },
+  onShow:function(){
+    var that = this;
+    app.request({
+      url: api.story.getstoryone,
+      data: {
+        u_id: wx.getStorageSync('u_id'),
+        gushiid: that.data.gsid
+      },
+      success: (res) => {
+        if (res.status == 1) {
+          that.setData({
+            shareimg: res.imgs[0]
+          });
+        }
+      }
+    })
+  }
 
 })

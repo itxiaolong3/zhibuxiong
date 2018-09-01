@@ -168,6 +168,10 @@ Page({
         wx.setStorageSync('frist_upload', 'no')
         this.tap_upload()
     },
+    //检查标题是否合法
+    checktitle:function(content){
+      
+    },
 
     tap_mask2btn: function (event) {
         let radio = 0

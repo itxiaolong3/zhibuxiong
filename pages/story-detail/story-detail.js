@@ -121,6 +121,7 @@ Page({
         shoucangstatus: options.shoucangstatus,
         isgood:isgood?isgood:false
       })
+      console.log('得到的故事id='+options.id)
     }
 
     this.getgushi();
@@ -456,11 +457,22 @@ Page({
               }
               
             }, 1000)
-         
-          that.setData({
-            curmin: that.data.initmin,
-            cursecond: that.data.initsecond,
-          })
+            //个别手机首次出现null问题
+          if (that.data.initmin == 'null' || that.data.initsecond=='null'){
+            let time = that.data.duration;
+            let initmin = Math.floor(time / 60);
+            let initsecond = Math.floor(time % 60);
+            that.setData({
+              curmin: initmin,
+              cursecond: initsecond,
+            })
+         }else{
+            that.setData({
+              curmin: that.data.initmin,
+              cursecond: that.data.initsecond,
+            })
+         }
+          
         }, 800)
         app.globalData.playstatus = true;
         that.setData({
