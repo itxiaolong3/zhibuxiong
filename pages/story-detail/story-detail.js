@@ -353,11 +353,6 @@ Page({
         
         //第一次播放
         app.globalData.isfristplay=1
-        that.setData({
-          curmin:0,
-          cursecond: 0,
-         
-        })
         if (app.globalData.second == 0 && app.globalData.min == 0) {
           that.setData({
             curmin: 0,
@@ -480,9 +475,12 @@ Page({
             title: '首次播放请稍等',
           })
           setTimeout(function () {
+            let time = that.data.duration;
+            let initmin = Math.floor(time / 60);
+            let initsecond = Math.floor(time % 60);
             that.setData({
-              curmin: that.data.initmin,
-              cursecond: that.data.initsecond,
+              curmin: initmin,
+              cursecond: initsecond,
             })
             wx.hideLoading()
           }, 1000)
