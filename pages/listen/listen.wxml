@@ -24,7 +24,7 @@
         <view class="sort" wx:if="{{sort}}">
             <view class="item border-b" catchtap="tap_sortitem" data-id="0">综合排序</view>
             <view class="item border-b" catchtap="tap_sortitem" data-id="1">收听量</view>
-            <!-- <view class="item border-b" catchtap="tap_sortitem" data-id="2">点赞量</view> -->
+            <view class="item border-b" catchtap="tap_sortitem" data-id="2">点赞量</view>
         </view>
     </view>
     <view wx:if='{{gushilist.length==0}}' class='th-state'>
@@ -42,10 +42,10 @@
                             <image src="/images/icon/earphone.png" />
                             <text>{{gushi.listennum}}</text>
                         </view>
-                        <!-- <view>
+                        <view>
                             <image src="/images/icon/flower.png" />
                             <text>{{gushi.goodnum}}</text>
-                        </view> -->
+                        </view>
                     </view>
                      <image class="right" src="{{gushi.checked==true?'/images/icon/like.png':'/images/icon/dislike.png'}}" />
                 </view>
