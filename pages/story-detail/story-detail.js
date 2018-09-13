@@ -978,7 +978,7 @@ Page({
     console.log('点击了');
     if (wx.getStorageSync('u_id')) {
       wx.redirectTo({
-        url: '../speak/speak',
+        url: '../select/select',
       })
     } else {
       wx.navigateTo({

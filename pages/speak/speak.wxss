@@ -109,11 +109,13 @@ input {
 .radio-container .title {
     color: #1a1a1a;
     font-size: 33rpx;
+    min-width: 180rpx;
 }
 
 .radio-container .radio {
     display: flex;
     align-items: center;
+    min-width: 100rpx;
 }
 
 .radio-container .radio image {

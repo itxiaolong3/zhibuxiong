@@ -1,4 +1,5 @@
 <view class="index-container {{mask ? 'unable-move' : ''}}" hidden="{{load == 0}}">
+  <!--弹框-->
   <view class="mask {{mask ? 'mask-in' : 'mask-out'}}" catchtap="set_mask"></view>
   <view class="dialog-container" wx:if="{{mask}}">
     <view class="content">
@@ -8,6 +9,7 @@
       好的，一定遵守
     </view>
   </view>
+  <!--主体-->
   <view class="search-container">
     <navigator class="search" hover-class="none" url="../search/search">
       <image src="/images/icon/search.png" />
@@ -36,27 +38,72 @@
     <view class="list-container">
       <block wx:for="{{gushilist}}" wx:for-item="gushi" wx:key="key">
         <view class="story" hover-class="none" bindtap='detailgushi' data-id="{{gushi.id}}" data-checked="{{gushi.checked}}">
-          <text class="top ellipsis">{{gushi.title}}</text>
+          <view class="lang">
+              雷州话
+          </view>
+          <view class="top">
+            <view class="ellipsis">{{gushi.title}}</view>
+            <image src="/images/icon/collect{{gushi.checked==true?'_hl':''}}.png" />
+          </view>
           <image class="middle" src="{{gushi.img[0]}}" lazy-load="true" mode="aspectFill"	/>
           <view class="bottom">
             <view class="left">
               <view style="margin-right: 20rpx;">
                 <image src="/images/icon/earphone.png" />
-                <text>{{gushi.listennum}}</text>
+                <text>收听({{gushi.listennum}})</text>
               </view>
-              <!-- 点赞 -->
               <view>
-                <image src="/images/icon/flower.png" />
-                <text>{{gushi.goodnum}}</text>
+                <image src="/images/icon/zan.png" />
+                <text>赞({{gushi.goodnum}})</text>
               </view>
             </view>
-            <view catchtap='shoucang' >
+            <!--旧的点赞-->
+            <!--<view catchtap='shoucang' >
               <image class="right" src="{{gushi.checked==true?'/images/icon/like.png':'/images/icon/dislike.png'}}" />
-            </view>
+            </view>-->
           </view>
         </view>
       </block>
-
+    </view>
+     <navigator url="../listen/listen" hover-class="none" class="list-state th-active">
+     查看更多
+     </navigator>
+  </view>
+  <view class="story-list">
+    <view class="list-title border-b">
+      热门阅读
+    </view>
+    <view class="list-container">
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+            <image src="/images/icon/collect.png" />
+          </view>
+          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+            <image src="/images/icon/collect.png" />
+          </view>
+          <image class="middle" src="/images/other/story_3.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+          </view>
+        </view>
     </view>
      <navigator url="../listen/listen" hover-class="none" class="list-state th-active">
      查看更多
@@ -66,7 +113,7 @@
     <view class="list-title border-b">
       热门小主播
     </view>
-    <view class="list-container">
+    <view class="list-container" style="width:100%;">
      <block wx:for="{{hotuser}}" wx:for-item="u" wx:key="key">
       <view class="zhubo" bindtap='detailgushi' data-id="{{u.id}}" data-checked="false">
         <view class="top">
@@ -75,7 +122,8 @@
         </view>
         <image class="middle" src="{{u.headerimg}}" />
         <view class="bottom">
-          <text>作品 {{u.gscount}}</text>
+          <text>作品({{u.gscount}})</text>
+          <image src="/images/icon/collect.png" />
         </view>
       </view>
       </block>
@@ -100,8 +148,9 @@
         </view>
       </view> -->
     </view>
-    <view class="list-state">
+    <view class="list-state" style="margin-bottom:20rpx;">
       没有更多了
     </view>
   </view>
+  <image class="ad" src="/images/other/story_ad.jpg" />
 </view>

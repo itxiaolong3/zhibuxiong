@@ -80,37 +80,61 @@
 }
 
 .list-container {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 13rpx 13rpx 0;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-around;
+    padding:20rpx;
+    margin-right:-20rpx;
 }
 
 .list-state {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80rpx;
-    color: #ccc;
-    font-size: 28rpx;
+    color:#ccc;
+    font-size:28rpx;
+    text-align:center;
 }
 
 .story-list .story {
-    flex: 0 0 50%;
+    position: relative;
+    margin-right:20rpx;
+}
+
+.story-list .story .lang {
+    position: absolute;
+    top: 50rpx;
+    right: 10rpx;
     display: flex;
-    flex-direction: column;
-    padding: 0 13rpx;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 50rpx;
+    height: 50rpx;
+    color: #fff;
+    font-size: 20rpx;
+    background-color: #fe0000;
 }
 
 .story-list .story .top {
+    display:flex;
+    align-items:center;
+    width:335rpx;
+}
+
+.story-list .story .top view {
+    flex: 1;
     color: #333;
     font-size: 30rpx;
-    max-width: 300rpx;
+}
+
+.story-list .story .top image {
+    width: 70rpx;
+    height: 25rpx;
 }
 
 .story-list .story .middle {
     width: 100%;
     height: 335rpx;
-    margin: 5rpx 0;
+    margin-top: 5rpx;
     border-radius: 10px;
 }
 
@@ -118,7 +142,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 40rpx;
     padding: 0 5rpx;
 }
 
@@ -182,9 +205,19 @@
 
 .zhubo-list .zhubo .bottom {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5rpx;
+}
+
+.zhubo-list .zhubo .bottom text {
     color: #b3b3b3;
-    font-size: 28rpx;
+    font-size: 25rpx;
+}
+
+.zhubo-list .zhubo .bottom image {
+    width: 70rpx;
+    height: 25rpx;
 }
 
 .dialog-container {
@@ -219,4 +252,11 @@
 	border-radius: 20px;
     background-color: #ffb300;
     margin-top: 50rpx;
+}
+
+.ad {
+    width: 100%;
+    height: 180rpx;
+    position: relative;
+    bottom: -10rpx;
 }

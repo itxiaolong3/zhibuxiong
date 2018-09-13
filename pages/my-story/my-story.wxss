@@ -42,7 +42,43 @@
 .list-container .item {
     position: relative;
     display: flex;
+    justify-content: space-between;
     padding: 25rpx 0;
+}
+
+.list-container .item .right-icon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 10rpx;
+    align-self: center;
+    z-index: 2;
+}
+
+.list-container .item .alert {
+    position: absolute;
+    top: 80rpx;
+    right: 60rpx;
+    width: 150rpx;
+    height: 150rpx;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    border: 5rpx solid #c8c9cb;
+    border-radius: 10rpx;
+    background-color: #fff;
+}
+
+.list-container .item .alert view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: #595758;
+    font-size: 25rpx;
+}
+
+.list-container .item .alert view:active {
+    background-color: #e6e6e6;
 }
 
 .list-container .item .checkbox {

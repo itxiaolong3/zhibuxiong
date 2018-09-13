@@ -1,0 +1,114 @@
+<view class="nav">
+    <view class="item {{nav == 0 ? 'active' : ''}}" catchtap="tap_nav" data-id="0">
+        活动说明
+    </view>
+    <view class="item {{nav == 1 ? 'active' : ''}}" catchtap="tap_nav" data-id="1">
+        故事内容
+    </view>
+</view>
+<view class="nav-1" wx:if="{{nav == 0}}">
+    <image src="/images/other/activity_bg.jpg" style="width: 100%;" mode="widthFix" />
+    <view class="title">畅想未来，童画故事征文大赛</view>
+    <view class="content">未来，有无限可能，也许会是机器人的时代，也许会是人工智能的时代,也许每个人可以活几百岁……没有什么不可能，让我们放开想象，畅想未来吧 ！</view>
+    <view class="image">
+        <image src="/images/icon/share.png" />
+    </view>
+</view>
+<view class="nav-2" wx:else>
+    <view class="search-container">
+        <navigator class="search" hover-class="none" url="../search/search">
+        <image src="/images/icon/search.png" />
+        <text>搜索作者</text>
+        </navigator>
+    </view>
+    <view class="sort-container">
+        <view class="title border-b">
+            <image class="left" src="/images/icon/all_play.png" />
+            <view class="right" catchtap="tap_sort">
+                <text>{{sort_state == 0 ? '综合排序' : sort_state == 1 ? '从A-Z' : sort_state == 2 ? '收听量' : sort_state == 3 ? '点赞量' : '创作时间'}}</text>
+                <image src="/images/icon/{{sort ? 'up_1' : 'down_1'}}.png" />
+            </view>
+        </view>
+        <view class="sort" wx:if="{{sort}}">
+            <view class="item border-b" catchtap="tap_sortitem" data-id="0">综合排序</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="1">从A-Z</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="2">收听量</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="3">点赞量</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="4">创作时间</view>
+        </view>
+    </view>
+    <view class="list-container">
+       <view class="item border-b">
+            <image class="image" src="/images/other/story_1.jpg"  />
+            <view class="info">
+                <view class="top">
+                    <text class="name">狮子坐火车</text>
+                    <image src="/images/icon/share.png" />
+                </view>
+                <view class="middle">
+                    <text>作者：巨爱罗</text>
+                    <text>2018-08-31</text>
+                </view>
+                <view class="bottom">
+                    <view style="margin-right: 20rpx;">
+                        <image src="/images/icon/earphone.png"  />
+                        <text>收听(142)</text>
+                    </view>
+                    <view>
+                        <image src="/images/icon/zan.png"  />
+                        <text>赞(6789)</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+       <view class="item border-b">
+            <image class="image" src="/images/other/story_1.jpg"  />
+            <view class="info">
+                <view class="top">
+                    <text class="name">狮子坐火车</text>
+                    <image src="/images/icon/share.png" />
+                </view>
+                <view class="middle">
+                    <text>作者：巨爱罗</text>
+                    <text>2018-08-31</text>
+                </view>
+                <view class="bottom">
+                    <view style="margin-right: 20rpx;">
+                        <image src="/images/icon/earphone.png"  />
+                        <text>收听(142)</text>
+                    </view>
+                    <view>
+                        <image src="/images/icon/zan.png"  />
+                        <text>赞(6789)</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+       <view class="item border-b">
+            <image class="image" src="/images/other/story_1.jpg"  />
+            <view class="info">
+                <view class="top">
+                    <text class="name">狮子坐火车</text>
+                    <image src="/images/icon/share.png" />
+                </view>
+                <view class="middle">
+                    <text>作者：巨爱罗</text>
+                    <text>2018-08-31</text>
+                </view>
+                <view class="bottom">
+                    <view style="margin-right: 20rpx;">
+                        <image src="/images/icon/earphone.png"  />
+                        <text>收听(142)</text>
+                    </view>
+                    <view>
+                        <image src="/images/icon/zan.png"  />
+                        <text>赞(6789)</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+     <view class="list-state">
+     加载中...
+     </view>
+</view>

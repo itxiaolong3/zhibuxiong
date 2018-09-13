@@ -19,7 +19,7 @@
     </view>
     <image class="icon" src="/images/other/success.png" />
     <text class="text-1">发布成功</text>
-    <navigator class="text-2" hover-class="none" url="../speak/speak" open-type="redirect">
+    <navigator class="text-2" hover-class="none" url="../select/select" open-type="redirect">
         <image src="/images/icon/arrow.png" />
         <text>继续讲故事</text>
     </navigator>

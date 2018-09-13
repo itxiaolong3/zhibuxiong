@@ -13,8 +13,8 @@
   <!--选择语种弹出框  -->
     <view class="mask {{mask2 ? 'mask-in' : 'mask-out'}}" catchtap="set_mask2"></view>
     <view class="dialog-container2" wx:if="{{mask2}}">
-        <input placeholder="请填写语种..." placeholder-class="placeholder" focus="true"
-         maxlength="20" value="{{language}}" data-id="1" bindinput="input_value" />
+        <input placeholder="请填写语种（最多三个字符）" placeholder-class="placeholder" focus="true"
+         maxlength="3" value="{{language}}" data-id="1" bindinput="input_value" />
         <view class="btn" catchtap="tap_mask2btn">
             提交
         </view>
@@ -57,7 +57,7 @@
     </view>
     <view class="radio-container">
         <view class="title">
-            故事语言：
+            故事语种：
         </view>
         <view class="radio" catchtap="tap_radio" data-id="0">
             <image src="/images/icon/{{radio == 0 ? 'select.png' : 'unselect.png'}}" />
@@ -71,6 +71,20 @@
             <image src="/images/icon/{{radio == 2 ? 'select.png' : 'unselect.png'}}" />
             <text>其他</text>
         </view>
+    </view>
+    <view class="radio-container">
+        <view class="title">
+            <text decode="{{true}}">设&emsp;&emsp;为：</text>
+        </view>
+        <view class="radio" catchtap="tap_radio2" data-id="0">
+            <image src="/images/icon/{{radio2 == 0 ? 'select.png' : 'unselect.png'}}" />
+            <text>公开</text>
+        </view>
+        <view class="radio" catchtap="tap_radio2" data-id="1">
+            <image src="/images/icon/{{radio2 == 1 ? 'select.png' : 'unselect.png'}}" />
+            <text>私密</text>
+        </view>
+        <view class="radio"></view>
     </view>
     <view class="btn-container" catchtap="tap_btn">
         开始讲故事

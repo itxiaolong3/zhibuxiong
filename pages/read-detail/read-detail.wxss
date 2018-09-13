@@ -1,0 +1,186 @@
+.body-container {
+    padding: 40rpx 25rpx 170rpx;
+}
+
+.body-container .nav {
+    display: flex;
+    height: 60rpx;
+}
+
+.body-container .nav .item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b3b3b3;
+    font-size: 28rpx;
+    border: 1px solid #b3b3b3;
+}
+
+.body-container .nav .item.active {
+    color: #fff;
+    border: 0;
+    background-color: #f9be00;
+}
+
+.body-container .nav-1 {
+    padding-top: 20rpx;
+}
+
+.body-container .nav-1 .title {
+    color: #000;
+    font-size: 30rpx;
+    text-align: center;
+}
+
+.body-container .nav-1 .author {
+    color: #c8c9cb;
+    font-size: 25rpx;
+    text-align: center;
+    margin-top: 15rpx;
+}
+
+.body-container .nav-1 .image {
+    position: relative;
+    top: 30rpx;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.body-container .nav-1 .image image {
+    width: 70rpx;
+    height: 25rpx;
+    margin-left: 20rpx;
+}
+
+.body-container .nav-1 rich-text {
+    font-size:28rpx;
+    line-height:40rpx;
+    text-indent:50rpx;
+}
+
+.body-container .nav-2 {
+    padding-top: 40rpx;
+}
+
+.body-container .nav-2 .all {
+    border-bottom: 1px solid #ddd;
+}
+
+.body-container .nav-2 .all image {
+    width: 145rpx;
+    height: 30rpx;
+}
+
+.body-container .nav-2 .list-container .item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20rpx 0;
+    height: 120rpx;
+    border-bottom: 1px solid #ddd;
+}
+
+.body-container .nav-2 .list-container .item .left {
+    display: flex;
+    align-items: center;
+}
+
+.body-container .nav-2 .list-container .item .left .avatar {
+    width: 80rpx;
+    height: 80rpx;
+    padding-right: 20rpx;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.body-container .nav-2 .list-container .item .left .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 110rpx;
+    padding: 20rpx 0;
+}
+
+.body-container .nav-2 .list-container .item .left .info .top {
+    color: #b3b3b3;
+    font-size: 30rpx;
+}
+
+.body-container .nav-2 .list-container .item .left .info .top text {
+    color: #595758;
+    margin-right: 10rpx;
+}
+
+.body-container .nav-2 .list-container .item .left .info .bottom {
+    display: flex;
+}
+
+.body-container .nav-2 .list-container .item .left .info .bottom view {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.body-container .nav-2 .list-container .item .left .info .bottom image {
+    width: 25rpx;
+    height: 25rpx;
+    margin-right: 5rpx;
+}
+
+.body-container .nav-2 .list-container .item .left .info .bottom text {
+    color: #b3b3b3;
+    font-size: 25rpx;
+}
+
+.body-container .nav-2 .list-container .item .right {
+    width: 50rpx;
+    height: 50rpx;
+    z-index: 2;
+    margin-right: 20rpx;
+}
+
+.footer-container {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    height: 170rpx;
+    z-index: 3;
+}
+
+.footer-container image {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 170rpx;
+}
+
+.footer-container .left,
+.footer-container .right {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 15rpx;
+    color: #fff;
+    font-size: 28rpx;
+    min-width: 100rpx;
+    min-height: 130rpx;
+    z-index: 2;
+}
+
+.footer-container .middle {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 15rpx;
+    color: #fff;
+    font-size: 28rpx;
+    min-width: 140rpx;
+    min-height: 170rpx;
+    margin: 0 100rpx;
+    z-index: 2;
+}

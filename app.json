@@ -21,7 +21,12 @@
     "pages/login/login",
     "pages/music/music",
     "pages/editinfo/editinfo",
-    "pages/bannerimg/bannerimg"
+    "pages/bannerimg/bannerimg",
+    "pages/select/select",
+    "pages/read/read",
+    "pages/read-type/read-type",
+    "pages/read-detail/read-detail",
+    "pages/activity/activity"
   ],
   "window": {
     "backgroundTextStyle": "light",

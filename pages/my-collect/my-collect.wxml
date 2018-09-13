@@ -22,11 +22,11 @@
                 <view class="bottom">
                     <view style="margin-right: 20rpx;">
                         <image src="/images/icon/earphone.png"  />
-                        <text>{{item.listennum}}</text>
+                        <text>收听({{item.listennum}})</text>
                     </view>
                     <view>
-                        <image src="/images/icon/flower.png"  />
-                        <text>{{item.goodnum}}</text>
+                        <image src="/images/icon/zan.png"  />
+                        <text>赞({{item.goodnum}})</text>
                     </view>
                 </view>
             </view>
@@ -34,6 +34,6 @@
     </view>
     <view class="footer-container">
         <image src="/images/other/my_footer.png" />
-        <navigator hover-class="none" url="../speak/speak" open-type="redirect"></navigator>
+        <navigator hover-class="none" url="../select/select" open-type="redirect"></navigator>
     </view>
 </view>

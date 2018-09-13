@@ -36,6 +36,38 @@ Page({
         })
     },
 
+    tap_switch: function (event) {
+        let items = this.data.items
+        let item = items[event.currentTarget.dataset.id]
+        let state = item.switched
+        items.forEach((value, index, array) => {
+            value.switched = false
+        })
+        item.switched = !state
+        this.setData({
+            items: items
+        })
+    },
+
+    tap_switchitem: function (event) {
+        let items = this.data.items
+        let item = items[event.currentTarget.dataset.id]
+        items.forEach((value, index, array) => {
+            value.switched = false
+            if (index == items.length - 1) {
+              setTimeout(()=>{
+                this.setData({
+                    items: items
+                })
+              },300)
+            }
+        })
+        wx.showToast({
+          title: '设置成功',
+          icon: 'none'
+        })
+    },
+
     tap_all: function (event) {
         let all = 0
         let checked = false
@@ -56,7 +88,8 @@ Page({
     get_data: function (event) {
         let list = this.data.items
         list.forEach((value, index, array) => {
-            value.checked = false//如果checked属性没有就创建一个
+            value.checked = false
+            value.switched = false
             if (index == list.length - 1) {
                 this.setData({
                     items: list

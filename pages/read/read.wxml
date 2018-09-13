@@ -1,0 +1,91 @@
+ <view class="search-container">
+    <navigator class="search" hover-class="none" url="../search/search">
+      <image src="/images/icon/search.png" />
+      <text>搜索关键字</text>
+    </navigator>
+  </view>
+  <swiper class="swiper-container" autoplay="true" circular="true">
+    <swiper-item style="background-color: #ddd;" catchtap="tap_swiper">
+      <image src="/images/other/swiper.jpg" lazy-load="true" />
+    </swiper-item>
+  </swiper>
+  <view class="btn-container">
+    <image class="type" src="/images/other/read_type.jpg" />
+    <view class="btn">
+        <view class="item" catchtap="tap_item" data-id="0"></view>
+        <view class="item" catchtap="tap_item" data-id="1"></view>
+        <view class="item" catchtap="tap_item" data-id="2"></view>
+        <view class="item" catchtap="tap_item" data-id="3"></view>
+        <view class="item" catchtap="tap_item" data-id="4"></view>
+    </view>
+  </view>
+ <view class="story-list">
+    <view class="list-title border-b">
+      热门阅读
+    </view>
+    <view class="list-container">
+        <navigator class="story" url="/pages/read-detail/read-detail" hover-class="none">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view> 
+        </navigator>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_3.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_3.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+    </view>
+     <view class="list-state">
+     加载中...
+     </view>
+  </view>

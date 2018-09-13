@@ -1,0 +1,118 @@
+ <view class="search-container">
+    <navigator class="search" hover-class="none" url="../search/search">
+      <image src="/images/icon/search.png" />
+      <text>搜索关键字</text>
+    </navigator>
+  </view>
+    <view class="sort-container">
+        <view class="title border-b">
+            <text class="left">{{title}}</text>
+            <view class="right" catchtap="tap_sort">
+                <text>{{sort_state == 0 ? '综合排序' : sort_state == 1 ? '从A-Z' : sort_state == 2 ? '朗读数' : '创作时间'}}</text>
+                <image src="/images/icon/{{sort ? 'up_1' : 'down_1'}}.png" />
+            </view>
+        </view>
+        <view class="sort" wx:if="{{sort}}">
+            <view class="item border-b" catchtap="tap_sortitem" data-id="0">综合排序</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="1">从A-Z</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="2">朗读数</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="2">创作时间</view>
+        </view>
+    </view>
+ <view class="story-list">
+    <view class="list-container">
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_3.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_3.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_3.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+    </view>
+     <view class="list-state">
+     加载中...
+     </view>
+  </view>

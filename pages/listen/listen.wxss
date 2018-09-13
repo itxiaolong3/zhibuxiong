@@ -93,6 +93,7 @@
 .sort-container .sort {
     display: flex;
     flex-direction: column;
+    z-index: 3;
 }
 
 .sort-container .sort .item {

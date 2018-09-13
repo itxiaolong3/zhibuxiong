@@ -1,0 +1,11 @@
+<view class="select">
+    <view class="item {{select == 1 ? 'active' : ''}}" catchtap="tap_select" data-index="1">
+        <image src="/images/other/read_story.png" />
+    </view>
+    <view class="item {{select == 2 ? 'active' : ''}}" catchtap="tap_select" data-index="2">
+        <image src="/images/other/speak_story.png" />
+    </view>
+</view>
+<view class="btn-container {{select != 0 ? 'active' : ''}}" catchtap="tap_btn">
+    下一步
+</view>

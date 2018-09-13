@@ -14,27 +14,38 @@
         </view>
     </view>
      <view class="list-container">
-        <view class="item border-b" wx:for="{{items}}" wx:key="key" bindtap="detail" data-gsid="{{item.id}}" data-status="{{item.status}}">
-            <image catchtap='tap_item' data-id="{{index}}" class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png" style='z-index: 2;' />
-            <image class="image" src="{{item.img[0]}}"  />
-            <view class="info">
-                 <text class="name" wx:if="{{item.status==1}}">{{item.title}}</text>
-                <text class="name" wx:else>{{item.title}}<text class='shenhe'>(待审核，勿删)</text></text>
-                <view class="bottom">
-                    <view style="margin-right: 20rpx;">
-                        <image src="/images/icon/earphone.png"  />
-                        <text>{{item.listennum}}</text>
+        <view class="item border-b" wx:for="{{items}}" wx:key="key">
+            <view style="display: flex;z-index: 2;" bindtap="detail" data-gsid="{{item.id}}" data-status="{{item.status}}">
+                <image catchtap='tap_item' data-id="{{index}}" class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png" style='z-index: 2;' />
+                <image class="image" src="{{item.img[0]}}"  />
+                <view class="info">
+                    <text class="name" wx:if="{{item.status==1}}">{{item.title}}</text>
+                    <text class="name" wx:else>{{item.title}}<text class='shenhe'>(待审核，勿删)</text></text>
+                    <view class="bottom">
+                        <view style="margin-right: 20rpx;">
+                            <image src="/images/icon/earphone.png"  />
+                            <text>收听({{item.listennum}})</text>
+                        </view>
+                        <view>
+                            <image src="/images/icon/zan.png"  />
+                            <text>赞({{item.goodnum}})</text>
+                        </view>
                     </view>
-                    <view>
-                        <image src="/images/icon/flower.png"  />
-                        <text>{{item.goodnum}}</text>
-                    </view>
+                </view>
+            </view>
+            <image class="right-icon" src="/images/icon/ellipsis.png" catchtap="tap_switch" data-id="{{index}}" />
+            <view class="alert" wx:if="{{item.switched}}">
+                <view style="border-bottom: 1px solid #f1f1f1;" catchtap="tap_switchitem" data-id="{{index}}">
+                    公开
+                </view>
+                <view catchtap="tap_switchitem" data-id="{{index}}">
+                    私密
                 </view>
             </view>
         </view>
     </view>
     <view class="footer-container">
         <image src="/images/other/my_footer.png" />
-        <navigator hover-class="none" url="../speak/speak" open-type="redirect"></navigator>
+        <navigator hover-class="none" url="../select/select" open-type="redirect"></navigator>
     </view>
 </view>

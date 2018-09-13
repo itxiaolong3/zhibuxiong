@@ -163,7 +163,7 @@ Page({
                 this.set_mask()
             } else {
                 wx.navigateTo({
-                    url: '/pages/speak/speak'
+                    url: '/pages/select/select'
                 })
             }
         } else {
@@ -177,7 +177,7 @@ Page({
         this.set_mask()
         wx.setStorageSync('frist_speak', 'no')
         wx.navigateTo({
-            url: '../speak/speak'
+            url: '../select/select'
         })
     },
     detailgushi:function(e){

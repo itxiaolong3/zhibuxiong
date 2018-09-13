@@ -8,6 +8,7 @@ Page({
         mask2: false,
         mask3: false,
         radio: 0,
+        radio2: 0,
         name: '',
         language: '',
         imgs: [],
@@ -129,6 +130,13 @@ Page({
                 radio: id 
             })
         }
+    },
+
+    tap_radio2: function (event) {
+        let id = Number(event.currentTarget.dataset.id)
+        this.setData({
+            radio2: id 
+        })
     },
 
     tap_btn: function (event) {
