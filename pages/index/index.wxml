@@ -1,8 +1,11 @@
 
 
 <swiper class="swiper-container" autoplay="true" circular="true" indicator-dots="true">
-    <swiper-item style="background-color: #ddd;" wx:for="{{[1,2]}}" wx:key="key">
-       <image src="/images/other/jia_{{item}}.jpg" lazy-load="true" />
+    <swiper-item style="background-color: #ddd;">
+       <image src="http://pj.dede1.com/attachment/images/99/2018/09/S76Yh6AHky6Y2K63yhfv3nyfC8HNzt.jpg" lazy-load="true" />
+    </swiper-item>
+    <swiper-item style="background-color: #ddd;">
+       <image src="http://pj.dede1.com/attachment/images/99/2018/09/wFNA48uU4Fs2Jp9U782a8Sy9S444nf.jpg" lazy-load="true" />
     </swiper-item>
 </swiper>
 
@@ -29,4 +32,4 @@
         <text>公司地址：长沙市高新开发区文轩路27号</text>
     </view>
 </view>
-<image src="/images/other/jia_3.jpg" style="width: 100%;" mode="widthFix" />
+<image src="http://pj.dede1.com/attachment/images/99/2018/09/RPT2eOucJEuTEE8TOcetE8PqoEip8e.jpg" style="width: 100%;" mode="widthFix" />

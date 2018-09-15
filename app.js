@@ -13,7 +13,8 @@ App({
           imgs: [],
           imgs_old: [],
           language: '',
-          bjurl:''
+          bjurl:'',
+          isprivate: 0
         },
         curplaygsid:0,
         interval: '',

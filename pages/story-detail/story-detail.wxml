@@ -124,7 +124,7 @@
     <view class="list-container" wx:else>
      <block wx:for="{{persongushilist}}" wx:for-item="gushi" wx:key="key">
         <view class="story" bindtap='detail' data-id='{{gushi.id}}'>
-            <text class="top">{{gushi.title}}</text>
+            <text class="top ellipsis">{{gushi.title}}</text>
             <image class="middle" src="{{gushi.img[0]}}" />
             <view class="bottom">
                 <view class="left">

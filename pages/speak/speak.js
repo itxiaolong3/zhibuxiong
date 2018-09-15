@@ -145,6 +145,7 @@ Page({
         let bjurl = this.data.bjurl
         //let imgs_old = this.data.imgs_old
         let radio = this.data.radio
+        let radio2 = this.data.radio2
         let language = this.data.language
         if (name.length == 0 || name.length > 8) {
             wx.showToast({
@@ -164,6 +165,7 @@ Page({
             console.log("得到的链接"+app.globalData.speak_data.bjurl);
             // app.globalData.speak_data.imgs_old = imgs_old
             app.globalData.speak_data.language = language
+            app.globalData.speak_data.isprivate = radio2
             wx.redirectTo({
                 url: '../speak-record/speak-record'
             })

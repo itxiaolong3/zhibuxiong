@@ -184,6 +184,7 @@ Page({
                                             title: this.data.speak_data.name,
                                             storyimg: this.data.speak_data.imgs,
                                             languages: this.data.speak_data.language,
+                                            isprivate: this.data.speak_data.isprivate,
                                             yuyinurl: record_url,
                                             playlong: record_time
                                         },

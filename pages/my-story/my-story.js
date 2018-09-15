@@ -52,6 +52,7 @@ Page({
     tap_switchitem: function (event) {
         let items = this.data.items
         let item = items[event.currentTarget.dataset.id]
+        let state = event.currentTarget.dataset.index
         items.forEach((value, index, array) => {
             value.switched = false
             if (index == items.length - 1) {
@@ -62,10 +63,28 @@ Page({
               },300)
             }
         })
-        wx.showToast({
-          title: '设置成功',
-          icon: 'none'
-        })
+        app.request({
+          url: api.story.doisprivate,
+          data: {
+            id: item.id,
+            isstatus: state
+          },
+          success: (ret) => {
+           // console.log(ret);
+              if (ret.status == 1) {
+                wx.showToast({
+                  title: '设置成功',
+                  icon: 'none'
+                })
+                //this.getpersonstory()
+              } else {
+                wx.showToast({
+                  title: '设置失败',
+                  icon: 'none'
+                })
+              }
+            }
+          })
     },
 
     tap_all: function (event) {

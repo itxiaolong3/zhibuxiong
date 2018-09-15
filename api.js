@@ -42,7 +42,8 @@ var api = {
     postpinlun: _api_root + 'postpinlun',
     getgushipinlun: _api_root +'Getgushipinlun',
     postshouting: _api_root +'Postshouting',
-    dodelete:_api_root+'Postdelete'
+    dodelete:_api_root+'Postdelete',
+    doisprivate: _api_root +'Doisprivate'
   }
 };
 module.exports = api;

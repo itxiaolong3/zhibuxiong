@@ -176,6 +176,7 @@
     display: flex;
     flex-direction: column;
     padding: 0 13rpx;
+    margin-bottom: 10rpx;
 }
 
 .zhubo-list .zhubo .top {

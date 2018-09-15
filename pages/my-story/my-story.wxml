@@ -19,8 +19,7 @@
                 <image catchtap='tap_item' data-id="{{index}}" class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png" style='z-index: 2;' />
                 <image class="image" src="{{item.img[0]}}"  />
                 <view class="info">
-                    <text class="name" wx:if="{{item.status==1}}">{{item.title}}</text>
-                    <text class="name" wx:else>{{item.title}}<text class='shenhe'>(待审核，勿删)</text></text>
+                    <text class="name">{{item.title}}<text class='shenhe' wx:if="{{item.status!=1}}">(待审核)</text></text>
                     <view class="bottom">
                         <view style="margin-right: 20rpx;">
                             <image src="/images/icon/earphone.png"  />
@@ -35,10 +34,10 @@
             </view>
             <image class="right-icon" src="/images/icon/ellipsis.png" catchtap="tap_switch" data-id="{{index}}" />
             <view class="alert" wx:if="{{item.switched}}">
-                <view style="border-bottom: 1px solid #f1f1f1;" catchtap="tap_switchitem" data-id="{{index}}">
+                <view style="border-bottom: 1px solid #f1f1f1;" catchtap="tap_switchitem" data-id="{{index}}" data-index="0">
                     公开
                 </view>
-                <view catchtap="tap_switchitem" data-id="{{index}}">
+                <view catchtap="tap_switchitem" data-id="{{index}}" data-index="1">
                     私密
                 </view>
             </view>

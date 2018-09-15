@@ -39,7 +39,7 @@
       <block wx:for="{{gushilist}}" wx:for-item="gushi" wx:key="key">
         <view class="story" hover-class="none" bindtap='detailgushi' data-id="{{gushi.id}}" data-checked="{{gushi.checked}}">
           <view class="lang">
-              雷州话
+              {{gushi.languages}}
           </view>
           <view class="top">
             <view class="ellipsis">{{gushi.title}}</view>
@@ -113,7 +113,7 @@
     <view class="list-title border-b">
       热门小主播
     </view>
-    <view class="list-container" style="width:100%;">
+    <view class="list-container" style="width:100%;justify-content:flex-start;">
      <block wx:for="{{hotuser}}" wx:for-item="u" wx:key="key">
       <view class="zhubo" bindtap='detailgushi' data-id="{{u.id}}" data-checked="false">
         <view class="top">
@@ -152,5 +152,5 @@
       没有更多了
     </view>
   </view>
-  <image class="ad" src="/images/other/story_ad.jpg" />
+  <image class="ad" src="/images/other/story_ad.jpg" catchtap="godingzhi" />
 </view>

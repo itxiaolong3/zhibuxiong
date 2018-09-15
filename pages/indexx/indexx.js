@@ -228,7 +228,20 @@ Page({
         }
       })
     }
-   
+  },
+
+  godingzhi: function (event) {
+      wx.navigateToMiniProgram({
+        appId: 'wx3d5c463c7d74066c',
+        path: '',
+        extraData: {
+          foo: 'release'
+        },
+        envVersion: 'release',
+        success(res) {
+          console.log('跳转成功');
+        }
+      })
   }
     
 })

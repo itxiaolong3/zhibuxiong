@@ -1,6 +1,6 @@
 <view class="container">
     <view class="top border-b">
-        <image src="/images/other/avatar.png" />
+        <image src="/images/other/logo.jpg" />
         <text>织布熊故事</text>
     </view>
     <view class="bottom">
