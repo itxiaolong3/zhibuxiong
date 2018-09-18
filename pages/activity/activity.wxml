@@ -7,12 +7,14 @@
     </view>
 </view>
 <view class="nav-1" wx:if="{{nav == 0}}">
-    <image src="/images/other/activity_bg.jpg" style="width: 100%;" mode="widthFix" />
+    <!--<image src="/images/other/activity_bg.jpg" style="width: 100%;" mode="widthFix" />
     <view class="title">畅想未来，童画故事征文大赛</view>
-    <view class="content">未来，有无限可能，也许会是机器人的时代，也许会是人工智能的时代,也许每个人可以活几百岁……没有什么不可能，让我们放开想象，畅想未来吧 ！</view>
+    <view class="content">未来，有无限可能，也许会是机器人的时代，也许会是人工智能的时代,也许每个人可以活几百岁……没有什么不可能，让我们放开想象，畅想未来吧 ！</view>-->
+    <rich-text nodes="{{contents}}"></rich-text>
     <view class="image">
-        <image src="/images/icon/share.png" />
+        <image src="/images/icon/share.png" /> 
     </view>
+    <view class="btn" catchtap="tap_join">我要参加</view>
 </view>
 <view class="nav-2" wx:else>
     <view class="search-container">

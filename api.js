@@ -7,6 +7,7 @@ var api = {
     getgushi: _api_root + 'getgushilist',
     getshoucang: _api_root + 'getshoucang',
     gethotuser: _api_root + 'gethotuser',
+    gethotread: _api_root + 'Gethotread',
     pian: _api_root +'getpian',
     shareimg: _api_root + 'getshareimg',
     getad: _api_root + 'getad'
@@ -44,6 +45,9 @@ var api = {
     postshouting: _api_root +'Postshouting',
     dodelete:_api_root+'Postdelete',
     doisprivate: _api_root +'Doisprivate'
+  },
+  read: {
+    getstoryone: _api_root + 'Getoneread',
   }
 };
 module.exports = api;

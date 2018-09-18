@@ -134,4 +134,13 @@ Page({
       })
     },
 
+    //进入故事
+    detail: function (e) {
+      console.log(e.currentTarget.dataset.gsid);
+      let gsid = e.currentTarget.dataset.gsid;
+      wx.navigateTo({
+        url: '/pages/story-detail/story-detail?id=' + gsid + '&shoucangstatus=fasle',
+      })
+    }
+
 })

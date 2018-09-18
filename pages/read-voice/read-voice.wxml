@@ -15,7 +15,10 @@
     </swiper-item>
   </swiper>
     <view class="header-container">
-        <view class="title">
+        <view class="title">{{gushi.p_title}}</view>
+        <view class="author">作者：{{gushi.p_auther}}</view>
+        <rich-text nodes="{{contents}}"></rich-text>
+        <!--<view class="title">
             {{gushi.title}}
         </view>
         <view class="cover">
@@ -25,9 +28,9 @@
             </swiper-item>
            </swiper>
            <text>{{gushi.title}}</text>
-        </view>
+        </view>-->
     </view>
-    <view class="nav-container border-b" wx:if="{{!list_state}}">
+    <!--<view class="nav-container border-b" wx:if="{{!list_state}}">
         <text class="title">故事列表</text>
         <view class="right" catchtap="tap_arrow">
             <text>{{gushicount}}个故事</text>
@@ -40,9 +43,9 @@
         </view>
         <text class="text2">{{gushicount}}个故事</text>
         <view style="min-width: 80rpx;"></view>
-    </view>
-    <view class="body-container" wx:if="{{!list_state}}">
-        <view class="info">
+    </view>-->
+    <view class="body-container">
+        <!--<view class="info">
             <image class="left" src="{{gushi.headerimg}}" />
             <view class="middle">
                 <view class="top">
@@ -82,8 +85,33 @@
             <text wx:if="{{curmin>=10}}">{{curmin=='null'? 0 :curmin}}:{{cursecond=='null'? 0 :cursecond}}</text>
           </view>
               <wxzx-slider class='test1' id='wxzxSlider6' value='{{changeduration}}' max='{{duration==0?100:duration}}' width='460' bind:sliderTap="sliderTap" bind:sliderStart="sliderStart" bind:sliderChange="sliderChange" bind:sliderEnd="sliderEnd" bind:sliderCancel="sliderCancel" disabled='{{disabled}}' block-color='#FEB504' block-size='15' active-color='#FEB504' style='z-index: 3;'></wxzx-slider>
+        </view>-->
+    <view class="nav-2">
+        <view class="list-container">
+            <view class="item">
+                <view class="left">
+                    <image class="avatar" src="/images/other/avatar.png"/>
+                    <view class="info">
+                        <view class="top">
+                            <text class="author">织布熊官方</text>的阅读
+                        </view>
+                        <view class="bottom">
+                            <view style="margin-right: 20rpx;">
+                                <image src="/images/icon/earphone.png" />
+                                <text>收听(142)</text>
+                            </view>
+                            <view>
+                                <image src="/images/icon/zan.png" />
+                                <text>赞(6789)</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <image class="right" src="/images/icon/read_{{played ? 'stop' : 'play'}}.png" catchtap="tap_play" />
+            </view>
         </view>
-         
+    </view>
+
         <view class="footer">
             <navigator url="../feedback/feedback?gid={{gushi.id}}" hover-class="none" class="left">
                 <image src="/images/icon/warn.png" />
@@ -121,7 +149,7 @@
         </block>
         
     </view>
-    <view class="list-container" wx:else>
+    <!--<view class="list-container" wx:else>
      <block wx:for="{{persongushilist}}" wx:for-item="gushi" wx:key="key">
         <view class="story" bindtap='detail' data-id='{{gushi.id}}'>
             <text class="top ellipsis">{{gushi.title}}</text>
@@ -132,17 +160,17 @@
                         <image src="/images/icon/earphone.png" />
                         <text>{{gushi.listennum}}</text>
                     </view>
-                    <!-- <view>
+                     <view>
                         <image src="/images/icon/flower.png" />
                         <text>{{gushi.goodnum}}</text>
-                    </view> -->
+                    </view>
                 </view>
             </view>
         </view>
       </block>
        
-    </view>
-    <view class="footer-container">
+    </view>-->
+   <view class="footer-container">
         <image src="/images/other/detail_footer.png" />
         <view bindtap='togospeak'></view>
     </view>

@@ -26,6 +26,8 @@
     "pages/read/read",
     "pages/read-type/read-type",
     "pages/read-detail/read-detail",
+    "pages/read-record/read-record",
+    "pages/read-voice/read-voice",
     "pages/activity/activity"
   ],
   "window": {

@@ -6,57 +6,14 @@ const bgplay = wx.getBackgroundAudioManager()
 Page({
 
     data: {
-        items: [
-            // {
-            //     id: 0,
-            //     name: 'A Little Stroy',
-            //     author: 'Valentin - My View'
-            // },
-            // {
-            //     id: 1,
-            //     name: '梦中的婚礼',
-            //     author: 'Richard Clayderman - Richard Clayderman'
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Summer',
-            //     author: '久石让'
-            // },
-            // {
-            //     id: 3,
-            //     name: 'Canon(Over a Basso Ostinato)',
-            //     author: 'Peerless 2x2'
-            // },
-            // {
-            //     id: 4,
-            //     name: '风住的街道',
-            //     author: '饭碗的彼岸'
-            // },
-            // {
-            //     id: 5,
-            //     name: '安静的午后',
-            //     author: 'Pianoboy高至豪'
-            // },
-            // {
-            //     id: 6,
-            //     name: '瞬间的永恒 夜色钢琴曲',
-            //     author: '赵海洋'
-            // },
-            // {
-            //     id: 7,
-            //     name: '天空之城-钢琴版',
-            //     author: '郭燕'
-            // },
-            // {
-            //     id: 8,
-            //     name: '月光奏鸣曲',
-            //     author: '贝多芬'
-            // }
-        ]
+        items: []
     },
 
     onLoad: function (options) {
       this.getmusic();
+    },
+    onShareAppMessage: function () {
+    
     },
     //获取音乐信息
     getmusic:function(){
@@ -73,10 +30,6 @@ Page({
         }
       })
     },
-    onShareAppMessage: function () {
-    
-    },
-
     tap_btn: function (event) {
       bgplay.stop();
         if(urldata){
@@ -172,7 +125,7 @@ Page({
             }
         })
     },
-    onHide:function(){
+    onUnload:function(){
       bgplay.stop();
       let items = this.data.items
       items.forEach((value, index, array) => {

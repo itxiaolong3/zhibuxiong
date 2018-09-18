@@ -74,38 +74,25 @@
       热门阅读
     </view>
     <view class="list-container">
-        <view class="story">
-          <view class="top">
-            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
-            <image src="/images/icon/collect.png" />
-          </view>
-          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
-          <view class="bottom">
-            <view class="left">
-              <view style="margin-right: 20rpx;">
-                <image src="/images/icon/read.png" />
-                <text>阅读数(6789)</text>
+        <block wx:for="{{hotread}}" wx:key="key">
+          <view class="story" catchtap="tap_hotread" data-id="{{item.p_id}}">
+            <view class="top">
+              <view class="ellipsis">{{item.p_title}}</view>
+              <image src="/images/icon/collect.png" />
+            </view>
+            <image class="middle" src="{{item.p_toppic}}" lazy-load="true" mode="aspectFill"	/>
+            <view class="bottom">
+              <view class="left">
+                <view style="margin-right: 20rpx;">
+                  <image src="/images/icon/read.png" />
+                  <text>阅读数({{item.p_count}})</text>
+                </view>
               </view>
             </view>
           </view>
-        </view>
-        <view class="story">
-          <view class="top">
-            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
-            <image src="/images/icon/collect.png" />
-          </view>
-          <image class="middle" src="/images/other/story_3.jpg" lazy-load="true" mode="aspectFill"	/>
-          <view class="bottom">
-            <view class="left">
-              <view style="margin-right: 20rpx;">
-                <image src="/images/icon/read.png" />
-                <text>阅读数(6789)</text>
-              </view>
-            </view>
-          </view>
-        </view>
+        </block>
     </view>
-     <navigator url="../listen/listen" hover-class="none" class="list-state th-active">
+     <navigator url="/pages/read/read" hover-class="none" class="list-state th-active">
      查看更多
      </navigator>
   </view>

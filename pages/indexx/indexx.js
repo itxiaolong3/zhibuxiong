@@ -10,6 +10,7 @@ Page({
         gushilist:[],
         shoucang:[],
         hotuser:[],
+        hotread: [],
         pianstatus:'',
         shareimg:[]
     },
@@ -21,7 +22,7 @@ Page({
         this.get_swiper()
         this.get_shoucangid()
         this.get_hotuser();
-        
+        this.get_hotread();
     },
     onShow:function(){
       this.get_shoucangid()
@@ -117,6 +118,19 @@ Page({
         }
       })
     },
+    //热门阅读
+    get_hotread: function (event) {
+      app.request({
+        url: api.index.gethotread,
+        success: (ret) => {
+          if (ret.status == 1) {
+            this.setData({
+              hotread:ret.result
+            });
+          }
+        }
+      })
+    },
     //热门主播
     get_hotuser:function(){
       app.request({
@@ -129,6 +143,11 @@ Page({
             });
           }
         }
+      })
+    },
+    tap_hotread: function (event) {
+      wx.navigateTo({
+        url: `/pages/read-detail/read-detail?id=${event.currentTarget.dataset.id}`
       })
     },
     //收藏故事的id

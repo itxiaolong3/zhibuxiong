@@ -14,8 +14,8 @@
         </view>
     </view>
         <view class="list-container">
-        <view class="item border-b" wx:for="{{items}}" wx:key="key" catchtap="tap_item" data-id="{{index}}" data-gsid="{{item.id}}">
-            <image class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png"  />
+        <view class="item border-b" wx:for="{{items}}" wx:key="key" bindtap="detail" data-gsid="{{item.id}}">
+            <image catchtap="tap_item" data-id="{{index}}" class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png" style='z-index: 2;' />
             <image class="image" src="{{item.img[0]}}"  />
             <view class="info">
                 <text class="name">{{item.title}}</text>

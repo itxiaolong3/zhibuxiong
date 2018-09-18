@@ -4,7 +4,7 @@
             故事内容
         </view>
         <view class="item {{nav == 1 ? 'active' : ''}}" catchtap="tap_nav" data-id="1">
-            阅读(6789)
+            阅读({{gushi.p_count}})
         </view>
     </view>
     <view class="nav-1" wx:if="{{nav == 0}}">
@@ -12,21 +12,21 @@
             <image src="/images/icon/share.png" />
             <image src="/images/icon/collect.png" />
         </view>
-        <view class="title">狮子坐火车</view>
-        <view class="author">作者：XXX</view>
-        <rich-text nodes=""></rich-text>
+        <view class="title">{{gushi.p_title}}</view>
+        <view class="author">作者：{{gushi.p_auther}}</view>
+        <rich-text nodes="{{contents}}"></rich-text>
     </view>
     <view class="nav-2" wx:else>
         <view class="all">
-            <image src="/images/icon/all_play.png" />
+            <image src="/images/icon/all_{{allplay ? 'play' : 'stop'}}.png" catchtap="tap_allplay" />
         </view>
         <view class="list-container">
-            <view class="item">
+            <view class="item" wx:for="{{items}}" wx:key="key" catchtap="tap_item" data-id="{{item.r_id}}">
                 <view class="left">
                     <image class="avatar" src="/images/other/avatar.png"/>
                     <view class="info">
                         <view class="top">
-                            <text class="author">陈明明</text>的阅读
+                            <text class="author">织布熊官方</text>的阅读
                         </view>
                         <view class="bottom">
                             <view style="margin-right: 20rpx;">
@@ -40,35 +40,12 @@
                         </view>
                     </view>
                 </view>
-                <image class="right" src="/images/icon/read_play.png" />
-            </view>
-            <view class="item">
-                <view class="left">
-                    <image class="avatar" src="/images/other/avatar.png"/>
-                    <view class="info">
-                        <view class="top">
-                            <text class="author">陈明明</text>的阅读
-                        </view>
-                        <view class="bottom">
-                            <view style="margin-right: 20rpx;">
-                                <image src="/images/icon/earphone.png" />
-                                <text>收听(142)</text>
-                            </view>
-                            <view>
-                                <image src="/images/icon/zan.png" />
-                                <text>赞(6789)</text>
-                            </view>
-                        </view>
-                    </view>
-                </view>
-                <image class="right" src="/images/icon/read_stop.png" />
+                <image class="right" src="/images/icon/read_{{item.played ? 'stop' : 'play'}}.png" catchtap="tap_play" data-index="{{index}}" />
             </view>
         </view>
     </view>
 </view>
 <view class="footer-container">
-    <image src="/images/other/speak_footer.png" />
-    <view class="left" catchtap="tap_reset">重录</view>
-    <view class="middle" catchtap="tap_record">{{record_state ? '暂停录音' : '开始录音'}}</view>
-    <view class="right" catchtap="tap_submit">发布</view>
+    <image src="/images/other/detail_footer.png" />
+    <view bindtap='togospeak'></view>
 </view>

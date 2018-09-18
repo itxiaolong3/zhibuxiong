@@ -1,0 +1,37 @@
+<view class="index-container">
+    <view class="header-container">
+        <view class="title">{{gushi.p_title}}</view>
+        <view class="author">作者：{{gushi.p_auther}}</view>
+        <rich-text nodes="{{contents}}"></rich-text>
+        <!--<view class="title">
+            {{speak_data.name}}
+        </view>
+        <view class="cover">
+            <swiper class="swiper-container" autoplay="true" circular="true" vertical="true">
+                <swiper-item style="background-color: #ddd;" wx:for="{{speak_data.imgs}}" wx:key="key">
+                    <image src="{{item}}" lazy-load="true" />
+                </swiper-item>
+            </swiper>
+            <text>{{speak_data.name}}</text>
+        </view>-->
+    </view>
+    <view class="body-container">
+        <view class="info border-b">
+            <image src="{{avatar}}" />
+            <text>{{name}}</text>
+        </view>
+        <view class="record border-b">
+            <image src="/images/icon/record_{{record_state ? 'start' : 'stop'}}.png" />
+            <view class="right">
+                <text class="time">{{minute < 10 ? '0' + minute : minute}}.{{second < 10 ? '0' + second : second}}</text>
+                <text class="tip">录音结束前请勿进行其他操作，录音时长10分钟内</text>     
+            </view>
+        </view>
+    </view>
+    <view class="footer-container">
+        <image src="/images/other/speak_footer.png" />
+        <view class="left" catchtap="tap_reset">重录</view>
+        <view class="middle" catchtap="tap_record">{{record_state ? '暂停录音' : '开始录音'}}</view>
+        <view class="right" catchtap="tap_submit">发布</view>
+    </view>
+</view>

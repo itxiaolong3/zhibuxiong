@@ -37,8 +37,7 @@ Page({
             title: ret.data.title
           })
           this.setData({
-            contents: that.escape2Html(ret.data.contents),
-            load: 1
+            contents: that.escape2Html(ret.data.contents)
           })
           wx.hideNavigationBarLoading()
         }

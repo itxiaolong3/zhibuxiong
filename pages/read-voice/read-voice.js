@@ -3,7 +3,7 @@ const app = getApp()
 const api = require('../../api.js')
 const bgAudioManager = wx.getBackgroundAudioManager()
 //const bgAudioManager =wx.createInnerAudioContext()
-
+const bgplay = wx.createInnerAudioContext()
 //let interval
 Page({
 
@@ -40,14 +40,25 @@ Page({
     pinlunlist:[],
     pluid:0,//被评论的用户id,0表示故事
     pianstatus:'',
-    swiper:[]
+    swiper:[],
+    id: 0,
+    gushi: '',
+    contents: '',
+    music: '',
+    played: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('当前的app的curplaygsid' + app.globalData.curplaygsid);
+    this.get_swiper()
+    wx.showNavigationBarLoading()
+     this.setData({
+       id: options.id 
+     })
+    this.get_detail()
+   /* console.log('当前的app的curplaygsid' + app.globalData.curplaygsid);
     console.log('当前的gsid' + options.id);
     this.getshen();
     if (app.globalData.curplaygsid == options.id){
@@ -180,8 +191,79 @@ Page({
         changeduration: 0,
         cursecond:0
       })
+})*/
+  },
+
+  escape2Html: function (str) {
+    var arrEntities = { 'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"' };
+    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; });
+  },
+  getad:function(id){
+    let that=this;
+    app.request({
+      url: api.index.getad,
+      data:{
+        id:id
+      },
+      success: (ret) => {
+        console.log(ret);
+        if (ret.status == 1) {
+          this.setData({
+            title: ret.data.title,
+            author: 'XXX',
+            contents: that.escape2Html(ret.data.contents)
+          })
+        wx.setNavigationBarTitle({
+          title: ret.data.title
+        })
+          wx.hideNavigationBarLoading()
+        }
+      }
     })
   },
+  get_detail: function () {
+    let that = this;
+    app.request({
+      url: api.read.getstoryone,
+      data: {
+        p_id: this.data.id
+      },
+      success: (ret) => {
+        console.log(ret)
+        if (ret.status == 1) {
+          let contents = that.escape2Html(ret.result.p_content)
+          that.setData({
+            gushi: ret.result,
+            contents: contents,
+            music: ret.allmusic[0]
+          });
+          
+          wx.setNavigationBarTitle({
+            title: ret.result.p_title
+          })
+          //自动播放
+          bgplay.src = this.data.music.r_yuyinurl
+          bgplay.play()
+          wx.hideNavigationBarLoading()
+        }
+
+      }
+    })
+
+  },
+
+    tap_play: function (event) {
+        let played = this.data.played
+        if (played){ 
+            bgplay.pause()
+        }else{
+          bgplay.src = this.data.music.r_yuyinurl
+          bgplay.play()
+        }
+       this.setData({
+          played: !played
+        })
+    },
   get_swiper: function () {
     app.request({
       url: api.index.getbanner,
@@ -967,21 +1049,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.get_swiper();
+   /* this.get_swiper();
    bgAudioManager.onTimeUpdate(function(){
      //console.log('时长发生改变，总时长为'+bgAudioManager.duration)
-   })
+   })*/
   },
-  onUnload:function(){
-    var that = this;
-    //清除计时器  即清除setInter
-    clearInterval(that.data.interval)
-  },
+  // onUnload:function(){
+  //   var that = this;
+  //   //清除计时器  即清除setInter
+  //   clearInterval(that.data.interval)
+  // },
+
   togospeak: function () {
-    console.log('点击了');
     if (wx.getStorageSync('u_id')) {
-      wx.redirectTo({
-        url: '/pages/speak/speak',
+      wx.navigateTo({
+        url: `/pages/read-record/read-record?id=${this.data.id}`
       })
     } else {
       wx.navigateTo({
@@ -993,21 +1075,26 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-   
+     //退出停止
+    bgplay.stop()
+       this.setData({
+          played: false
+        })
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    let that=this;
+    /*let that=this;
     if (!app.globalData.playstatus) {
       console.log('onUnload看不到你了');
       bgAudioManager.stop();
       app.initdata();
     
-    }
-    
+    }*/
+        //退出停止
+    bgplay.stop()
   },
 
   /**
@@ -1028,7 +1115,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-    let getimg=this.data.imgs[0];
+    /*let getimg=this.data.imgs[0];
     console.log(getimg);
     return {
       title: this.data.gushi.title,
@@ -1039,6 +1126,6 @@ Page({
       }, fail(e) {
         console.log('分享失败');
       }
-    }
+    }*/
   }
 })

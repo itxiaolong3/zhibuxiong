@@ -37,7 +37,7 @@
     color: #c8c9cb;
     font-size: 25rpx;
     text-align: center;
-    margin-top: 15rpx;
+    margin: 15rpx 0;
 }
 
 .body-container .nav-1 .image {
@@ -56,7 +56,6 @@
 .body-container .nav-1 rich-text {
     font-size:28rpx;
     line-height:40rpx;
-    text-indent:50rpx;
 }
 
 .body-container .nav-2 {
@@ -145,11 +144,10 @@
     position: fixed;
     bottom: 0;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     width: 100%;
     height: 170rpx;
-    z-index: 3;
 }
 
 .footer-container image {
@@ -159,28 +157,9 @@
     height: 170rpx;
 }
 
-.footer-container .left,
-.footer-container .right {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 15rpx;
-    color: #fff;
-    font-size: 28rpx;
-    min-width: 100rpx;
-    min-height: 130rpx;
+.footer-container view {
+    min-width: 140rpx;
+    min-height: 170rpx;
     z-index: 2;
 }
 
-.footer-container .middle {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 15rpx;
-    color: #fff;
-    font-size: 28rpx;
-    min-width: 140rpx;
-    min-height: 170rpx;
-    margin: 0 100rpx;
-    z-index: 2;
-}

@@ -24,7 +24,7 @@
       热门阅读
     </view>
     <view class="list-container">
-        <navigator class="story" url="/pages/read-detail/read-detail" hover-class="none">
+        <view class="story">
           <view class="top">
             <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
           </view>
@@ -38,7 +38,7 @@
             </view>
             <image class="right" src="/images/icon/collect.png" />
           </view> 
-        </navigator>
+        </view>
         <view class="story">
           <view class="top">
             <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
