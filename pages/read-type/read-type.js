@@ -63,7 +63,6 @@ Page({
     }) 
     this.tap_sort()
 
-    // let gstype = this.data.nav_state
     // this.get_shoucangid(gstype, id)
     // console.log('故事类型' + this.data.nav_state+'排序状态：'+ id);
     // this.setData({

@@ -1,5 +1,5 @@
 <view class="story-container">
-    <view class="title-container">我的原创故事</view>
+    <view class="title-container">我的阅读故事</view>
      <view wx:if='{{items.length==0}}' class='th-state'>
          无数据
         </view>
@@ -15,19 +15,19 @@
     </view>
      <view class="list-container">
         <view class="item border-b" wx:for="{{items}}" wx:key="key">
-            <view style="display: flex;z-index: 2;" bindtap="detail" data-gsid="{{item.id}}" data-status="{{item.status}}">
+            <view style="display: flex;z-index: 2;" catchtap="tap_readitem" data-pid="{{item.p_id}}" data-rid="{{item.r_id}}">
                 <image catchtap='tap_item' data-id="{{index}}" class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png" style='z-index: 2;' />
-                <image class="image" src="{{item.img[0]}}"  />
+                <image class="image" src="{{item.p_toppic}}"  />
                 <view class="info">
-                    <text class="name">{{item.title}}<text class='shenhe' wx:if="{{item.status!=1}}">(待审核)</text></text>
+                    <text class="name">{{item.p_title}}<text class='shenhe' wx:if="{{item.status!=1}}">(待审核)</text></text>
                     <view class="bottom">
                         <view style="margin-right: 20rpx;">
                             <image src="/images/icon/earphone.png"  />
-                            <text>收听({{item.listennum}})</text>
+                            <text>收听({{item.r_listennum}})</text>
                         </view>
                         <view>
                             <image src="/images/icon/zan.png"  />
-                            <text>赞({{item.goodnum}})</text>
+                            <text>赞({{item.r_goodnum}})</text>
                         </view>
                     </view>
                 </view>

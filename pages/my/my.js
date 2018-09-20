@@ -51,6 +51,9 @@ Page({
                 case 6:
                     page = 'feedback'
                     break 
+                case 7:
+                    page = 'my-read'
+                    break 
             }
             wx.navigateTo({
                 url: `/pages/${page}/${page}`,

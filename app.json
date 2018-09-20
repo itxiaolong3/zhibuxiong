@@ -13,6 +13,7 @@
     "pages/story-detail/story-detail",
     "pages/zhubo-detail/zhubo-detail",
     "pages/my-story/my-story",
+    "pages/my-read/my-read",
     "pages/my-history/my-history",
     "pages/my-collect/my-collect",
     "pages/my-message/my-message",

@@ -260,7 +260,7 @@ Page({
                                             })
                                             setTimeout(() => {
                                                 wx.navigateBack()
-                                            }, 1000)
+                                            }, 2000)
                                             /*
                                             if (res.status == 1) {
                                                 wx.redirectTo({

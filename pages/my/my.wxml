@@ -9,7 +9,11 @@
   <view class="list-container">
     <view class="item border-b" catchtap="tap_item" data-id="1">
       <image src="/images/icon/my-story.png" />
-      <text>我的故事</text>
+      <text>我的原创故事</text>
+    </view>
+    <view class="item border-b" catchtap="tap_item" data-id="7">
+      <image src="/images/icon/my-story.png" />
+      <text>我的阅读故事</text>
     </view>
   </view>
   <view class="list-container">
