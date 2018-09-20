@@ -41,7 +41,9 @@ Page({
     pluid:0,//被评论的用户id,0表示故事
     pianstatus:'',
     swiper:[],
-    id: 0,
+
+    rid: 0,
+    pid: 0,
     gushi: '',
     contents: '',
     music: '',
@@ -52,12 +54,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.get_swiper()
+    
     wx.showNavigationBarLoading()
      this.setData({
-       id: options.id 
+       rid: options.rid,
+       pid: options.pid,
      })
+    this.get_swiper()
     this.get_detail()
+
+    let isgood = wx.getStorageSync('good' + options.rid);
+    if(isgood==''){
+      isgood=false;
+    }
+    this.setData({
+      isgood:isgood?isgood:false
+    })
+    
    /* console.log('当前的app的curplaygsid' + app.globalData.curplaygsid);
     console.log('当前的gsid' + options.id);
     this.getshen();
@@ -192,58 +205,66 @@ Page({
         cursecond:0
       })
 })*/
+
   },
 
   escape2Html: function (str) {
     var arrEntities = { 'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"' };
     return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; });
   },
-  getad:function(id){
-    let that=this;
-    app.request({
-      url: api.index.getad,
-      data:{
-        id:id
-      },
-      success: (ret) => {
-        console.log(ret);
-        if (ret.status == 1) {
-          this.setData({
-            title: ret.data.title,
-            author: 'XXX',
-            contents: that.escape2Html(ret.data.contents)
-          })
-        wx.setNavigationBarTitle({
-          title: ret.data.title
-        })
-          wx.hideNavigationBarLoading()
-        }
-      }
-    })
-  },
+  // getad:function(id){
+  //   let that=this;
+  //   app.request({
+  //     url: api.index.getad,
+  //     data:{
+  //       id:id
+  //     },
+  //     success: (ret) => {
+  //       console.log(ret);
+  //       if (ret.status == 1) {
+  //         this.setData({
+  //           title: ret.data.title,
+  //           author: 'XXX',
+  //           contents: that.escape2Html(ret.data.contents)
+  //         })
+  //       wx.setNavigationBarTitle({
+  //         title: ret.data.title
+  //       })
+  //         wx.hideNavigationBarLoading()
+  //       }
+  //     }
+  //   })
+  // },
   get_detail: function () {
     let that = this;
     app.request({
-      url: api.read.getstoryone,
+      url: api.read.getaudioone,
       data: {
-        p_id: this.data.id
+        r_id: this.data.rid,
+        p_id: this.data.pid
       },
       success: (ret) => {
         console.log(ret)
+        
         if (ret.status == 1) {
           let contents = that.escape2Html(ret.result.p_content)
           that.setData({
             gushi: ret.result,
             contents: contents,
-            music: ret.allmusic[0]
+            music: ret.thisreadgushi,
+            gsuid: this.data.rid
           });
-          
-          wx.setNavigationBarTitle({
-            title: ret.result.p_title
-          })
+
           //自动播放
           bgplay.src = this.data.music.r_yuyinurl
           bgplay.play()
+          //获取评论
+          that.getpinlun();
+
+          wx.setNavigationBarTitle({
+            title: ret.result.p_title
+          })
+
           wx.hideNavigationBarLoading()
         }
 
@@ -640,7 +661,7 @@ Page({
         app.request({
           url: api.story.postpinlun,
           data: {
-            gsid: that.data.gsid,
+            gsid: that.data.rid,
             uid: uid,
             nickname: nickname,
             headerimg: headerimg,
@@ -694,7 +715,7 @@ Page({
     app.request({
       url: api.story.getgushipinlun,
       data: {
-        g_id: that.data.gsid,
+        g_id: that.data.rid,
         ptype:0
       },
       success: (ret) => {
@@ -841,16 +862,16 @@ Page({
   },
   //点赞
   good: function() {
-    console.log(this.data.gushi.goodnum);
-    let gid = this.data.gsid;
+    console.log(this.data.music.r_goodnum);
+    let gid = this.data.rid;
     let goodstatus = wx.getStorageSync('good' + gid);
     if (goodstatus) {
       //取消点赞
       app.request({
-        url: api.story.dogood,
+        url: api.read.dogood,
         data: {
           gsid: gid,
-          goodnum: Number(this.data.gushi.goodnum) - 1
+          goodnum: Number(this.data.music.r_goodnum) - 1
         },
         success: (ret) => {
           console.log(ret);
@@ -863,16 +884,32 @@ Page({
             this.setData({
               isgood: false,
             });
-            this.getgushi();
+
+     let that = this;
+    app.request({
+      url: api.read.getaudioone,
+      data: {
+        r_id: this.data.rid,
+        p_id: this.data.pid
+      },
+      success: (ret) => {
+        if (ret.status == 1) {
+          that.setData({
+            music: ret.thisreadgushi
+          });
+        }
+      }
+    })
+
           }
         }
       })
     } else {
       app.request({
-        url: api.story.dogood,
+        url: api.read.dogood,
         data: {
           gsid: gid,
-          goodnum: Number(this.data.gushi.goodnum) + 1
+          goodnum: Number(this.data.music.r_goodnum) + 1
         },
         success: (ret) => {
           console.log(ret);
@@ -885,7 +922,23 @@ Page({
             this.setData({
               isgood: true,
             });
-            this.getgushi();
+
+     let that = this;
+    app.request({
+      url: api.read.getaudioone,
+      data: {
+        r_id: this.data.rid,
+        p_id: this.data.pid
+      },
+      success: (ret) => {
+        if (ret.status == 1) {
+          that.setData({
+            music: ret.thisreadgushi
+          });
+        }
+      }
+    })
+
           }
         }
       })
@@ -1063,7 +1116,7 @@ Page({
   togospeak: function () {
     if (wx.getStorageSync('u_id')) {
       wx.navigateTo({
-        url: `/pages/read-record/read-record?id=${this.data.id}`
+        url: `/pages/read-record/read-record?id=${this.data.pid}`
       })
     } else {
       wx.navigateTo({

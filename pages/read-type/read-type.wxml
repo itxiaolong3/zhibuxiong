@@ -21,52 +21,24 @@
     </view>
  <view class="story-list">
     <view class="list-container">
-        <view class="story">
+      <block wx:for="{{gushilist}}" wx:key="key">
+        <view class="story" catchtap="tap_hotread" data-id="{{item.p_id}}" data-checked="{{item.checked}}">
           <view class="top">
-            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+            <view class="ellipsis">{{item.p_title}}</view>
           </view>
-          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
+          <image class="middle" src="{{item.img[0]}}" lazy-load="true" mode="aspectFill"	/>
           <view class="bottom">
             <view class="left">
               <view style="margin-right: 20rpx;">
                 <image src="/images/icon/read.png" />
-                <text>阅读数(6789)</text>
+                <text>阅读数({{item.p_count ? item.p_count + 1 : 1}})</text>
               </view>
             </view>
-            <image class="right" src="/images/icon/collect.png" />
-          </view>
+            <image class="right" src="/images/icon/collect{{item.checked==true?'_hl':''}}.png" />
+          </view> 
         </view>
-        <view class="story">
-          <view class="top">
-            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
-          </view>
-          <image class="middle" src="/images/other/story_3.jpg" lazy-load="true" mode="aspectFill"	/>
-          <view class="bottom">
-            <view class="left">
-              <view style="margin-right: 20rpx;">
-                <image src="/images/icon/read.png" />
-                <text>阅读数(6789)</text>
-              </view>
-            </view>
-            <image class="right" src="/images/icon/collect.png" />
-          </view>
-        </view>
-        <view class="story">
-          <view class="top">
-            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
-          </view>
-          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
-          <view class="bottom">
-            <view class="left">
-              <view style="margin-right: 20rpx;">
-                <image src="/images/icon/read.png" />
-                <text>阅读数(6789)</text>
-              </view>
-            </view>
-            <image class="right" src="/images/icon/collect.png" />
-          </view>
-        </view>
-        <view class="story">
+      </block>
+        <!--<view class="story">
           <view class="top">
             <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
           </view>
@@ -111,8 +83,38 @@
             <image class="right" src="/images/icon/collect.png" />
           </view>
         </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_1.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>
+        <view class="story">
+          <view class="top">
+            <view class="ellipsis">阅读阅读阅读阅读阅读阅读阅读阅读</view>
+          </view>
+          <image class="middle" src="/images/other/story_3.jpg" lazy-load="true" mode="aspectFill"	/>
+          <view class="bottom">
+            <view class="left">
+              <view style="margin-right: 20rpx;">
+                <image src="/images/icon/read.png" />
+                <text>阅读数(6789)</text>
+              </view>
+            </view>
+            <image class="right" src="/images/icon/collect.png" />
+          </view>
+        </view>-->
     </view>
-     <view class="list-state">
+     <!--<view class="list-state">
      加载中...
-     </view>
+     </view>-->
   </view>

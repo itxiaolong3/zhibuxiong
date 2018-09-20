@@ -6,6 +6,7 @@ var api = {
     gethotgushi: _api_root + 'getgushilist&hot=1',
     getgushi: _api_root + 'getgushilist',
     getshoucang: _api_root + 'getshoucang',
+    getreadshoucang: _api_root + 'Getreadshoucang',
     gethotuser: _api_root + 'gethotuser',
     gethotread: _api_root + 'Gethotread',
     pian: _api_root +'getpian',
@@ -48,6 +49,11 @@ var api = {
   },
   read: {
     getstoryone: _api_root + 'Getoneread',
+    getaudioone: _api_root + 'Getreaddetail',
+    uploadgushi: _api_root + 'Postreadgushi',
+    dogood: _api_root + 'doreadgood',
+    getallreadlist: _api_root + 'Getallreadgushi',
+    gettypereadlist: _api_root + 'Getreadgushilist',
   }
 };
 module.exports = api;

@@ -4,13 +4,13 @@
             故事内容
         </view>
         <view class="item {{nav == 1 ? 'active' : ''}}" catchtap="tap_nav" data-id="1">
-            阅读({{gushi.p_count}})
+            阅读({{gushi.p_count ? gushi.p_count + 1 : 1}})
         </view>
     </view>
     <view class="nav-1" wx:if="{{nav == 0}}">
         <view class="image">
-            <image src="/images/icon/share.png" />
-            <image src="/images/icon/collect.png" />
+            <button open-type="share" hover-class="none"><image src="/images/icon/share.png" /></button>
+            <image src="/images/icon/{{shoucangstatus=='true'?'collect_hl':'collect'}}.png" bindtap='shoucang' />
         </view>
         <view class="title">{{gushi.p_title}}</view>
         <view class="author">作者：{{gushi.p_auther}}</view>
@@ -23,19 +23,19 @@
         <view class="list-container">
             <view class="item" wx:for="{{items}}" wx:key="key" catchtap="tap_item" data-id="{{item.r_id}}">
                 <view class="left">
-                    <image class="avatar" src="/images/other/avatar.png"/>
+                    <image class="avatar" src="{{item.headerimg}}"/>
                     <view class="info">
                         <view class="top">
-                            <text class="author">织布熊官方</text>的阅读
+                            <text class="author">{{item.nickname}}</text>的阅读
                         </view>
                         <view class="bottom">
                             <view style="margin-right: 20rpx;">
                                 <image src="/images/icon/earphone.png" />
-                                <text>收听(142)</text>
+                                <text>收听({{item.r_listennum}})</text>
                             </view>
                             <view>
                                 <image src="/images/icon/zan.png" />
-                                <text>赞(6789)</text>
+                                <text>赞({{item.r_goodnum}})</text>
                             </view>
                         </view>
                     </view>

@@ -75,11 +75,11 @@
 }
 
 .list-container {
-    display:flex;
+   display:flex;
     flex-wrap:wrap;
-    justify-content:space-around;
     padding:20rpx;
-    margin-right:-20rpx;
+    width:100%;
+    margin-left:10rpx;
 }
 
 .list-state {
@@ -134,6 +134,7 @@
     height: 335rpx;
     margin-top: 5rpx;
     border-radius: 10px;
+    background-color: #ddd;
 }
 
 .story-list .story .bottom {

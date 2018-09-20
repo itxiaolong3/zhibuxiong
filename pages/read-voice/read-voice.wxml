@@ -90,19 +90,19 @@
         <view class="list-container">
             <view class="item">
                 <view class="left">
-                    <image class="avatar" src="/images/other/avatar.png"/>
+                    <image class="avatar" src="{{music.headerimg}}"/>
                     <view class="info">
                         <view class="top">
-                            <text class="author">织布熊官方</text>的阅读
+                            <text class="author">{{music.nickname}}</text>的阅读
                         </view>
                         <view class="bottom">
                             <view style="margin-right: 20rpx;">
                                 <image src="/images/icon/earphone.png" />
-                                <text>收听(142)</text>
+                                <text>收听({{music.r_listennum}})</text>
                             </view>
                             <view>
                                 <image src="/images/icon/zan.png" />
-                                <text>赞(6789)</text>
+                                <text>赞({{music.r_goodnum}})</text>
                             </view>
                         </view>
                     </view>
@@ -113,7 +113,7 @@
     </view>
 
         <view class="footer">
-            <navigator url="../feedback/feedback?gid={{gushi.id}}" hover-class="none" class="left">
+            <navigator url="../feedback/feedback?gid={{gushi.p_id}}" hover-class="none" class="left">
                 <image src="/images/icon/warn.png" />
                 <text>我要投诉</text>
             </navigator>

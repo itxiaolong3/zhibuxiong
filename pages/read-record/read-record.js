@@ -12,13 +12,13 @@ Page({
         u_id: '',
         name: '',
         avatar: '',
-        speak_data: {},
-        record_state: false,
+        gushi: '',
+        contents:'',
         record_path: '',
+        record_state: false,
         minute: 0,
         second: 0,
-        gushi: '',
-        contents:''
+        // speak_data: {},
     },
 
     onLoad: function (options) {
@@ -64,26 +64,26 @@ Page({
     var arrEntities = { 'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"' };
     return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; });
   },
-  getad:function(id){
-    let that=this;
-    app.request({
-      url: api.index.getad,
-      data:{
-        id:id
-      },
-      success: (ret) => {
-        console.log(ret);
-        if (ret.status == 1) {
-          this.setData({
-            title: ret.data.title,
-            author: 'XXX',
-            contents: that.escape2Html(ret.data.contents)
-          })
-          wx.hideNavigationBarLoading()
-        }
-      }
-    })
-  },
+//   getad:function(id){
+//     let that=this;
+//     app.request({
+//       url: api.index.getad,
+//       data:{
+//         id:id
+//       },
+//       success: (ret) => {
+//         console.log(ret);
+//         if (ret.status == 1) {
+//           this.setData({
+//             title: ret.data.title,
+//             author: 'XXX',
+//             contents: that.escape2Html(ret.data.contents)
+//           })
+//           wx.hideNavigationBarLoading()
+//         }
+//       }
+//     })
+//   },
 
   get_detail: function (id) {
     let that = this;
@@ -107,14 +107,8 @@ Page({
 
   },
     tap_record: function (event) {
-          wx.showToast({
-            title: '正在施工',
-            icon: 'none'
-          }) 
-          return 
-/*
         if (this.data.minute == 10) {
-          innerAudioContext.stop();
+        //   innerAudioContext.stop();
           this.setData({
             record_state: !this.data.record_state
           })
@@ -129,10 +123,10 @@ Page({
                 this.record_start()
             } else {
                 recorderManager.resume()
-                if (app.globalData.speak_data.bjurl){
-                  innerAudioContext.play();
+                // if (app.globalData.speak_data.bjurl){
+                //   innerAudioContext.play();
                  // innerAudioContext.src = app.globalData.speak_data.bjurl
-                }
+                // }
                 
             }
             let timer = () => {
@@ -163,21 +157,14 @@ Page({
         } else {
             clearInterval(interval)
             recorderManager.pause()
-            innerAudioContext.pause();
+            // innerAudioContext.pause();
         }
         this.setData({
             record_state: !this.data.record_state
         }) 
-        */
     },
 
     tap_reset: function (event) {
-         wx.showToast({
-            title: '正在施工',
-            icon: 'none'
-          }) 
-          return 
-        /*
         if (this.data.record_state) {
             wx.showToast({
                 title: '请先暂停录音再进行重录',
@@ -207,16 +194,10 @@ Page({
                     } 
                 }
             })
-        }*/
+        }
     },
 
     tap_submit: function (event) {
-        wx.showToast({
-            title: '正在施工',
-            icon: 'none'
-          }) 
-          return 
-        /*
         if (this.data.record_state) {
             wx.showToast({
                 title: '请先暂停录音再进行发布',
@@ -252,22 +233,35 @@ Page({
                                     let minute = this.data.minute
                                     let second = this.data.second
                                     let record_time = `${minute < 10 ? '0' + minute : minute}.${second < 10 ? '0' + second : second}`
+                                    
                                     app.request({
-                                        url: api.speak.uploadgushi,
+                                        url: api.read.uploadgushi,
                                         data: {
                                             b_id: this.data.u_id,
-                                            title: this.data.speak_data.name,
-                                            storyimg: this.data.speak_data.imgs,
-                                            languages: this.data.speak_data.language,
-                                            isprivate: this.data.speak_data.isprivate,
-                                            yuyinurl: record_url,
-                                            playlong: record_time
+                                            gsid: this.data.id,
+                                            r_yuyinurl: record_url
+                                            // b_id: this.data.u_id,
+                                            // title: this.data.speak_data.name,
+                                            // storyimg: this.data.speak_data.imgs,
+                                            // languages: this.data.speak_data.language,
+                                            // isprivate: this.data.speak_data.isprivate,
+                                            // yuyinurl: record_url,
+                                            // playlong: record_time
                                         },
                                         success: function (res) {
                                           //清空当次发布故事的图片
-                                          app.globalData.speak_data.imgs=[]
-                                          app.globalData.speak_data.bjurl=''
+                                        //   app.globalData.speak_data.imgs=[]
+                                        //   app.globalData.speak_data.bjurl=''
+                                            console.log(res)
                                             wx.hideLoading()
+                                            wx.showToast({
+                                                title: '发布成功',
+                                                mask: true
+                                            })
+                                            setTimeout(() => {
+                                                wx.navigateBack()
+                                            }, 1000)
+                                            /*
                                             if (res.status == 1) {
                                                 wx.redirectTo({
                                                   url: '../speak-success/speak-success?gsid=' + res.newid
@@ -285,10 +279,10 @@ Page({
                                                     url: '/pages/login/login'
                                                   })
                                                 },1000)
-                                              
-                                            }
+                                            }*/
                                         }
                                     })
+
                                 },
                                 fail: (err) => {
                                     console.log(err)
@@ -299,7 +293,6 @@ Page({
                 }
             })
         }
-        */
     },
 
     record_start: function (event) {
@@ -312,13 +305,13 @@ Page({
             frameSize: 50, 
         }
         recorderManager.start(options)
-        if (app.globalData.speak_data.bjurl){
-          //开始播放背景音乐
-          innerAudioContext.autoplay = true
-          innerAudioContext.src = app.globalData.speak_data.bjurl
-        }else{
-          console.log('背景音乐为空');
-        }
+        // if (app.globalData.speak_data.bjurl){
+        //   //开始播放背景音乐
+        //   innerAudioContext.autoplay = true
+        //   innerAudioContext.src = app.globalData.speak_data.bjurl
+        // }else{
+        //   console.log('背景音乐为空');
+        // }
         
 
     },
@@ -327,7 +320,7 @@ Page({
         clearInterval(interval)
         recorderManager.stop()
         //停止背景音乐
-        innerAudioContext.stop();
+        // innerAudioContext.stop();
         recorderManager.onStop((res) => {
             this.setData({
                 record_path: res.tempFilePath

@@ -75,17 +75,17 @@
     </view>
     <view class="list-container">
         <block wx:for="{{hotread}}" wx:key="key">
-          <view class="story" catchtap="tap_hotread" data-id="{{item.p_id}}">
+          <view class="story" catchtap="tap_hotread" data-id="{{item.p_id}}" data-checked="{{item.checked}}">
             <view class="top">
               <view class="ellipsis">{{item.p_title}}</view>
-              <image src="/images/icon/collect.png" />
+              <image src="/images/icon/collect{{item.checked==true?'_hl':''}}.png" />
             </view>
             <image class="middle" src="{{item.p_toppic}}" lazy-load="true" mode="aspectFill"	/>
             <view class="bottom">
               <view class="left">
                 <view style="margin-right: 20rpx;">
                   <image src="/images/icon/read.png" />
-                  <text>阅读数({{item.p_count}})</text>
+                  <text>阅读数({{item.p_count ? item.p_count + 1 : 1}})</text>
                 </view>
               </view>
             </view>

@@ -53,6 +53,28 @@
     margin-left: 20rpx;
 }
 
+.body-container .nav-1 .image button {
+    display: inline;
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
+    padding-right:0;
+    box-sizing:border-box;
+    font-size:18px;
+    text-align:center;
+    text-decoration:none;
+    line-height:0;
+    border-radius:0;
+    -webkit-tap-highlight-color:transparent;
+    overflow:hidden;
+    color:#000000;
+    background-color:transparent;
+}
+
+.body-container .nav-1 .image button::after {
+    border: none;
+}
+
 .body-container .nav-1 rich-text {
     font-size:28rpx;
     line-height:40rpx;
@@ -89,7 +111,7 @@
 .body-container .nav-2 .list-container .item .left .avatar {
     width: 80rpx;
     height: 80rpx;
-    padding-right: 20rpx;
+    margin-right: 20rpx;
     border-radius: 50%;
     z-index: 2;
 }

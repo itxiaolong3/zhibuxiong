@@ -9,6 +9,7 @@ Page({
         mask: false,
         gushilist:[],
         shoucang:[],
+        readshoucang: [],
         hotuser:[],
         hotread: [],
         pianstatus:'',
@@ -21,11 +22,13 @@ Page({
         wx.showNavigationBarLoading()
         this.get_swiper()
         this.get_shoucangid()
+        this.get_readshoucangid()
         this.get_hotuser();
-        this.get_hotread();
+        
     },
     onShow:function(){
       this.get_shoucangid()
+      this.get_readshoucangid()
       this.get_hotuser();
       this.get_shareimg();
       
@@ -120,13 +123,34 @@ Page({
     },
     //热门阅读
     get_hotread: function (event) {
+      let that = this
       app.request({
         url: api.index.gethotread,
         success: (ret) => {
           if (ret.status == 1) {
-            this.setData({
-              hotread:ret.result
-            });
+          
+          let list = ret.result
+          let shouangid = this.data.readshoucang;
+          list.forEach((value, index, array) => {
+              value.p_count = Number(value.p_count)
+              value.checked = false
+          })
+
+             for (var i in shouangid) {
+              let str1 = shouangid[i];
+              for (var j in list) {
+                let str2 = list[j].p_id;
+                if (str1 === str2) {
+                  //console.log("相等的值为"+str1);
+                  list[j].checked = true;
+                } 
+              }
+            }
+
+                that.setData({
+                  hotread:list
+                })
+
           }
         }
       })
@@ -147,7 +171,7 @@ Page({
     },
     tap_hotread: function (event) {
       wx.navigateTo({
-        url: `/pages/read-detail/read-detail?id=${event.currentTarget.dataset.id}`
+        url: `/pages/read-detail/read-detail?id=${event.currentTarget.dataset.id}&shoucangstatus=${event.currentTarget.dataset.checked}`
       })
     },
     //收藏故事的id
@@ -169,6 +193,32 @@ Page({
             }
             this.setData({
               shoucang: getnewshoucanid,
+              load: 1
+            })
+            wx.hideNavigationBarLoading()
+          }
+        }
+      })
+    },
+    //收藏图文故事的id
+    get_readshoucangid: function () {
+      let uid = wx.getStorageSync('u_id');
+      app.request({
+        url: api.index.getreadshoucang,
+        data:{
+          uid: uid
+        },
+        success: (ret) => {
+          //先加载了收藏id再进行加载故事列表
+          this.get_hotread()
+          if (ret.status == 1) {
+            let getshoucangdata = ret.data;
+            let getnewshoucanid=[]
+            for (var i in getshoucangdata){
+              getnewshoucanid.push(getshoucangdata[i].g_id)
+            }
+            this.setData({
+              readshoucang: getnewshoucanid,
               load: 1
             })
             wx.hideNavigationBarLoading()
