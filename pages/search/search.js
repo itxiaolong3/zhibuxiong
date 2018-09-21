@@ -29,7 +29,7 @@ Page({
     let that=this;
     that.get_shoucangid()
     app.request({
-      url: api.story.gethotgushi,
+       url: api.story.gethotgushi,
       data:{
         keyword:keyword
       },

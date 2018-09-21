@@ -15,18 +15,21 @@ Page({
         record_state: false,
         record_path: '',
         minute: 0,
-        second: 0
+        second: 0,
+        zjid:0
     },
 
-    onLoad: function () {
+    onLoad: function (e) {
         let u_id = wx.getStorageSync('u_id')
         let name = wx.getStorageSync('nickname')
         let avatar = wx.getStorageSync('userheaderimg')
+        let zjid=e.zjid;
         this.setData({
             u_id: u_id,
             name: name,
             avatar: avatar,
-            speak_data: app.globalData.speak_data
+            speak_data: app.globalData.speak_data,
+            zjid:zjid
         })
         console.log(app.globalData.speak_data.bjurl);
         // bgplay.onEnded(function(){
@@ -186,7 +189,8 @@ Page({
                                             languages: this.data.speak_data.language,
                                             isprivate: this.data.speak_data.isprivate,
                                             yuyinurl: record_url,
-                                            playlong: record_time
+                                            playlong: record_time,
+                                            zjid:this.data.zjid
                                         },
                                         success: function (res) {
                                           //清空当次发布故事的图片
@@ -195,7 +199,7 @@ Page({
                                             wx.hideLoading()
                                             if (res.status == 1) {
                                                 wx.redirectTo({
-                                                  url: '../speak-success/speak-success?gsid=' + res.newid
+                                                  url: '../speak-success/speak-success?gsid=' + res.newid + '&iszj=0'
                                                 })
                                             } else {
                                                 wx.showToast({

@@ -14,11 +14,16 @@ Page({
         imgs: [],
         bjurl: '',
         bjtitle:'',
-       // imgs_old: []
+       // imgs_old: [],
+       zjid:0
     },
 
     onLoad: function (e) {
-      //console.log(e.bgurl);
+      console.log('讲故事中的id'+e.zjid);
+      let getzjid = e.zjid;
+      this.setData({
+        zjid:e.zjid
+      })
     },
 
     onShareAppMessage: function () {
@@ -147,6 +152,7 @@ Page({
         let radio = this.data.radio
         let radio2 = this.data.radio2
         let language = this.data.language
+        let zjid=this.data.zjid
         if (name.length == 0 || name.length > 8) {
             wx.showToast({
                 title: '名字控制在1到8个字符哦',
@@ -167,7 +173,7 @@ Page({
             app.globalData.speak_data.language = language
             app.globalData.speak_data.isprivate = radio2
             wx.redirectTo({
-                url: '../speak-record/speak-record'
+                url: '../speak-record/speak-record?zjid='+zjid
             })
         }
     },

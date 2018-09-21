@@ -18,7 +18,8 @@ Page({
     headerimg:'',
     pwidth:0,
     pheight:0,
-    shareimg: ''
+    shareimg: '',
+    iszj:0
     
   },
 
@@ -28,8 +29,14 @@ Page({
   onLoad: function (options) {
     console.log(options.gsid);
     this.setData({
-      gsid: options.gsid
+      gsid: options.gsid,
+      iszj:options.iszj
     });
+    if (options.iszj){
+      wx.setNavigationBarTitle({
+        title: '分享故事'
+      })
+    }
     this.afterqrcode();
     let that=this;
     wx.getSystemInfo({

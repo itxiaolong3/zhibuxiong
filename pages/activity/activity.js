@@ -10,7 +10,11 @@ Page({
     nav: 0,
     sort: false,
     sort_state: 0,
-    contents:''
+    contents:'',
+    topimg:'',
+    desc:'',
+    zjid:'',
+    gushi:[]
   },
 
   /**
@@ -19,8 +23,9 @@ Page({
   onLoad: function (options) {
     // console.log(options);
     wx.showNavigationBarLoading();
-    //  let getid=options.id;
-    this.getad(4);
+     let getid=options.id;
+     console.log('得到的zjid='+getid);
+    this.getactivit(getid);
   },
 
   /**
@@ -69,7 +74,18 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    let getimg = this.data.topimg;
+    console.log('图片'+getimg);
+    return {
+      title: this.data.desc,
+      path: '',
+      imageUrl: getimg,
+      success(e) {
+        console.log('分享成功');
+      }, fail(e) {
+        console.log('分享失败');
+      }
+    }
   },
 
   tap_nav: function (event) {
@@ -96,10 +112,10 @@ Page({
     var arrEntities = { 'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"' };
     return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; });
   },
-  getad:function(id){
+  getactivit:function(id){
     let that=this;
     app.request({
-      url: api.index.getad,
+      url: api.read.getactivitdetail,
       data:{
         id:id
       },
@@ -107,7 +123,11 @@ Page({
         console.log(ret);
         if (ret.status == 1) {
           this.setData({
-            contents: that.escape2Html(ret.data.contents)
+            contents: that.escape2Html(ret.data.zj_content),
+            topimg:ret.data.zj_img,
+            desc: ret.data.zj_desc,
+            zjid:ret.data.zj_id,
+            gushi:ret.zjgushi
           })
           wx.hideNavigationBarLoading()
         }
@@ -116,14 +136,30 @@ Page({
   },
 
   tap_join: function (event) {
+    let zjid = event.currentTarget.dataset.zjid;
     if (wx.getStorageSync('u_id')) {
-        wx.navigateTo({
-            url: '/pages/select/select'
-        })
+      wx.redirectTo({
+        url: '/pages/speak/speak?zjid='+zjid
+       
+      })
     } else {
         wx.navigateTo({
             url: '/pages/login/login'
         })
     }
+  },
+  detailgushi: function (e) {
+    let getid = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/story-detail/story-detail?id=' + getid + '&shoucangstatus=false',
+    })
+  },
+  gotoshare:function(e){
+    console.log('点击了分享' );
+    let getid = e.currentTarget.dataset.gid;
+    wx.redirectTo({
+      url: '../speak-success/speak-success?gsid=' + getid+'&iszj=1'
+    })
+    console.log('点击了分享，id='+getid);
   }
 })

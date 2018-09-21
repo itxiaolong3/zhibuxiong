@@ -12,9 +12,9 @@
     <view class="content">未来，有无限可能，也许会是机器人的时代，也许会是人工智能的时代,也许每个人可以活几百岁……没有什么不可能，让我们放开想象，畅想未来吧 ！</view>-->
     <rich-text nodes="{{contents}}"></rich-text>
     <view class="image">
-        <image src="/images/icon/share.png" /> 
+     <button open-type="share" hover-class="none"><image src="/images/icon/share.png" /></button>
     </view>
-    <view class="btn" catchtap="tap_join">我要参加</view>
+    <view class="btn" catchtap="tap_join" data-zjid="{{zjid}}">我要参加</view>
 </view>
 <view class="nav-2" wx:else>
     <view class="search-container">
@@ -25,7 +25,8 @@
     </view>
     <view class="sort-container">
         <view class="title border-b">
-            <image class="left" src="/images/icon/all_play.png" />
+            <!-- <image class="left" src="/images/icon/all_play.png" /> -->
+            <view class='left'></view>
             <view class="right" catchtap="tap_sort">
                 <text>{{sort_state == 0 ? '综合排序' : sort_state == 1 ? '从A-Z' : sort_state == 2 ? '收听量' : sort_state == 3 ? '点赞量' : '创作时间'}}</text>
                 <image src="/images/icon/{{sort ? 'up_1' : 'down_1'}}.png" />
@@ -40,77 +41,31 @@
         </view>
     </view>
     <view class="list-container">
-       <view class="item border-b">
-            <image class="image" src="/images/other/story_1.jpg"  />
+       <view class="item border-b" wx:for="{{gushi}}" wx:key="key"  bindtap="detailgushi" data-id="{{item.id}}" >
+            <image class="image" src="{{item.storyimg}}"/>
             <view class="info">
-                <view class="top">
-                    <text class="name">狮子坐火车</text>
-                    <image src="/images/icon/share.png" />
+                <view class="top" >
+                    <text class="name">{{item.title}}</text>
+                    <view style='z-index:999;'  catchtap="gotoshare"  data-gid="{{item.id}}"><image src="/images/icon/share.png"/></view>
                 </view>
                 <view class="middle">
-                    <text>作者：巨爱罗</text>
-                    <text>2018-08-31</text>
+                    <text>作者：{{item.nickname}}</text>
+                    <text>{{item.g_addtime}}</text>
                 </view>
                 <view class="bottom">
                     <view style="margin-right: 20rpx;">
                         <image src="/images/icon/earphone.png"  />
-                        <text>收听(142)</text>
+                        <text>收听({{item.listennum}})</text>
                     </view>
                     <view>
                         <image src="/images/icon/zan.png"  />
-                        <text>赞(6789)</text>
-                    </view>
-                </view>
-            </view>
-        </view>
-       <view class="item border-b">
-            <image class="image" src="/images/other/story_1.jpg"  />
-            <view class="info">
-                <view class="top">
-                    <text class="name">狮子坐火车</text>
-                    <image src="/images/icon/share.png" />
-                </view>
-                <view class="middle">
-                    <text>作者：巨爱罗</text>
-                    <text>2018-08-31</text>
-                </view>
-                <view class="bottom">
-                    <view style="margin-right: 20rpx;">
-                        <image src="/images/icon/earphone.png"  />
-                        <text>收听(142)</text>
-                    </view>
-                    <view>
-                        <image src="/images/icon/zan.png"  />
-                        <text>赞(6789)</text>
-                    </view>
-                </view>
-            </view>
-        </view>
-       <view class="item border-b">
-            <image class="image" src="/images/other/story_1.jpg"  />
-            <view class="info">
-                <view class="top">
-                    <text class="name">狮子坐火车</text>
-                    <image src="/images/icon/share.png" />
-                </view>
-                <view class="middle">
-                    <text>作者：巨爱罗</text>
-                    <text>2018-08-31</text>
-                </view>
-                <view class="bottom">
-                    <view style="margin-right: 20rpx;">
-                        <image src="/images/icon/earphone.png"  />
-                        <text>收听(142)</text>
-                    </view>
-                    <view>
-                        <image src="/images/icon/zan.png"  />
-                        <text>赞(6789)</text>
+                        <text>赞({{item.goodnum}})</text>
                     </view>
                 </view>
             </view>
         </view>
     </view>
      <view class="list-state">
-     加载中...
+     加载完毕
      </view>
 </view>

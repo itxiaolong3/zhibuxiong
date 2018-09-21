@@ -4,7 +4,7 @@
             故事内容
         </view>
         <view class="item {{nav == 1 ? 'active' : ''}}" catchtap="tap_nav" data-id="1">
-            阅读({{gushi.p_count ? gushi.p_count + 1 : 1}})
+            阅读({{gushi.counts ? gushi.counts : 1}})
         </view>
     </view>
     <view class="nav-1" wx:if="{{nav == 0}}">

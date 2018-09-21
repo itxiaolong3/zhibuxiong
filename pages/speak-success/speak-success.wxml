@@ -17,9 +17,11 @@
             <text>（扫码二维码，领取更多惊喜！）</text>
         </view>
     </view>
-    <image class="icon" src="/images/other/success.png" />
-    <text class="text-1">发布成功</text>
-    <navigator class="text-2" hover-class="none" url="../select/select" open-type="redirect">
+    <image class="icon" src="/images/other/success.png" wx:if="{{!iszj}}" />
+    <view class="icon" wx:if="{{iszj}}" ></view>
+    <text class="text-1" wx:if="{{!iszj}}">发布成功</text>
+    <text class="text-1" wx:if="{{iszj}}">请选择分享类型</text>
+    <navigator wx:if="{{!iszj}}" class="text-2" hover-class="none" url="../select/select" open-type="redirect">
         <image src="/images/icon/arrow.png" />
         <text>继续讲故事</text>
     </navigator>

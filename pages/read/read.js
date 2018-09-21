@@ -13,6 +13,7 @@ Page({
     // sort_state: 0,
     gushilist: [],
     shoucang: [],
+    activity:[],
     page: 0,
     state: 0
   },
@@ -21,8 +22,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     this.get_shoucangid()
+    this.getactive();
   },
 
   onShareAppMessage: function () {
@@ -30,14 +31,16 @@ Page({
   },
 
   tap_item: function (event) {
+    
     wx.navigateTo({
       url: `/pages/read-type/read-type?id=${event.currentTarget.dataset.id}`
     })
   },
 
   tap_swiper: function (event) {
+    let getzjid = event.currentTarget.dataset.zjid
     wx.navigateTo({
-      url: '/pages/activity/activity'
+      url: '/pages/activity/activity?id='+getzjid
     })
   },
 
@@ -155,4 +158,17 @@ Page({
             this.get_hotgushi()
         }
     },
+    getactive:function(){
+      app.request({
+        url: api.read.getactivit,
+        success: (ret) => {
+          console.log(ret);
+          if (ret.status == 1) {
+            this.setData({
+              activity: ret.data,
+            })
+          }
+        }
+      })
+    }
 })

@@ -36,13 +36,37 @@
     text-indent: 50rpx;
     padding: 25rpx;
 }
-
+/*  position: relative;
+    top: 30rpx;
+    display: flex;
+    justify-content: flex-end; */
 .nav-1 .image {
     display: flex;
     justify-content: flex-end;
-    padding: 25rpx;
+    top: 30rpx;
+    padding: 10px;
+     position: relative;
+     left:15px
 }
+.nav-1 .image button {
+    display: inline;
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
+    padding-right:0;
+    box-sizing:border-box;
+    font-size:18px;
+    text-align:center;
+    text-decoration:none;
+    line-height:0;
+    border-radius:0;
+    -webkit-tap-highlight-color:transparent;
+    overflow:hidden;
+    color:#000000;
+    background-color:transparent;
+    padding:5px;
 
+}
 .nav-1 .image image {
     width: 80rpx;
     height: 28rpx;
@@ -196,7 +220,6 @@
 
 .list-container .item .info .middle {
     position: relative;
-    top: -5rpx;
     color: #c8c9ca;
     font-size: 25rpx;
 }

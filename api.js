@@ -54,7 +54,9 @@ var api = {
     dogood: _api_root + 'doreadgood',
     getallreadlist: _api_root + 'Getallreadgushi',
     gettypereadlist: _api_root + 'Getreadgushilist',
-    getpersonstory: _api_root + 'Getmyreadgushi'
+    getpersonstory: _api_root + 'Getmyreadgushi',
+    getactivit: _api_root + 'Getactivit',
+    getactivitdetail: _api_root + 'Getactivitdetail'
   }
 };
 module.exports = api;
