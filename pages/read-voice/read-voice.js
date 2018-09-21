@@ -54,7 +54,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    let that=this;
     wx.showNavigationBarLoading()
      this.setData({
        rid: options.rid,
@@ -70,6 +70,15 @@ Page({
     this.setData({
       isgood:isgood?isgood:false
     })
+      //结束
+      bgplay.onEnded(function () {
+        console.log('自动播放完毕了');
+        //结束播放
+        bgplay.stop();
+        that.setData({
+          played: false
+        })
+      })
     
    /* console.log('当前的app的curplaygsid' + app.globalData.curplaygsid);
     console.log('当前的gsid' + options.id);
@@ -189,22 +198,7 @@ Page({
     bgAudioManager.onStop(function(){
       app.initdata();
     })
-    //结束
-    bgAudioManager.onEnded(function () {
-      console.log('手机上的背景播放完毕了');
-      //结束播放
-      bgAudioManager.stop();
-      clearInterval(app.globalData.interval)
-      clearInterval(app.globalData.interval2)
-      //初始化所有参数
-      app.initdata();
-      console.log('清楚了还能有吗' + app.globalData.curplaygsid);
-      that.setData({
-        thisplaystatus: app.globalData.playstatus,
-        changeduration: 0,
-        cursecond:0
-      })
-})*/
+   */
 
   },
 
