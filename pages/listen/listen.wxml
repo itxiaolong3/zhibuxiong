@@ -1,6 +1,6 @@
 <view class="index-container">
     <view class="search-container">
-        <navigator class="search" hover-class="none" url="../search/search">
+        <navigator class="search" hover-class="none" url="../search/search?isread=0">
             <image src="/images/icon/search.png" />
             <text>搜索作者、故事</text>
         </navigator>

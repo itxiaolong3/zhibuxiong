@@ -19,7 +19,8 @@ Page({
     pwidth:0,
     pheight:0,
     shareimg: '',
-    iszj:0
+    iszj:0,
+    pid:0
     
   },
 
@@ -28,10 +29,25 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.gsid);
-    this.setData({
-      gsid: options.gsid,
-      iszj:options.iszj
-    });
+    if (options.iszj == '' || options.iszj=='undefined'){
+      this.setData({
+        gsid: options.gsid,
+        iszj:0
+      });
+    }else{
+      this.setData({
+        gsid: options.gsid,
+        iszj: options.iszj
+      });
+      if (options.pid>0){
+        this.setData({
+          gsid: options.gsid,
+          pid: options.pid
+        });
+      }
+    }
+   
+    console.log('发布成功里的专辑id'+this.data.iszj);
     if (options.iszj){
       wx.setNavigationBarTitle({
         title: '分享故事'
@@ -62,16 +78,32 @@ Page({
   onShareAppMessage: function () {
     var that=this;
     let getgid = that.data.gsid;
-    return {
-      title: '我在织布熊故事讲了个故事',
-      path: '/pages/story-detail/story-detail?id=' + getgid + '&shoucangstatus=' + false,
-      imageUrl: this.data.shareimg,
-      success(e) {
-        console.log('分享成功=' + getgid);
-      }, fail(e) {
-        console.log('分享失败');
+    let pid=that.data.pid;
+    console.log('成功分享中图文id=' + pid+'故事id='+getgid);
+    if (pid > 0) {//分享阅读故事
+      return {
+        title: '我在织布熊故事讲了个故事',
+        path: `/pages/read-voice/read-voice?pid=${pid}&rid=${getgid}`,
+        imageUrl: this.data.shareimg,
+        success(e) {
+          console.log('分享成功=' + getgid);
+        }, fail(e) {
+          console.log('分享失败');
+        }
+      }
+    }else{
+      return {
+        title: '我在织布熊故事讲了个故事',
+        path: '/pages/story-detail/story-detail?id=' + getgid + '&shoucangstatus=' + false,
+        imageUrl: this.data.shareimg,
+        success(e) {
+          console.log('分享成功=' + getgid);
+        }, fail(e) {
+          console.log('分享失败');
+        }
       }
     }
+    
   },
 
   set_mask: function () {
@@ -189,6 +221,77 @@ Page({
       }
     })
   },
+  //阅读故事的获取故事和用户信息
+  getuserinforead: function () {
+    var that = this;
+    app.request({
+      url: api.read.getgushiread,
+      data: {
+        u_id: wx.getStorageSync('u_id'),
+        gushiid: that.data.gsid
+      },
+      success: (e) => {
+        console.log(e);
+        if (e.status == 1) {
+          that.setData({
+            gushipic: e.result.p_toppic,
+            headerimg: e.result.headerimg
+          })
+          //第一步 底图
+          wx.getImageInfo({
+            src: that.data.src,
+            success: function (res) {
+              console.log('第一步画底图开始');
+              console.log(res);
+              ctx.beginPath()
+              ctx.drawImage(res.path, (that.data.pwidth - 215) / 2, 0, 215, 400)
+              //第二步绘制故事图片
+              that.setgushipic();
+              // 作者名称
+              ctx.setTextAlign('center')
+              ctx.setFillStyle('#FCF0DB')
+              ctx.setFontSize(14)
+              ctx.fillText(e.result.nickname, (that.data.pwidth - 215) / 2 + 100, 50)
+              //分割线
+              //线条的端点样式:butt
+              ctx.setLineCap('butt');
+              ctx.setLineWidth(1);
+              ctx.moveTo((that.data.pwidth - 215) / 2 + 8, 80);
+              ctx.lineTo(that.data.pwidth / 2 + 100, 80);
+              ctx.setStrokeStyle("#FBD89C")//画笔颜色
+              ctx.stroke();
+              //描述
+              ctx.setTextAlign('center')
+              ctx.setFillStyle('#FBD89C')
+              ctx.setFontSize(10)
+              ctx.fillText('刚刚我的宝贝根据自己的画创作了一个童', (that.data.pwidth - 215) / 2 + 100, 100)
+              ctx.fillText('话故事，快来听听宝贝绘声绘色的演播吧！', (that.data.pwidth - 215) / 2 + 102, 120)
+              // 故事名称
+              ctx.setTextAlign('center')
+              ctx.setFillStyle('#FFF9E4')
+              ctx.setFontSize(13)
+              ctx.fillText(e.result.p_title, (that.data.pwidth - 215) / 2 + 60, 265)
+              // 日期
+              ctx.setTextAlign('center')
+              ctx.setFillStyle('#FFF9E4')
+              ctx.setFontSize(11)
+              ctx.fillText(e.result.r_addtime, (that.data.pwidth - 215) / 2 + 170, 265)
+              // 扫码收听我的故事
+              ctx.setTextAlign('center')
+              ctx.setFillStyle('#FFF9E4')
+              ctx.setFontSize(13)
+              ctx.fillText("扫码收听我的故事", (that.data.pwidth - 215) / 2 + 110, 375)
+            },
+            fail: function (fae) {
+              console.log('第一步画底图的错误信息' + fae);
+            }
+          })
+          console.log('头像地址：' + e.result.headerimg);
+          console.log(e.result.headerimg)
+        }
+      }
+    })
+  },
   setgushipic:function(){
     let that =this;
     wx.getImageInfo({
@@ -260,11 +363,21 @@ Page({
   //获取二维码
   getqrcode: function () {
     var that=this;
+    let url='';
+    if (that.data.pid > 0) {
+      console.log('获取图文故事的小程序二维码');
+      url = api.read.getqrcoderead
+    } else {
+      console.log('获取语音故事的小程序');
+      url = api.story.getqrcode
+    }
+    
     app.request({
-      url: api.story.getqrcode,
+      url: url,
       data: {
         u_id: wx.getStorageSync('u_id'),
-        gsid: that.data.gsid
+        gsid: that.data.gsid,
+        pid: that.data.pid
       
       },
       success: (res) => {
@@ -274,7 +387,13 @@ Page({
           that.setData({
             qrcode: res.img
           });
-          that.getuserinfo()
+          if(that.data.pid>0){
+             console.log('分享的是图文故事'); 
+            that.getuserinforead()
+          }else{
+            console.log('分享的是语音故事'); 
+            that.getuserinfo()
+          }
           wx.hideNavigationBarLoading()
         }
       }

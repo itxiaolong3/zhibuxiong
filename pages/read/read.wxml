@@ -1,5 +1,5 @@
  <view class="search-container">
-    <navigator class="search" hover-class="none" url="../search/search">
+    <navigator class="search" hover-class="none" url="../search/search?isread=1">
       <image src="/images/icon/search.png" />
       <text>搜索关键字</text>
     </navigator>

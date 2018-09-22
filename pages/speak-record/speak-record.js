@@ -23,7 +23,13 @@ Page({
         let u_id = wx.getStorageSync('u_id')
         let name = wx.getStorageSync('nickname')
         let avatar = wx.getStorageSync('userheaderimg')
-        let zjid=e.zjid;
+        let zjid=0;
+        if (e.zjid == '' || e.zjid =='undefined'){
+           zjid = 0;
+        }else{
+           zjid = e.zjid;
+        }
+        
         this.setData({
             u_id: u_id,
             name: name,
@@ -31,6 +37,7 @@ Page({
             speak_data: app.globalData.speak_data,
             zjid:zjid
         })
+      console.log('录音里的zjid'+this.data.zjid);
         console.log(app.globalData.speak_data.bjurl);
         // bgplay.onEnded(function(){
         //   console.log('背景播放完毕了');
@@ -145,6 +152,7 @@ Page({
     },
 
     tap_submit: function (event) {
+      let that=this;
         if (this.data.record_state) {
             wx.showToast({
                 title: '请先暂停录音再进行发布',
@@ -199,7 +207,7 @@ Page({
                                             wx.hideLoading()
                                             if (res.status == 1) {
                                                 wx.redirectTo({
-                                                  url: '../speak-success/speak-success?gsid=' + res.newid + '&iszj=0'
+                                                  url: '../speak-success/speak-success?gsid=' + res.newid + '&iszj='+that.data.zjid
                                                 })
                                             } else {
                                                 wx.showToast({

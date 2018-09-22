@@ -18,6 +18,7 @@ Page({
         record_state: false,
         minute: 0,
         second: 0,
+        zjid:0
         // speak_data: {},
     },
 
@@ -25,10 +26,12 @@ Page({
         let u_id = wx.getStorageSync('u_id')
         let name = wx.getStorageSync('nickname')
         let avatar = wx.getStorageSync('userheaderimg')
+
         this.setData({
             u_id: u_id,
             name: name,
             avatar: avatar,
+            zjid:options.zjid
             // speak_data: app.globalData.speak_data
         })
         /*
@@ -198,6 +201,7 @@ Page({
     },
 
     tap_submit: function (event) {
+      let that=this;
         if (this.data.record_state) {
             wx.showToast({
                 title: '请先暂停录音再进行发布',
@@ -239,7 +243,8 @@ Page({
                                         data: {
                                             b_id: this.data.u_id,
                                             gsid: this.data.id,
-                                            r_yuyinurl: record_url
+                                            r_yuyinurl: record_url,
+                                            zjid:this.data.zjid
                                             // b_id: this.data.u_id,
                                             // title: this.data.speak_data.name,
                                             // storyimg: this.data.speak_data.imgs,
@@ -258,14 +263,22 @@ Page({
                                                 title: '发布成功',
                                                 mask: true
                                             })
-                                            setTimeout(() => {
-                                                wx.navigateBack()
-                                            }, 2000)
-                                            /*
+                                            // setTimeout(() => {
+                                            //     wx.navigateBack()
+                                            // }, 2000)
+                                            
                                             if (res.status == 1) {
+                                              let zjid=that.data.zjid;
+                                              if(zjid>0){
                                                 wx.redirectTo({
-                                                  url: '../speak-success/speak-success?gsid=' + res.newid
+                                                  url: '../speak-success/speak-success?gsid=' + res.newid + '&pid=' + that.data.id
                                                 })
+                                              }else{
+                                                wx.redirectTo({
+                                                  url: '../speak-success/speak-success?gsid=' + res.newid + '&pid=' + that.data.id
+                                                })
+                                              }
+                                               
                                             } else {
                                                 wx.showToast({
                                                     title: '发布失败,请重新授权登录',
@@ -279,7 +292,7 @@ Page({
                                                     url: '/pages/login/login'
                                                   })
                                                 },1000)
-                                            }*/
+                                            }
                                         }
                                     })
 

@@ -56,7 +56,10 @@ var api = {
     gettypereadlist: _api_root + 'Getreadgushilist',
     getpersonstory: _api_root + 'Getmyreadgushi',
     getactivit: _api_root + 'Getactivit',
-    getactivitdetail: _api_root + 'Getactivitdetail'
+    getactivitdetail: _api_root + 'Getactivitdetail',
+    postshouting: _api_root +'Postshoutingread',
+    getgushiread: _api_root + 'getgushiread',
+    getqrcoderead: _api_root + 'Getqrcoderead',
   }
 };
 module.exports = api;

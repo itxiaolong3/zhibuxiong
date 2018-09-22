@@ -14,7 +14,8 @@ Page({
     topimg:'',
     desc:'',
     zjid:'',
-    gushi:[]
+    gushi:[],
+    gushiread:[]
   },
 
   /**
@@ -127,7 +128,8 @@ Page({
             topimg:ret.data.zj_img,
             desc: ret.data.zj_desc,
             zjid:ret.data.zj_id,
-            gushi:ret.zjgushi
+            gushi:ret.zjgushi,
+            gushiread:ret.zjgushiread
           })
           wx.hideNavigationBarLoading()
         }
@@ -138,15 +140,25 @@ Page({
   tap_join: function (event) {
     let zjid = event.currentTarget.dataset.zjid;
     if (wx.getStorageSync('u_id')) {
-      wx.redirectTo({
-        url: '/pages/speak/speak?zjid='+zjid
-       
+      wx.navigateTo({
+        url: '/pages/select/select?zjid=' + zjid
       })
+      // wx.redirectTo({
+      //   url: '/pages/speak/speak?zjid='+zjid
+       
+      // })
     } else {
         wx.navigateTo({
             url: '/pages/login/login'
         })
     }
+  },
+  detailgushiread: function (e) {
+    let getgid = e.currentTarget.dataset.id;
+    let getpid = e.currentTarget.dataset.pid;
+    wx.navigateTo({
+      url: `/pages/read-voice/read-voice?pid=${getpid}&rid=${getgid}`
+    })
   },
   detailgushi: function (e) {
     let getid = e.currentTarget.dataset.id;
@@ -161,5 +173,15 @@ Page({
       url: '../speak-success/speak-success?gsid=' + getid+'&iszj=1'
     })
     console.log('点击了分享，id='+getid);
+  },
+  gotoshareread: function (e) {
+    console.log('点击了分享，专辑' + getzjid);
+    let getid = e.currentTarget.dataset.gid;
+    let getpid = e.currentTarget.dataset.pid;
+    let getzjid = e.currentTarget.dataset.zjid;
+    wx.redirectTo({
+      url: '../speak-success/speak-success?gsid=' + getid + '&pid=' + getpid+'&iszj='+getzjid
+    })
+    console.log('点击了分享，id=' + getid);
   }
 })

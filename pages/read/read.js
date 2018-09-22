@@ -15,13 +15,18 @@ Page({
     shoucang: [],
     activity:[],
     page: 0,
-    state: 0
+    state: 0,
+    zjid:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let zjid=options.zjid;
+    this.setData({
+      zjid:zjid
+    });
     this.get_shoucangid()
     this.getactive();
   },
@@ -31,9 +36,9 @@ Page({
   },
 
   tap_item: function (event) {
-    
+    let zjid=this.data.zjid;
     wx.navigateTo({
-      url: `/pages/read-type/read-type?id=${event.currentTarget.dataset.id}`
+      url: `/pages/read-type/read-type?id=${event.currentTarget.dataset.id}&zjid=${zjid}`
     })
   },
 
@@ -148,8 +153,9 @@ Page({
   },
 
     tap_hotread: function (event) {
+      let zjid=this.data.zjid;
       wx.navigateTo({
-        url: `/pages/read-detail/read-detail?id=${event.currentTarget.dataset.id}&shoucangstatus=${event.currentTarget.dataset.checked}`
+        url: `/pages/read-detail/read-detail?id=${event.currentTarget.dataset.id}&shoucangstatus=${event.currentTarget.dataset.checked}&zjid=${zjid}`
       })
     },
 

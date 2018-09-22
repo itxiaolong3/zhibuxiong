@@ -64,6 +64,30 @@
                 </view>
             </view>
         </view>
+        <!-- 图文故事 -->
+        <view class="item border-b" wx:for="{{gushiread}}" wx:key="key"  bindtap="detailgushiread" data-id="{{item.r_id}}" data-pid="{{item.p_id}}" >
+            <image class="image" src="{{item.p_toppic}}"/>
+            <view class="info">
+                <view class="top" >
+                    <text class="name">{{item.p_title}}</text>
+                    <view style='z-index:999;'  catchtap="gotoshareread"  data-gid="{{item.r_id}}" data-pid="{{item.p_id}}" data-zjid="{{item.g_zjid}}"><image src="/images/icon/share.png"/></view>
+                </view>
+                <view class="middle">
+                    <text>作者：{{item.nickname}}</text>
+                    <text>{{item.r_addtime}}</text>
+                </view>
+                <view class="bottom">
+                    <view style="margin-right: 20rpx;">
+                        <image src="/images/icon/earphone.png"  />
+                        <text>收听({{item.r_listennum}})</text>
+                    </view>
+                    <view>
+                        <image src="/images/icon/zan.png"  />
+                        <text>赞({{item.r_goodnum}})</text>
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
      <view class="list-state">
      加载完毕

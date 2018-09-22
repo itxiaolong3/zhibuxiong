@@ -56,13 +56,26 @@ Page({
   onLoad: function(options) {
     let that=this;
     wx.showNavigationBarLoading()
-     this.setData({
-       rid: options.rid,
-       pid: options.pid,
-     })
-    this.get_swiper()
-    this.get_detail()
-
+    var scene = decodeURIComponent(options.scene);
+    if (scene == '' || scene == 'undefined') {
+      console.log('还没获得分享参数' + options.rid);
+      that.setData({
+        rid: options.rid,
+        pid: options.pid,
+      })
+    } else {
+      var arr = scene.split(',');
+      that.setData({
+        rid: arr[0],
+        pid: arr[1],
+      })
+      console.log(arr);
+      console.log(arr[0]);
+      console.log('获得分享参数' +scene);
+    }
+   
+    that.get_swiper()
+    that.get_detail()
     let isgood = wx.getStorageSync('good' + options.rid);
     if(isgood==''){
       isgood=false;
@@ -79,7 +92,8 @@ Page({
           played: false
         })
       })
-    
+  
+   
    /* console.log('当前的app的curplaygsid' + app.globalData.curplaygsid);
     console.log('当前的gsid' + options.id);
     this.getshen();
@@ -254,7 +268,7 @@ Page({
           bgplay.play()
           //获取评论
           that.getpinlun();
-
+          that.savalistenhistory();//保存收听历史
           wx.setNavigationBarTitle({
             title: ret.result.p_title
           })
@@ -1039,16 +1053,17 @@ Page({
       url: '/pages/story-detail/story-detail?id=' + gid + '&shoucangstatus=false'
     })
   },
+  //收听
   savalistenhistory:function(){
     //Postshouting
-    let gid = this.data.gsid;
+    let gid = this.data.rid;
     let uid=wx.getStorageSync('u_id');
     app.request({
-      url: api.story.postshouting,
+      url: api.read.postshouting,
       data: {
         gsid: gid,
         uid: uid,
-        listennum: Number(this.data.gushi.listennum)+1
+        listennum: Number(this.data.music.r_listennum)+1
       },
       success: (ret) => {
         console.log(ret);

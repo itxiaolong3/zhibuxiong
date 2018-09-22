@@ -1,5 +1,5 @@
  <view class="search-container">
-    <navigator class="search" hover-class="none" url="../search/search">
+    <navigator class="search" hover-class="none" url="../search/search?isread=1">
       <image src="/images/icon/search.png" />
       <text>搜索关键字</text>
     </navigator>
@@ -16,7 +16,7 @@
             <view class="item border-b" catchtap="tap_sortitem" data-id="0">综合排序</view>
             <view class="item border-b" catchtap="tap_sortitem" data-id="1">从A-Z</view>
             <view class="item border-b" catchtap="tap_sortitem" data-id="2">朗读数</view>
-            <view class="item border-b" catchtap="tap_sortitem" data-id="2">创作时间</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="3">创作时间</view>
         </view>
     </view>
  <view class="story-list">

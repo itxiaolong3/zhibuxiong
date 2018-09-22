@@ -15,7 +15,8 @@ Page({
     items: [],
     allplay: false,
     playindex: 0,
-    shoucangstatus: ''
+    shoucangstatus: '',
+    zjid:0
   },
 
   /**
@@ -25,7 +26,8 @@ Page({
     wx.showNavigationBarLoading()
      this.setData({
        id: options.id,
-       shoucangstatus: options.shoucangstatus
+       shoucangstatus: options.shoucangstatus,
+       zjid: options.zjid
      })
     //this.getad(1)
     this.get_detail()
@@ -149,7 +151,7 @@ Page({
   togospeak: function () {
     if (wx.getStorageSync('u_id')) {
       wx.navigateTo({
-        url: `/pages/read-record/read-record?id=${this.data.id}`
+        url: `/pages/read-record/read-record?id=${this.data.id}&zjid=${this.data.zjid}`
       })
     } else {
       wx.navigateTo({

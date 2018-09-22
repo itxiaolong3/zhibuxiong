@@ -9,14 +9,26 @@ Page({
   data: {
     gushi: [],
     keyword:'',
-    shoucang: []
+    shoucang: [],
+    isread:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
-    
+  onLoad: function (e) {
+    let isread=e.isread;
+    if(isread==1){
+      console.log('是阅读故事');
+      this.setData({
+        isread:1
+      })
+    }else{
+      this.setData({
+        isread: 0
+      })
+      console.log('普通故事');
+    }
   },
   keywords:function(e){
     console.log(e.detail.value);
@@ -27,9 +39,17 @@ Page({
   gosearch:function(e){
     let keyword=this.data.keyword;
     let that=this;
-    that.get_shoucangid()
+    that.get_shoucangid();
+    let isread=that.data.isread;
+    let url='';
+    if (isread==0){
+       url = api.story.gethotgushi;
+    }else{
+      url = api.read.gettypereadlist;
+    }
+    
     app.request({
-       url: api.story.gethotgushi,
+       url: url,
       data:{
         keyword:keyword
       },
@@ -67,10 +87,18 @@ Page({
   },
   detail:function(e){
     let getid = e.currentTarget.dataset.id;
+    console.log('搜索中进入详细的id='+getid);
     let shoucangstatus = e.currentTarget.dataset.checked;
-    wx.redirectTo({
-      url: '/pages/story-detail/story-detail?id=' + getid + '&shoucangstatus=' + shoucangstatus,
-    })
+    let isread=this.data.isread;
+   if(isread==1){
+     wx.navigateTo({
+       url: `/pages/read-detail/read-detail?id=${getid}&shoucangstatus=${shoucangstatus}`
+     })
+   }else{
+     wx.redirectTo({
+       url: '/pages/story-detail/story-detail?id=' + getid + '&shoucangstatus=' + shoucangstatus,
+     })
+   }
   },
   //收藏故事的id
   get_shoucangid: function () {

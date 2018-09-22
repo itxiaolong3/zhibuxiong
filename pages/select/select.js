@@ -5,14 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    select: 0
+    select: 0,
+    zjid:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+   let zjid=options.zjid;
+   this.setData({
+     zjid:zjid
+   });
   },
 
   /**
@@ -73,11 +77,12 @@ Page({
   tap_btn: function (event) {
     let select = this.data.select
     let url = ''
+    let zjid=this.data.zjid;
     if (select != 0) {
       if (select == 1) {
-          url = '/pages/read/read'
+          url = '/pages/read/read?zjid='+zjid
       } else {
-          url = '/pages/speak/speak'
+          url = '/pages/speak/speak?zjid='+zjid
       }
       wx.redirectTo({
           url: url

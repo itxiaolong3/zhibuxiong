@@ -110,6 +110,8 @@ Page({
     if (options.scene>0) {
       console.log('收藏标志为空,扫码进入单一小程序');
       var scene = decodeURIComponent(options.scene);
+      //判断返回值是否是图文故事的id
+      console.log('扫进了的参数'+scene);
       this.setData({
         gsid: scene,
         shoucangstatus: 'false'
