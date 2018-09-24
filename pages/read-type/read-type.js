@@ -65,20 +65,21 @@ Page({
 
     // this.get_shoucangid(gstype, id)
      console.log('故事类型' + this.data.id+'排序状态：'+ id);
+    this.get_hotgushi(id)
     // this.setData({
     //   sort_state: id
     // }) 
     // this.tap_sort()
   },
 
- get_hotgushi: function () {
+ get_hotgushi: function (typenum) {
     wx.showNavigationBarLoading()
       let that = this
       app.request({
         url: api.read.gettypereadlist,
         data: {
           gstype: this.data.id,
-          ordertype: 0
+          ordertype: typenum
         },
         success: (ret) => {
           if (ret.status == 1) {
@@ -121,7 +122,7 @@ Page({
       },
       success: (ret) => {
         //先加载了收藏id再进行加载故事列表
-        this.get_hotgushi()
+        this.get_hotgushi(0)
         if (ret.status == 1) {
           let getshoucangdata = ret.data;
           let getnewshoucanid = []

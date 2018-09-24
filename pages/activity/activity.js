@@ -15,7 +15,8 @@ Page({
     desc:'',
     zjid:'',
     gushi:[],
-    gushiread:[]
+    gushiread:[],
+    aid:0
   },
 
   /**
@@ -26,7 +27,10 @@ Page({
     wx.showNavigationBarLoading();
      let getid=options.id;
      console.log('得到的zjid='+getid);
-    this.getactivit(getid);
+     this.setData({
+       aid:getid
+     })
+    this.getactivit(getid,0);
   },
 
   /**
@@ -107,18 +111,21 @@ Page({
       sort_state: id
     }) 
     this.tap_sort()
+    console.log('活动故事里的排序id='+id);
+    this.getactivit(this.data.aid, id);
   },
 
   escape2Html: function (str) {
     var arrEntities = { 'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"' };
     return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; });
   },
-  getactivit:function(id){
+  getactivit:function(id,typenum){
     let that=this;
     app.request({
       url: api.read.getactivitdetail,
       data:{
-        id:id
+        id:id,
+        ordertype:typenum
       },
       success: (ret) => {
         console.log(ret);
