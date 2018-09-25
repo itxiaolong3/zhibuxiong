@@ -33,11 +33,11 @@
             </view>
         </view>
         <view class="sort" wx:if="{{sort}}">
-            <view class="item border-b" catchtap="tap_sortitem" data-id="0">综合排序</view>
-            <view class="item border-b" catchtap="tap_sortitem" data-id="1">从A-Z</view>
-            <view class="item border-b" catchtap="tap_sortitem" data-id="2">收听量</view>
-            <view class="item border-b" catchtap="tap_sortitem" data-id="3">点赞量</view>
-            <view class="item border-b" catchtap="tap_sortitem" data-id="4">创作时间</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="0" style='z-index:9;'>综合排序</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="1" style='z-index:9;'>从A-Z</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="2" style='z-index:9;'>收听量</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="3" style='z-index:9;'>点赞量</view>
+            <view class="item border-b" catchtap="tap_sortitem" data-id="4"  style='z-index:9;'>创作时间</view>
         </view>
     </view>
     <view class="list-container">
@@ -46,7 +46,7 @@
             <view class="info">
                 <view class="top" >
                     <text class="name">{{item.title}}</text>
-                    <view style='z-index:999;'  catchtap="gotoshare"  data-gid="{{item.id}}"><image src="/images/icon/share.png"/></view>
+                    <view style='z-index:2;'  catchtap="gotoshare"  data-gid="{{item.id}}"><image src="/images/icon/share.png"/></view>
                 </view>
                 <view class="middle">
                     <text>作者：{{item.nickname}}</text>
@@ -70,7 +70,7 @@
             <view class="info">
                 <view class="top" >
                     <text class="name">{{item.p_title}}</text>
-                    <view style='z-index:999;'  catchtap="gotoshareread"  data-gid="{{item.r_id}}" data-pid="{{item.p_id}}" data-zjid="{{item.g_zjid}}"><image src="/images/icon/share.png"/></view>
+                    <view style='z-index:2;'  catchtap="gotoshareread"  data-gid="{{item.r_id}}" data-pid="{{item.p_id}}" data-zjid="{{item.g_zjid}}"><image src="/images/icon/share.png"/></view>
                 </view>
                 <view class="middle">
                     <text>作者：{{item.nickname}}</text>

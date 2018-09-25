@@ -10,7 +10,8 @@ Page({
     gushi: [],
     keyword:'',
     shoucang: [],
-    isread:0
+    isread:0,
+    search: 0
   },
 
   /**
@@ -37,6 +38,10 @@ Page({
     });
   },
   gosearch:function(e){
+    wx.showNavigationBarLoading()
+    this.setData({
+      search: 1
+    })
     let keyword=this.data.keyword;
     let that=this;
     that.get_shoucangid();
@@ -79,9 +84,16 @@ Page({
             }
           }
           that.setData({
-            gushi: ret.data
+            gushi: ret.data,
+            search: 2
+          });
+        } else {
+          that.setData({
+            gushi: [],
+            search: -1
           });
         }
+        wx.hideNavigationBarLoading()
       }
     })
   },

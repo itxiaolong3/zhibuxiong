@@ -2,15 +2,14 @@
     <view class="search-container">
         <view class="search">
             <image  bindtap='gosearch' src="/images/icon/search.png"  />
-            <input placeholder="搜索作者、故事" placeholder-style="color:#b3b3b3;" maxlength="20" focus="true" bindinput='keywords'  />
+            <input placeholder="搜索作者、故事" placeholder-style="color:#b3b3b3;" maxlength="20" focus="true" bindinput='keywords' confirm-type='search' bindconfirm='gosearch'  />
         </view>
         <view class="btn" bindtap='gosearch'>搜索</view>
     </view>
     <view class="result-container">
-        <view class="title-container">搜索结果</view>
+        <view class="title-container" wx:if="{{search != 0}}">{{search == 1 ? '正在搜索' : search == 2 ? '搜索结果' : '无记录'}}</view>
         <view class="list-container">
         <block wx:for="{{gushi}}" wx:for-item="gs">
-       
             <view class="item border-b" data-id="{{isread?gs.p_id:gs.id}}" data-checked="{{gs.checked}}" bindtap='detail'>
                 <image class="image" src="{{gs.img[0]}}"  />
                 <view class="info">

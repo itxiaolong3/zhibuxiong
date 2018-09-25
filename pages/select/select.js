@@ -14,9 +14,11 @@ Page({
    */
   onLoad: function (options) {
    let zjid=options.zjid;
-   this.setData({
-     zjid:zjid
-   });
+   if (zjid) {
+    this.setData({
+      zjid:zjid
+    });
+   }
   },
 
   /**

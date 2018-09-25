@@ -43,7 +43,7 @@
 .nav-1 .image {
     display: flex;
     justify-content: flex-end;
-    top: 30rpx;
+    top: 10rpx;
     padding: 10px;
      position: relative;
      left:15px
@@ -66,6 +66,10 @@
     background-color:transparent;
     padding:5px;
 
+}
+
+.nav-1 .image button::after {
+    border: none;
 }
 .nav-1 .image image {
     width: 80rpx;
@@ -169,6 +173,7 @@
     background-color: #fff;
     color: #666;
     font-size: 30rpx;
+    z-index: 9999;
 }
 
 .list-container {

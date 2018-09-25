@@ -99,6 +99,7 @@
     justify-content: center;
     width: 100%;
     height: 170rpx;
+    z-index: 3;
 }
 
 .footer-container image {
