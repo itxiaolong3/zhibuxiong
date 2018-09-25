@@ -18,7 +18,8 @@ Page({
         record_state: false,
         minute: 0,
         second: 0,
-        zjid:0
+        zjid:0,
+        switched: false
         // speak_data: {},
     },
 
@@ -109,7 +110,19 @@ Page({
     })
 
   },
+
+  tap_switchitem: function (event) {
+        this.setData({
+            switched: false
+        })
+  },
+
     tap_record: function (event) {
+        this.setData({
+            switched: !this.data.switched
+        })
+        //开始录音
+        /*
         if (this.data.minute == 10) {
         //   innerAudioContext.stop();
           this.setData({
@@ -165,6 +178,7 @@ Page({
         this.setData({
             record_state: !this.data.record_state
         }) 
+        */
     },
 
     tap_reset: function (event) {
