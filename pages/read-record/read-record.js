@@ -112,6 +112,12 @@ Page({
   },
 
   tap_switchitem: function (event) {
+      let id = event.currentTarget.dataset.id
+      console.log(id)
+          wx.showToast({
+            title: '戴耳机讲故事是不会录入背景音乐的哦~',
+            icon: 'none'
+          }) 
         this.setData({
             switched: false
         })
