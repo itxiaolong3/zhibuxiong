@@ -19,8 +19,9 @@ Page({
         minute: 0,
         second: 0,
         zjid:0,
-        switched: false
+        switched: false,
         // speak_data: {},
+        nowopen:false//是否选择了直接播放
     },
 
     onLoad: function (options) {
@@ -52,6 +53,11 @@ Page({
           console.log('背景音乐的长度' + innerAudioContext.duration)
         })
         */
+      innerAudioContext.onEnded(function () {
+        console.log('背景播放完毕了');
+        innerAudioContext.autoplay = true;
+        innerAudioContext.src = this.data.bjurl
+      })
     wx.showNavigationBarLoading()
      this.setData({
        id: options.id 
@@ -114,77 +120,95 @@ Page({
   tap_switchitem: function (event) {
       let id = event.currentTarget.dataset.id
       console.log(id)
-          wx.showToast({
-            title: '戴耳机讲故事是不会录入背景音乐的哦~',
-            icon: 'none'
-          }) 
-        this.setData({
-            switched: false
-        })
-  },
-
-    tap_record: function (event) {
-        this.setData({
-            switched: !this.data.switched
-        })
-        //开始录音
-        /*
-        if (this.data.minute == 10) {
-        //   innerAudioContext.stop();
-          this.setData({
-            record_state: !this.data.record_state
+      if(id==0){
+        wx.showToast({
+          title: '戴耳机讲故事是不会录入背景音乐的哦~',
+          icon: 'none'
+        }) 
+        setTimeout(function(){
+          wx.navigateTo({
+            url: '/pages/music/music',
           })
+        },1000)
+      }else{
+        this.startrecord();
+        this.setData({
+          switched: false,
+          nowopen:true
+        })
+      } 
+       
+  },
+  //开始录音的方法
+  startrecord:function(){
+    //开始录音
+    if (this.data.minute == 10) {
+         innerAudioContext.stop();
+      this.setData({
+        record_state: !this.data.record_state
+      })
+      wx.showToast({
+        title: '录音不能超过10分钟',
+        icon: 'none'
+      })
+      return
+    }
+    if (!this.data.record_state) {
+      if (this.data.minute == 0 && this.data.second == 0) {
+        this.record_start()
+      } else {
+        recorderManager.resume()
+        if (this.data.bjurl){
+          innerAudioContext.play();
+        innerAudioContext.src = this.data.bjurl
+        }
+
+      }
+      let timer = () => {
+        if (this.data.minute != 10) {
+          if (this.data.second == 59) {
+            this.setData({
+              second: 0,
+              minute: this.data.minute + 1
+            })
+          } else {
+            this.setData({
+              second: this.data.second + 1
+            })
+          }
+        } else {
+          this.record_stop()
+          innerAudioContext.stop();
           wx.showToast({
             title: '录音不能超过10分钟',
             icon: 'none'
-          }) 
-          return
-        }
-        if (!this.data.record_state) {
-            if (this.data.minute == 0 && this.data.second == 0) {
-                this.record_start()
-            } else {
-                recorderManager.resume()
-                // if (app.globalData.speak_data.bjurl){
-                //   innerAudioContext.play();
-                 // innerAudioContext.src = app.globalData.speak_data.bjurl
-                // }
-                
-            }
-            let timer = () => {
-                if (this.data.minute != 10) {
-                    if (this.data.second == 59) {
-                        this.setData({
-                            second: 0,
-                            minute: this.data.minute + 1
-                        })
-                    } else {
-                        this.setData({
-                            second: this.data.second + 1
-                        })
-                    }
-                } else {
-                    this.record_stop()
-                    innerAudioContext.stop();
-                    wx.showToast({
-                      title: '录音不能超过10分钟',
-                      icon: 'none'
-                    })
-                    this.setData({
-                      record_state: !this.data.record_state
-                    })
-                }
-            }
-            interval = setInterval(timer,1000)
-        } else {
-            clearInterval(interval)
-            recorderManager.pause()
-            // innerAudioContext.pause();
-        }
-        this.setData({
+          })
+          this.setData({
             record_state: !this.data.record_state
-        }) 
-        */
+          })
+        }
+      }
+      interval = setInterval(timer, 1000)
+    } else {
+      clearInterval(interval)
+      recorderManager.pause()
+       innerAudioContext.pause();
+    }
+    this.setData({
+      record_state: !this.data.record_state
+    })
+  },
+    tap_record: function (event) {
+      if (this.data.nowopen || this.data.bjurl){
+          this.startrecord();
+          this.setData({
+            switched: false
+          })
+        }else{
+          this.setData({
+            switched: true
+          })  
+        }
     },
 
     tap_reset: function (event) {
@@ -208,6 +232,7 @@ Page({
                     if (res.confirm) {
                         clearInterval(interval)
                         recorderManager.stop()
+                      innerAudioContext.stop();
                         this.setData({
                             second: 0,
                             minute: 0,
@@ -338,13 +363,13 @@ Page({
             frameSize: 50, 
         }
         recorderManager.start(options)
-        // if (app.globalData.speak_data.bjurl){
-        //   //开始播放背景音乐
-        //   innerAudioContext.autoplay = true
-        //   innerAudioContext.src = app.globalData.speak_data.bjurl
-        // }else{
-        //   console.log('背景音乐为空');
-        // }
+        if (this.data.bjurl){
+          //开始播放背景音乐
+          innerAudioContext.autoplay = true
+          innerAudioContext.src = this.data.bjurl
+        }else{
+          console.log('背景音乐为空');
+        }
         
 
     },
@@ -353,12 +378,25 @@ Page({
         clearInterval(interval)
         recorderManager.stop()
         //停止背景音乐
-        // innerAudioContext.stop();
+         innerAudioContext.stop();
         recorderManager.onStop((res) => {
             this.setData({
                 record_path: res.tempFilePath
             })
         })
-    }    
+    },
+  onShow: function () {
+    let pages = getCurrentPages();
+    let currPage = pages[pages.length - 1];
+    console.log('阅读故事中的背景音乐链接'+currPage.data.bgmusicurl);
+    console.log(currPage.data.title);
+    if (currPage.data.title) {
+      this.setData({
+        bjtitle: currPage.data.title,
+        bjurl: currPage.data.bgmusicurl,
+        switched: false
+      })
+    }
+  },        
     
 })

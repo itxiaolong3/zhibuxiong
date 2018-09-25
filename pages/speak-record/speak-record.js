@@ -16,7 +16,8 @@ Page({
         record_path: '',
         minute: 0,
         second: 0,
-        zjid:0
+        zjid:0,
+        
     },
 
     onLoad: function (e) {
@@ -269,6 +270,6 @@ Page({
                 record_path: res.tempFilePath
             })
         })
-    }    
+    }
     
 })
