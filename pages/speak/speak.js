@@ -14,6 +14,8 @@ Page({
         imgs: [],
         bjurl: '',
         bjtitle:'',
+      uploaded_pic_list: [],//临时路劲
+      serverimglist: [],//保存服务器返回的地址
        // imgs_old: [],
        zjid:0
     },
@@ -49,8 +51,10 @@ Page({
         if (!wx.getStorageSync('frist_upload')) {
             this.set_mask()
         } else {
+          let that=this;
+          var uploaded_pic_list=this.data.uploaded_pic_list
             wx.chooseImage({
-                count: 1,
+                count: 9,
                 sizeType: ['original', 'compressed'],
                 sourceType: ['album', 'camera'],
                 success: (res) => {
@@ -58,51 +62,78 @@ Page({
                         title: '正在上传',
                         mask: true
                     })
-                    wx.uploadFile({
-                        url: api.speak.uploadimg,
-                        filePath: res.tempFilePaths[0],
-                        name: 'file',
-                        success: (res) => {
-                          console.log(res);
-                            let img = JSON.parse(res.data).data.imgpath
-                            let status = JSON.parse(res.data).data.status
-                            if (status==1){
-                              console.log('图片正常');
-                              let imgs = this.data.imgs
-                              //let imgs_old = this.data.imgs_old
-                              imgs.push(`${api.root.substr(0, api.root.indexOf('app'))}attachment/${img}`)
-                              // imgs_old.push(img)
-                              this.setData({
-                                imgs: imgs,
-                                // imgs_old: imgs_old
-                              })
-                              app.globalData.speak_data.imgs = this.data.imgs
-                            } else if (status == -1){
-                              console.log('发生未知错误');
-                              wx.showToast({
-                                title: '发生未知错误',
-                                icon: 'none'
-                              }) 
-                            }else{
-                              wx.showToast({
-                                title: '小孩子不能上传黄色图片哦',
-                                icon: 'none'
-                              }) 
-                              console.log('涉黄');
-                            }
-                           
-                            // app.globalData.speak_data.imgs_old=this.data.imgs_old
-                            wx.hideLoading()
-                        },
-                        fail: (err) => {
-                            console.log(err)
-                        }
-                    })
+                  let tempFiless = res.tempFiles
+                  //遍历选择的图片
+                  tempFiless.forEach((value, index, array) => {
+                    console.log(value['path']);
+                    uploaded_pic_list.push(value['path']);//把选择的临时路径追加到数组中 
+                  })
+                  //刷新数组
+                  that.setData({
+                    uploaded_pic_list: uploaded_pic_list
+                  })
+                  //遍历存放临时路径的数组进行依次上传
+                  uploaded_pic_list.forEach((value, index, array) => {
+                    console.log(index);
+                    that.upload_img(that, uploaded_pic_list, index)
+                  })
+                    
                 }
             })
         }
     },
+    //上传图片方法
+  upload_img: function (that, uploaded_pic_list, j){
+    let temppaths = uploaded_pic_list[j];
+    //let serverimglist = that.data.imgs;
+    wx.uploadFile({
+      url: api.speak.uploadimg,
+      //filePath: res.tempFilePaths[0],
+      filePath: temppaths,
+      name: 'file',
+      success: (res) => {
+        console.log(res);
+        let img = JSON.parse(res.data).data.imgpath
+        let status = JSON.parse(res.data).data.status
+        if (status == 1) {
+          console.log('图片正常');
+          let imgs = this.data.imgs
+          //let imgs_old = this.data.imgs_old
+          imgs.push(`${api.root.substr(0, api.root.indexOf('app'))}attachment/${img}`)
+          // imgs_old.push(img)
+          // this.setData({
+          //   imgs: imgs,
+          // })
+          //清空已经上传的图片
+          uploaded_pic_list.splice(0, uploaded_pic_list.length);
+          this.setData({
+            uploaded_pic_list: uploaded_pic_list,
+            imgs: imgs,
+          })
+          console.log(imgs);
+          app.globalData.speak_data.imgs = this.data.imgs
+        } else if (status == -1) {
+          console.log('发生未知错误');
+          wx.showToast({
+            title: '发生未知错误',
+            icon: 'none'
+          })
+        } else {
+          wx.showToast({
+            title: '小孩子不能上传黄色图片哦',
+            icon: 'none'
+          })
+          console.log('涉黄');
+        }
 
+        // app.globalData.speak_data.imgs_old=this.data.imgs_old
+        wx.hideLoading()
+      },
+      fail: (err) => {
+        console.log(err)
+      }
+    })
+  },
     delete: function (e) {
         let imgsArray = this.data.imgs
        // let imgs_oldArray = this.data.imgs_old
