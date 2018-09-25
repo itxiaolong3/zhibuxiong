@@ -34,4 +34,12 @@
         <view class="middle" catchtap="tap_record">{{record_state ? '暂停录音' : '开始录音'}}</view>
         <view class="right" catchtap="tap_submit">发布</view>
     </view>
+    <view class="alert" wx:if="{{switched}}">
+        <view style="border-bottom: 1px solid #f1f1f1;" catchtap="tap_switchitem" data-id="0">
+            选择背景音乐
+        </view>
+        <view catchtap="tap_switchitem" data-id="1">
+            直接进行录音
+        </view>
+    </view>
 </view>

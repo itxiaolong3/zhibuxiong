@@ -167,6 +167,35 @@
     font-size: 25rpx;
 }
 
+.alert {
+    position: absolute;
+    bottom: 200rpx;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 200rpx;
+    height: 150rpx;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    border: 5rpx solid #c8c9cb;
+    border-radius: 10rpx;
+    background-color: #fff;
+}
+
+.alert view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: #595758;
+    font-size: 25rpx;
+}
+
+.alert view:active {
+    background-color: #e6e6e6;
+}
+
 .footer-container {
     position: fixed;
     bottom: 0;
