@@ -168,13 +168,13 @@
 }
 
 .alert {
-    position: absolute;
+    position: fixed;
     bottom: 200rpx;
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 200rpx;
-    height: 150rpx;
+    width: 250rpx;
+    height: 200rpx;
     z-index: 3;
     display: flex;
     flex-direction: column;
@@ -189,7 +189,7 @@
     justify-content: center;
     flex: 1;
     color: #595758;
-    font-size: 25rpx;
+    font-size: 28rpx;
 }
 
 .alert view:active {
