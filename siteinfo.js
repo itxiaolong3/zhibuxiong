@@ -1,6 +1,6 @@
 var siteinfo = {
-    'uniacid': '99',
-    'acid': '99',
+    'uniacid': '116',
+    'acid': '116',
     'version': '1.0.0',
     'siteroot': 'https://pj.dede1.com/app/index.php',
 };
