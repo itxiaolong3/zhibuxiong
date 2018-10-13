@@ -29,13 +29,13 @@
     </view>
     <view wx:if='{{gushilist.length==0}}' class='th-state'>
          无数据
-        </view>
+    </view>
     <view class="story-list" wx:else style="{{gushilist.length > 4 ? 'margin-top: 90rpx' : ''}}">
         <view class="list-container">
         <block wx:for="{{gushilist}}" wx:for-item="gushi" wx:key="key">
             <view class="story" bindtap='detailgushi' data-id="{{gushi.id}}" data-checked="{{gushi.checked}}">
                 <text class="top ellipsis">{{gushi.title}}</text>
-                <image class="middle" src="{{gushi.img[0]}}" />
+                <image class="middle" src="{{gushi.img[0]}}" lazy-load="true" mode="aspectFill" />
                 <view class="bottom">
                     <view class="left">
                         <view style="margin-right: 20rpx;">

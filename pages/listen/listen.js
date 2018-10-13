@@ -63,35 +63,41 @@ Page({
         ordertype: ordertype,
       },
       success: (ret) => {
-        console.log(ret);
-        let shouangid = this.data.shoucang;
-        if (ret.status == 1) {
-          // console.log(ret.data[0]['img'][0]);
-          let getgushilist = ret.data
-          getgushilist.forEach((value, index, array) => {
-            value.checked = false//如果checked属性没有就创建一个
-            if (index == getgushilist.length - 1) {
-              this.setData({
-                gushilist: getgushilist,
-              })
-            }
-          })
-          //判断是否有相同的值
-          for (var i in shouangid) {
-            let str1 = shouangid[i];
-            for (var j in getgushilist) {
-              let str2 = getgushilist[j].id;
-              if (str1 === str2) {
-                //console.log("相等的值为"+str1);
-                getgushilist[j].checked = true;
+          console.log(ret);
+          let shouangid = this.data.shoucang;
+          if (ret.status == 1) {
+            // console.log(ret.data[0]['img'][0]);
+            let getgushilist = ret.data
+            getgushilist.forEach((value, index, array) => {
+              value.checked = false//如果checked属性没有就创建一个
+              if (index == getgushilist.length - 1) {
+                this.setData({
+                  gushilist: getgushilist,
+                })
+              }
+            })
+            //判断是否有相同的值
+            for (var i in shouangid) {
+              let str1 = shouangid[i];
+              for (var j in getgushilist) {
+                let str2 = getgushilist[j].id;
+                if (str1 === str2) {
+                  //console.log("相等的值为"+str1);
+                  getgushilist[j].checked = true;
+                }
               }
             }
-          }
-          this.setData({
-            gushilist: ret.data,
-            load: 1
-          })
-          wx.hideNavigationBarLoading()
+            this.setData({
+              gushilist: ret.data,
+              load: 1
+            })
+            wx.hideNavigationBarLoading()
+        } else {
+            this.setData({
+              gushilist: [],
+              load: 1
+            })
+            wx.hideNavigationBarLoading()
         }
       }
     })

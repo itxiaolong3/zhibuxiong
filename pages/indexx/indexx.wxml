@@ -31,7 +31,7 @@
       <text>我要听故事</text>
     </navigator>
   </view>
-  <view class="story-list">
+  <view class="story-list" wx:if="{{gushilist.length != 0}}"> 
     <view class="list-title border-b">
       热门故事
     </view>
@@ -69,7 +69,7 @@
      查看更多
      </navigator>
   </view>
-  <view class="story-list">
+  <view class="story-list" wx:if="{{hotread.length != 0}}">
     <view class="list-title border-b">
       热门阅读
     </view>
@@ -96,7 +96,7 @@
      查看更多
      </navigator>
   </view>
-  <view class="zhubo-list">
+  <view class="zhubo-list" wx:if="{{hotuser.length != 0}}">
     <view class="list-title border-b">
       热门小主播
     </view>

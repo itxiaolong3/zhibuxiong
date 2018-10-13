@@ -16,15 +16,15 @@ App({
           bjurl:'',
           isprivate: 0
         },
-        curplaygsid:0,
-        interval: '',
-        interval2:'',
-        playstatus: false,
-        changeduration:0,
-        min:0,
-        second:0,
-        duration:0,
-        isfristplay: 0
+        interval: '',//分计时器
+        interval2:'',//秒计时器
+        curplaygsid:0,//当前播放故事id
+        playstatus: false,//当前播放状态
+        changeduration:0,//当前已播放时长
+        min:0,//当前播放显示的分
+        second:0,//当前播放显示的秒
+        duration:0,//故事的总时长
+        isfristplay: 0//是否第一次播放
     },
     request: function (object) {
         if (!object.data)
