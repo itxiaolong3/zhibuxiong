@@ -158,7 +158,6 @@ Page({
     //     changeduration: 0
     //   })
     // });
-    //缺少手机状态栏的控制器联动
     //播放
     bgAudioManager.onPlay(() => {
       console.log('播放');
@@ -632,7 +631,7 @@ Page({
       setTimeout(() => {
         this.tap_play()
         wx.hideLoading()
-      }, 1000)
+      }, 1500)
       return
       // that.setData({
       //   duration:0,
@@ -686,6 +685,7 @@ Page({
         bgAudioManager.singer = that.data.gushi.nickname
         bgAudioManager.coverImgUrl = that.data.imgs[0]
         bgAudioManager.src = that.data.gushi.yuyinurl
+        bgAudioManager.play()
       }
       // if (that.data.gushi.yuyinurl) {
         // bgAudioManager.title = that.data.gushi.title
@@ -736,6 +736,7 @@ Page({
             cursecond: app.globalData.second,
             changeduration: app.globalData.changeduration
           })
+          // console.log('非第一次播放正常计时时长的分='+app.globalData.min+'跟秒='+app.globalData.second)
           // wx.onBackgroundAudioStop(function () {
           //   console.log('音频停止事件22');
           //   //结束播放
@@ -784,40 +785,36 @@ Page({
           })
         }
         setTimeout(function () {
-          app.globalData.duration = bgAudioManager.duration;
+          let dur = bgAudioManager.duration
+          if (!dur) {
+              console.log('第一次未获取到时长')
+              dur = 0
+          } 
+          app.globalData.duration = dur
+          app.globalData.curplaygsid = that.data.gsid
           that.setData({
-            duration: bgAudioManager.duration
+            duration: dur
           })
-          console.log("第一次播放设置音频时长=" + app.globalData.duration);
-          app.globalData.curplaygsid = that.data.gsid;
           //let time = Math.floor(that.data.duration);
-          let time = app.globalData.duration;
-          let initmin = Math.floor(time / 60);
-          let initsecond = Math.floor(time % 60);
+          // let time = app.globalData.duration;
+          let initmin = Math.floor(dur / 60);
+          let initsecond = Math.floor(dur % 60);
+          console.log("开始播放获取到的音频时长=" + dur)
           console.log('取整后的分=' + initmin + '跟秒=' + initsecond);
-          if (initmin != 0 || initsecond != 0) {
-            wx.hideLoading()
-          }
           that.setData({
             initmin: initmin,
             initsecond: initsecond
           });
-          that.savalistenhistory();//保存收听历史
-          console.log("第一次播放中,时长=" + initmin + '分' + initsecond);
-        
-          //这里1秒之后才赋值，有待研究
           app.globalData.min=initmin;
           app.globalData.second=initsecond;
+          that.savalistenhistory();//保存收听历史
           //执行计时器
           clearInterval(app.globalData.interval2)
-            app.globalData.interval = setInterval(function () {
+          app.globalData.interval = setInterval(function () {
               app.globalData.changeduration = app.globalData.changeduration + 1
-              //手机上需要加上这个
+              //二次判断
               if (app.globalData.second == 0 && app.globalData.min==0) {
-                wx.showLoading({
-                  title: '正在初始化',
-                })
-                   let time = bgAudioManager.duration;
+                  let time = bgAudioManager.duration;
                   app.globalData.min = Math.floor(time / 60)
                   app.globalData.second = Math.floor(time % 60)
                   that.setData({
@@ -825,12 +822,12 @@ Page({
                     initsecond: app.globalData.second,
                     duration: time
                   });
-                  setTimeout(function(){
-                      wx.hideLoading()
-                  },1500)
-                  console.log('此时的分为' + app.globalData.min + '秒' + app.globalData.second);
+                  console.log('重新获取时长的分='+app.globalData.min+'跟秒='+app.globalData.second)
+                  // setTimeout(function(){
+                  //     wx.hideLoading()
+                  // },1500)
+                  // console.log('此时的分为' + app.globalData.min + '秒' + app.globalData.second);
               }else{
-                wx.hideLoading();
                 if (app.globalData.min != 0) {
                   if (app.globalData.second <= 0) {
                     app.globalData.second = 59;
@@ -856,6 +853,7 @@ Page({
                   cursecond: app.globalData.second,
                   changeduration: app.globalData.changeduration
                 })
+                // console.log('第一次播放正常计时时长的分='+app.globalData.min+'跟秒='+app.globalData.second)
                 //  wx.onBackgroundAudioStop(function(){
                 //     console.log('音频停止事件1111');
                 //     //结束播放
@@ -873,41 +871,47 @@ Page({
               }
             }, 1000)
             //个别手机首次出现null问题
-          if (that.data.initmin == 'null' || that.data.initsecond=='null'){
-            let time = that.data.duration;
-            let initmin = Math.floor(time / 60);
-            let initsecond = Math.floor(time % 60);
-            that.setData({
-              curmin: initmin,
-              cursecond: initsecond,
-            })
-         }else{
-            that.setData({
-              curmin: that.data.initmin,
-              cursecond: that.data.initsecond,
-            })
-         }
-        }, 800)
-        //添加首次收听出现null的代码
-        if (that.data.curmin == 'null' || that.data.cursecond=='null'){
-          wx.showLoading({
-            title: '首次播放请稍等',
+        //   if (that.data.initmin == 'null' || that.data.initsecond=='null'){
+        //     let time = that.data.duration;
+        //     let initmin = Math.floor(time / 60);
+        //     let initsecond = Math.floor(time % 60);
+        //     that.setData({
+        //       curmin: initmin,
+        //       cursecond: initsecond,
+        //     })
+        //  }else{
+        //     that.setData({
+        //       curmin: that.data.initmin,
+        //       cursecond: that.data.initsecond,
+        //     })
+        //  }
+          app.globalData.playstatus = true;
+          that.setData({
+            thisplaystatus: true
           })
-          setTimeout(function () {
-            let time = that.data.duration;
-            let initmin = Math.floor(time / 60);
-            let initsecond = Math.floor(time % 60);
-            that.setData({
-              curmin: initmin,
-              cursecond: initsecond,
-            })
-            wx.hideLoading()
-          }, 1000)
-        }
-        app.globalData.playstatus = true;
-        that.setData({
-          thisplaystatus: true
-        })
+          setTimeout(() => {
+            if (that.initmin != 0 || that.initsecond != 0) {
+                console.log('加载完毕')
+                wx.hideLoading()
+            }
+          }, 1500)
+        }, 500)
+        //添加首次收听出现null的代码
+        // if (that.data.curmin == 'null' || that.data.cursecond=='null'){
+        //   wx.showLoading({
+        //     title: '首次播放请稍等',
+        //   })
+        //   setTimeout(function () {
+        //     let time = that.data.duration;
+        //     let initmin = Math.floor(time / 60);
+        //     let initsecond = Math.floor(time % 60);
+        //     that.setData({
+        //       curmin: initmin,
+        //       cursecond: initsecond,
+        //     })
+        //     wx.hideLoading()
+        //   }, 1000)
+        // }
         // console.log('点击播放时最终设置playstatus是为true吗？=' + app.globalData.playstatus)
         // console.log('点击播放时最终设置当前播放状态是为true吗？=' + that.data.thisplaystatus)
       }

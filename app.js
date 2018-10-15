@@ -6,15 +6,15 @@ App({
         api = this.api;
     }, 
     globalData: { 
-      shenstatus:0,
-      rooturl: '',
+        shenstatus:0,
+        rooturl: '',
         speak_data: {
-          name: '',
-          imgs: [],
-          imgs_old: [],
-          language: '',
-          bjurl:'',
-          isprivate: 0
+            name: '',
+            imgs: [],
+            imgs_old: [],
+            language: '',
+            bjurl:'',
+            isprivate: 0
         },
         interval: '',//分计时器
         interval2:'',//秒计时器
