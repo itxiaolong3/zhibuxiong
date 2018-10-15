@@ -26,6 +26,15 @@ App({
         duration:0,//故事的总时长
         isfristplay: 0//是否第一次播放
     },
+    initdata: function(){
+      this.globalData.curplaygsid = 0;
+      this.globalData.playstatus = false;
+      this.globalData.changeduration = 0;
+      this.globalData.min = 0;
+      this.globalData.second = 0;
+      this.globalData.duration = 0;
+      this.globalData.isfristplay= 0;
+    },
     request: function (object) {
         if (!object.data)
             object.data = {};
@@ -94,16 +103,6 @@ App({
         }
 
         this.api = getNewApiUri(this.api);
-    },
-    
-    initdata:function(){
-      this.globalData.min = 0;
-      this.globalData.second = 0;
-      this.globalData.playstatus = false;
-      this.globalData.changeduration = 0;
-      this.globalData.curplaygsid=0;
-      this.globalData.duration=0;
-      this.globalData.isfristplay= 0;
     },
     siteInfo: require('siteinfo.js')
 

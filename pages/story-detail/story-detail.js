@@ -24,7 +24,7 @@ Page({
     list_data: [],
     persongushilist: [], //个人故事列表
     swiper:[],//顶部轮播图
-    //评论所需内容
+    //评论内容
     gsuid:0,
     nickname:'',
     headerimg:'',
@@ -72,7 +72,7 @@ Page({
       })
       console.log('得到的故事id='+options.id)
     }
-    this.get_swiper();
+    this.get_swiper(); 
     this.getgushi();
     //音频
     console.log('当前是否有故事在播放='+app.globalData.playstatus)
@@ -129,6 +129,8 @@ Page({
           play_state: 1
         })
       }
+    } else {
+      
     }
     //音频监听
     let that = this;
@@ -190,6 +192,7 @@ Page({
 
   audio_stop: function (event) {
       //结束播放
+      bgAudioManager.stop()
       clearInterval(app.globalData.interval)
       clearInterval(app.globalData.interval2)
       //初始化所有参数
@@ -616,23 +619,47 @@ Page({
       })
     }
   },
+  //保存收听历史
+  savalistenhistory:function(){
+    let gid = this.data.gsid;
+    let uid=wx.getStorageSync('u_id');
+    app.request({
+      url: api.story.postshouting,
+      data: {
+        gsid: gid,
+        uid: uid,
+        listennum: Number(this.data.gushi.listennum)+1
+      },
+      success: (ret) => {
+        // console.log(ret);
+        if (ret.status == 1) {
+         console.log('已经保存收听')
+        }
+      }
+    })
+  },
   //点击播放按钮
   tap_play: function () {
     // console.log(bgAudioManager)
     let that = this;
     // console.log(app.globalData.playstatus + '全局--当前' + that.data.thisplaystatus);
-    if (app.globalData.curplaygsid != that.data.gsid && app.globalData.playstatus) {
-      console.log('停止播放别的故事，开始播放新的故事');
-      wx.showLoading({
-          title: '开始播放新故事',
-          mask: true
+    if (app.globalData.curplaygsid && app.globalData.curplaygsid != that.data.gsid) {
+      console.log('正在播放其他故事时点击播放按钮');
+      wx.showToast({
+        title: '停止当前播放故事，点击播放新的故事',
+        icon: 'none'
       })
       this.audio_stop()
-      setTimeout(() => {
-        this.tap_play()
-        wx.hideLoading()
-      }, 1500)
       return
+      // wx.showLoading({
+      //     title: '开始播放新故事',
+      //     mask: true
+      // })
+      // setTimeout(() => {
+      //   this.tap_play()
+      //   wx.hideLoading()
+      // }, 1500)
+      
       // that.setData({
       //   duration:0,
       //   thisplaystatus:false
@@ -685,7 +712,6 @@ Page({
         bgAudioManager.singer = that.data.gushi.nickname
         bgAudioManager.coverImgUrl = that.data.imgs[0]
         bgAudioManager.src = that.data.gushi.yuyinurl
-        bgAudioManager.play()
       }
       // if (that.data.gushi.yuyinurl) {
         // bgAudioManager.title = that.data.gushi.title
@@ -920,12 +946,12 @@ Page({
   },
   // 点击进度条
   sliderTap: function(e) {
-    console.log(e)
-    console.log("点击进度条2");
-    console.log('app的playstatus是为true吗？=' + app.globalData.playstatus)
+    // console.log(e)
+    // console.log("点击进度条2");
+    // console.log('app的playstatus是为true吗？=' + app.globalData.playstatus)
     let getvalue = this.consoleValue(e)
-    console.log("当前的状态" + app.globalData.playstatus + 'id又是=' + app.globalData.curplaygsid);
-    console.log("当前局部的状态" + this.data.thisplaystatus + 'id是=' + this.data.gsid);
+    // console.log("当前的状态" + app.globalData.playstatus + 'id又是=' + app.globalData.curplaygsid);
+    // console.log("当前局部的状态" + this.data.thisplaystatus + 'id是=' + this.data.gsid);
     // if (!app.globalData.playstatus) {
     //   wx.showToast({
     //     title: '播放故事的时候才能点哦~',
@@ -973,7 +999,7 @@ Page({
     let getvalue = this.consoleValue(e)
     console.log('取消得到的值' + Math.floor(getvalue));
   },
-
+  //进度条取值
   consoleValue: function(e) {
     if (e.currentTarget.id == 'wxzxSlider6') {
       return this.wxzxSlider6.properties.value;
@@ -985,42 +1011,21 @@ Page({
     if (app.globalData.playstatus) {
       let oldmin = that.data.initmin;
       let oldsecond = that.data.initsecond;
-      console.log("快进前的数分钟" + oldmin + "==秒" + oldsecond);
-      console.log('传过来的值' + getvalue);
-      console.log('总长' + that.data.duration);
-      console.log('传过来的值除于60的分数' + Math.abs(Math.floor((this.data.duration - getvalue) / 60)));
-      console.log('传过来的值除于60的秒数' + Math.abs(Math.floor((this.data.duration - getvalue) % 60)));
+      console.log("快进前的分=" + oldmin + "跟秒=" + oldsecond);
+      console.log('传过来的值=' + getvalue);
+      console.log('音频总时长=' + that.data.duration);
+      console.log('传过来的值除于60的分=' + Math.abs(Math.floor((this.data.duration - getvalue) / 60)));
+      console.log('传过来的值除于60的秒=' + Math.abs(Math.floor((this.data.duration - getvalue) % 60)));
       let chamin = Math.abs(Math.floor((this.data.duration - getvalue) / 60));
       let chasecond = Math.abs(Math.floor((this.data.duration - getvalue) % 60));
-      console.log("快进后的数分钟" + chamin + "==秒" + chasecond);
-     
+      console.log("快进后的分=" + chamin + "跟秒=" + chasecond);
       let duration = this.data.duration;
-
       app.globalData.min = chamin;
       app.globalData.second = chasecond;
       app.globalData.changeduration = getvalue;
-      console.log("最新的分秒" + this.data.min + "==秒" + this.data.second);
       bgAudioManager.seek(getvalue);
+      // console.log("最新的分秒" + app.globalData.min + "==秒" + app.globalData.second);
     }
-  },
-  //保存收听历史
-  savalistenhistory:function(){
-    let gid = this.data.gsid;
-    let uid=wx.getStorageSync('u_id');
-    app.request({
-      url: api.story.postshouting,
-      data: {
-        gsid: gid,
-        uid: uid,
-        listennum: Number(this.data.gushi.listennum)+1
-      },
-      success: (ret) => {
-        // console.log(ret);
-        if (ret.status == 1) {
-         console.log('已经保存收听')
-        }
-      }
-    })
   }
 
 })
