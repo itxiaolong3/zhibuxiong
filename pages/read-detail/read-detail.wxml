@@ -46,6 +46,6 @@
     </view>
 </view>
 <view class="footer-container">
-    <image src="/images/other/detail_footer.png" />
+    <image src="/images/other/read_footer.png" />
     <view bindtap='togospeak'></view>
 </view>

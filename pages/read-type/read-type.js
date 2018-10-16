@@ -13,7 +13,8 @@ Page({
     sort: false,
     sort_state: 0,
     gushilist: [],
-    shoucang: []
+    shoucang: [],
+    load: 0
   },
 
   /**
@@ -102,13 +103,17 @@ Page({
                 } 
               }
             }
-
                 that.setData({
-                  gushilist: list
+                  gushilist: list,
+                  load: 1
                 })
-
-               wx.hideNavigationBarLoading()
+               
+          } else {
+              this.setData({
+                load: -1 
+              })
           }
+          wx.hideNavigationBarLoading()
         }
       })
   },

@@ -218,7 +218,7 @@ Page({
 
   escape2Html: function (str) {
     var arrEntities = { 'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"' };
-    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; });
+    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; }).replace(/\<img/gi, '<img style="margin-left: -20px;"');
   },
   // getad:function(id){
   //   let that=this;

@@ -100,9 +100,10 @@
     margin-left: 20rpx;
 }
 
-.header-container rich-text {
+.header-container  rich-text {
     font-size:28rpx;
     line-height:40rpx;
+    text-indent: 40rpx;
 }
 
 .nav-container {
