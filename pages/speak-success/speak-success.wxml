@@ -13,7 +13,7 @@
         </view>
         <view class="right">
             <image class="close" src="/images/icon/close_3.png" catchtap="set_mask" />
-            <image class="code" src="{{shareafterqrcode}}" />
+            <image class="code" src="{{shareafterqrcode}}" catchtap="tap_image" data-bigurl="{{shareafterqrcode}}" />
             <text>（扫码二维码，领取更多惊喜！）</text>
         </view>
     </view>

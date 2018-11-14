@@ -16,7 +16,7 @@
     <view class="list-container">
        <view class="item border-b" wx:for="{{items}}" wx:key="key" bindtap="detail" data-gsid="{{item.g_id}}">
            <image catchtap='tap_item' data-id="{{index}}" class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png" style='z-index: 2;' />
-            <image class="image" src="{{item.img[0]}}"  />
+            <image class="image" src="{{item.img[0]}}" lazy-load="true" mode="aspectFill" />
             <view class="info">
                 <text class="name">{{item.title}}</text>
                 <view class="bottom">

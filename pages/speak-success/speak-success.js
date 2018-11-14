@@ -82,7 +82,7 @@ Page({
     console.log('成功分享中图文id=' + pid+'故事id='+getgid);
     if (pid > 0) {//分享阅读故事
       return {
-        title: '我在织布熊故事讲了个故事',
+        title: '快来听听我讲的故事吧！',
         path: `/pages/read-voice/read-voice?pid=${pid}&rid=${getgid}`,
         imageUrl: this.data.shareimg,
         success(e) {
@@ -93,7 +93,7 @@ Page({
       }
     }else{
       return {
-        title: '我在织布熊故事讲了个故事',
+        title: '快来听听我讲的故事吧！',
         path: '/pages/story-detail/story-detail?id=' + getgid + '&shoucangstatus=' + false,
         imageUrl: this.data.shareimg,
         success(e) {
@@ -193,8 +193,8 @@ Page({
               ctx.setTextAlign('center')
               ctx.setFillStyle('#FBD89C')
               ctx.setFontSize(10)
-              ctx.fillText('刚刚我的宝贝根据自己的画创作了一个童', (that.data.pwidth - 215) /2+100, 100)
-              ctx.fillText('话故事，快来听听宝贝绘声绘色的演播吧！', (that.data.pwidth - 215) /2+102, 120)
+              ctx.fillText('我讲了一个非常好听的故事，快来听听吧！', (that.data.pwidth - 215) /2+110, 100)
+              // ctx.fillText('话故事，快来听听宝贝绘声绘色的演播吧！', (that.data.pwidth - 215) /2+102, 120)
               // 故事名称
               ctx.setTextAlign('center')
               ctx.setFillStyle('#FFF9E4')
@@ -251,7 +251,11 @@ Page({
               ctx.setTextAlign('center')
               ctx.setFillStyle('#FCF0DB')
               ctx.setFontSize(14)
-              ctx.fillText(e.result.nickname, (that.data.pwidth - 215) / 2 + 100, 50)
+              let name = e.result.nickname
+              if (name.length >= 8) {
+                  name = name.substr(0,8) + '...'
+              }
+              ctx.fillText(name, (that.data.pwidth - 215) / 2 + 125, 50)
               //分割线
               //线条的端点样式:butt
               ctx.setLineCap('butt');
@@ -264,13 +268,17 @@ Page({
               ctx.setTextAlign('center')
               ctx.setFillStyle('#FBD89C')
               ctx.setFontSize(10)
-              ctx.fillText('刚刚我的宝贝根据自己的画创作了一个童', (that.data.pwidth - 215) / 2 + 100, 100)
-              ctx.fillText('话故事，快来听听宝贝绘声绘色的演播吧！', (that.data.pwidth - 215) / 2 + 102, 120)
+              ctx.fillText('我讲了一个非常好听的故事，快来听听吧！', (that.data.pwidth - 215) /2+110, 100)
+              // ctx.fillText('话故事，快来听听宝贝绘声绘色的演播吧！', (that.data.pwidth - 215) /2+102, 120)
               // 故事名称
               ctx.setTextAlign('center')
               ctx.setFillStyle('#FFF9E4')
               ctx.setFontSize(13)
-              ctx.fillText(e.result.p_title, (that.data.pwidth - 215) / 2 + 60, 265)
+              let title = e.result.p_title
+              if (title.length >= 8) {
+                  title = title.substr(0,8) + '...'
+              }
+              ctx.fillText(title, (that.data.pwidth - 215) / 2 + 50, 265)
               // 日期
               ctx.setTextAlign('center')
               ctx.setFillStyle('#FFF9E4')
@@ -418,19 +426,45 @@ Page({
   },
   onShow:function(){
     var that = this;
-    app.request({
-      url: api.story.getstoryone,
-      data: {
-        u_id: wx.getStorageSync('u_id'),
-        gushiid: that.data.gsid
-      },
-      success: (res) => {
-        if (res.status == 1) {
-          that.setData({
-            shareimg: res.imgs[0]
-          });
+    let pid=that.data.pid;
+    if (pid>0) {
+      app.request({
+        url: api.read.getstoryone,
+        data: {
+          p_id: pid
+        },
+        success: (res) => {
+          if (res.status == 1) {
+            that.setData({
+              shareimg: res.result.p_toppic
+            });
+          }
         }
-      }
+      })
+    } else {
+      app.request({
+        url: api.story.getstoryone,
+        data: {
+          u_id: wx.getStorageSync('u_id'),
+          gushiid: that.data.gsid
+        },
+        success: (res) => {
+          if (res.status == 1) {
+            that.setData({
+              shareimg: res.imgs[0]
+            });
+          }
+        }
+      })
+    }
+  },
+
+  tap_image: function (event) {
+    let bigurl = event.currentTarget.dataset.bigurl;
+    console.log(bigurl);
+    wx.previewImage({
+      current: bigurl, // 当前显示图片的http链接
+      urls: [bigurl] // 需要预览的图片http链接列表
     })
   }
 

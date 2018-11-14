@@ -3,7 +3,7 @@
   <view class="list-container">
     <view class="item border-b">
       <text class="title">头像</text>
-      <image src="{{userinfo.headerimg}}" />
+      <image src="{{userinfo.headerimg}}" lazy-load="true" mode="aspectFill" />
     </view>
     <view class="item border-b">
       <text class="title">昵称</text>

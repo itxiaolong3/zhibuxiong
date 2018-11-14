@@ -17,7 +17,7 @@
         <view class="item border-b" wx:for="{{items}}" wx:key="key">
             <view style="display: flex;z-index: 2;" bindtap="detail" data-gsid="{{item.id}}" data-status="{{item.status}}">
                 <image catchtap='tap_item' data-id="{{index}}" class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png" style='z-index: 2;' />
-                <image class="image" src="{{item.img[0]}}"  />
+                <image class="image" src="{{item.img[0]}}" lazy-load="true" mode="aspectFill" />
                 <view class="info">
                     <text class="name">{{item.title}}<text class='shenhe' wx:if="{{item.status!=1}}">(待审核)</text></text>
                     <view class="bottom">

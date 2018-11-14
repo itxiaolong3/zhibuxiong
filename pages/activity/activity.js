@@ -138,6 +138,9 @@ Page({
             gushi:ret.zjgushi,
             gushiread:ret.zjgushiread
           })
+          wx.setNavigationBarTitle({
+            title: ret.data.zj_desc
+          })
           wx.hideNavigationBarLoading()
         }
       }

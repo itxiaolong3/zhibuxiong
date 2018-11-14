@@ -8,6 +8,7 @@ let interval
 Page({
 
     data: {
+      load: false,
         id: 0,
         u_id: '',
         name: '',
@@ -25,15 +26,17 @@ Page({
     },
 
     onLoad: function (options) {
+        wx.showLoading({
+          title: '正在拼命加载',
+        })
         let u_id = wx.getStorageSync('u_id')
         let name = wx.getStorageSync('nickname')
         let avatar = wx.getStorageSync('userheaderimg')
-
         this.setData({
             u_id: u_id,
             name: name,
             avatar: avatar,
-            zjid:options.zjid
+            zjid:options.zjid ? options.zjid : 0
             // speak_data: app.globalData.speak_data
         })
         /*
@@ -58,7 +61,7 @@ Page({
         innerAudioContext.autoplay = true;
         innerAudioContext.src = this.data.bjurl
       })
-    wx.showNavigationBarLoading()
+    // wx.showNavigationBarLoading()
      this.setData({
        id: options.id 
      })
@@ -105,12 +108,16 @@ Page({
       success: (ret) => {
         console.log(ret)
         if (ret.status == 1) {
+          setTimeout(() => {
           let contents = that.escape2Html(ret.result.p_content)
-          that.setData({
-            gushi: ret.result,
-            contents: contents
-          });
-          wx.hideNavigationBarLoading()
+            that.setData({
+              gushi: ret.result,
+              contents: contents,
+              load: true
+            });
+            wx.hideLoading()
+          }, 500);
+          // wx.hideNavigationBarLoading()
         }
       }
     })

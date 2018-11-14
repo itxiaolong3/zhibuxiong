@@ -6,7 +6,7 @@
         <view class="cover">
             <swiper class="swiper-container" autoplay="true" circular="true" vertical="true">
                 <swiper-item style="background-color: #ddd;" wx:for="{{speak_data.imgs}}" wx:key="key">
-                    <image src="{{item}}" lazy-load="true" />
+                    <image src="{{item}}" lazy-load="true" mode="aspectFill" />
                 </swiper-item>
             </swiper>
             <text>{{speak_data.name}}</text>
@@ -14,7 +14,7 @@
     </view>
     <view class="body-container">
         <view class="info border-b">
-            <image src="{{avatar}}" />
+            <image src="{{avatar}}" lazy-load="true" mode="aspectFill" />
             <text>{{name}}</text>
         </view>
         <view class="record border-b">

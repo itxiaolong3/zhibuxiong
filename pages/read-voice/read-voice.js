@@ -218,7 +218,7 @@ Page({
 
   escape2Html: function (str) {
     var arrEntities = { 'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"' };
-    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; }).replace(/\<img/gi, '<img style="margin-left: -20px;"');
+    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; });
   },
   // getad:function(id){
   //   let that=this;
@@ -874,21 +874,23 @@ Page({
     let gid = this.data.rid;
     let goodstatus = wx.getStorageSync('good' + gid);
     if (goodstatus) {
-      //取消点赞
+        wx.showToast({
+          title: '已取赞',
+          icon: 'none',
+          mask: !0,
+          duration: 2000
+        })
+      //取赞
       app.request({
         url: api.read.dogood,
         data: {
           gsid: gid,
-          goodnum: Number(this.data.music.r_goodnum) - 1
+          goodnum: Number(this.data.gushi.goodnum) != 0 ? Number(this.data.gushi.goodnum) - 1 : 0
         },
         success: (ret) => {
           console.log(ret);
           if (ret.status == 1) {
             wx.setStorageSync('good' + gid, false)
-            wx.showToast({
-              title: '已取赞',
-              icon: 'none'
-            })
             this.setData({
               isgood: false,
             });
@@ -913,6 +915,13 @@ Page({
         }
       })
     } else {
+      wx.showToast({
+        title: '已点赞',
+        icon: 'none',
+        mask: !0,
+        duration: 2000
+      })
+      //点赞
       app.request({
         url: api.read.dogood,
         data: {
@@ -922,10 +931,6 @@ Page({
         success: (ret) => {
           console.log(ret);
           if (ret.status == 1) {
-            wx.showToast({
-              title: '已点赞',
-              icon: 'none'
-            })
             wx.setStorageSync('good' + gid, true)
             this.setData({
               isgood: true,

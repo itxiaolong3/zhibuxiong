@@ -1,4 +1,4 @@
-<view class="index-container">
+<view class="index-container" wx:if="{{load}}">
     <view class="header-container">
         <view class="title">{{gushi.p_title}}</view>
         <view class="author">作者：{{gushi.p_auther}}</view>
@@ -17,7 +17,7 @@
     </view>
     <view class="body-container">
         <view class="info border-b">
-            <image src="{{avatar}}" />
+            <image src="{{avatar}}" lazy-load="true" mode="aspectFill" />
             <text>{{name}}</text>
         </view>
         <view class="record border-b">

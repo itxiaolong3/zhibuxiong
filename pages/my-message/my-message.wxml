@@ -24,7 +24,7 @@
         <view class="item border-b" wx:for="{{items}}" wx:key="key">
             <view class="story flex-row" catchtap="tap_item" data-id="{{index}}">
                 <image class="checkbox" src="/images/icon/{{item.checked ? 'check' : 'uncheck'}}.png"  />
-                <image class="image" src="{{item.img[0]}}"  />
+                <image class="image" src="{{item.img[0]}}" lazy-load="true" mode="aspectFill" />
                 <view class="info">
                     <text class="name">{{item.title}}</text>
                     <view class="bottom">

@@ -42,7 +42,7 @@
     </view>
     <view class="list-container">
        <view class="item border-b" wx:for="{{gushi}}" wx:key="key"  bindtap="detailgushi" data-id="{{item.id}}" >
-            <image class="image" src="{{item.storyimg}}"/>
+            <image class="image" src="{{item.storyimg}}" lazy-load="true" mode="aspectFill" />
             <view class="info">
                 <view class="top" >
                     <text class="name">{{item.title}}</text>
@@ -66,7 +66,7 @@
         </view>
         <!-- 图文故事 -->
         <view class="item border-b" wx:for="{{gushiread}}" wx:key="key"  bindtap="detailgushiread" data-id="{{item.r_id}}" data-pid="{{item.p_id}}" >
-            <image class="image" src="{{item.p_toppic}}"/>
+            <image class="image" src="{{item.p_toppic}}" lazy-load="true" mode="aspectFill"/>
             <view class="info">
                 <view class="top" >
                     <text class="name">{{item.p_title}}</text>

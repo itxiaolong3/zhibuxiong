@@ -18,7 +18,7 @@
   </view>
   <swiper class="swiper-container" autoplay="true" circular="true">
     <swiper-item style="background-color: #ddd;" wx:for="{{swiper}}" wx:key="key">
-      <image src="{{item.img}}" lazy-load="true" bindtap='goother' data-aid="{{item.adid}}" data-appid="{{item.gourl}}" />
+      <image src="{{item.img}}" lazy-load="true" bindtap='goother' data-adid="{{item.adid}}" data-appid="{{item.gourl}}" data-zjid="{{item.zjid}}" data-type="{{item.type}}" mode="aspectFill" />
     </swiper-item>
   </swiper>
   <view class="btn-container">
@@ -107,7 +107,7 @@
           <text class='ellipsis'>{{u.nickname}}</text>
           <!-- <image src="/images/icon/dislike.png" /> -->
         </view>
-        <image class="middle" src="{{u.headerimg}}" />
+        <image class="middle" src="{{u.headerimg}}" lazy-load="true" mode="aspectFill" />
         <view class="bottom">
           <text>作品({{u.gscount}})</text>
           <image src="/images/icon/collect.png" />

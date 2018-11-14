@@ -33,6 +33,7 @@
     display: flex;
     flex-wrap: wrap;
     padding: 0 15rpx;
+    margin-bottom: 125rpx;
 }
 
 .image-list .item {
@@ -53,6 +54,7 @@
     width: 100%;
     height: 200rpx;
     border-radius: 5px;
+    background-color: #ddd;
 }
 
 .image-list .item .cover {
@@ -65,7 +67,7 @@
 
 .footer-container,
 .footer-container image {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 125rpx;

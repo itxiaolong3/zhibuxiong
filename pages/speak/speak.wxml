@@ -36,16 +36,16 @@
         <view class="img-container">
             <view class="img" wx:for="{{imgs}}" wx:key="key">
                 <image class="delete" src="/images/icon/close.png" catchtap="delete" data-inde="{{index}}" />
-                <image class="body" src="{{item}}"/>
+                <image class="body" src="{{item}}" lazy-load="true" mode="aspectFill"/>
             </view>
             <image class="upload" src="/images/other/upload.png" catchtap="tap_upload" wx:if="{{imgs.length < 9}}" />
         </view>
     </view>
     <view class="text-1"><text>（jpg、png格式，最多9张）\t \n禁止发布色情，违法，反政府等不良言论、图片和音频。一经发现，我们将删除并报警处理!</text></view>
-    <view class="text-2" hover-class="none" bindtap='gotuku'>
+    <view class="text-2" hover-class="none" bindtap='gotuku' style="margin-top:30rpx;margin-bottom:30rpx;">
         没有合适图片？→在线图库
     </view>
-    <view class="text-3">如果小朋友没有合适的图片，可从在线图库中选择图片讲故事。</view>
+    <!--<view class="text-3">如果小朋友没有合适的图片，可从在线图库中选择图片讲故事。</view>-->
     <view class="upload-container border-b">
         <input placeholder="给你的故事起个名字吧" placeholder-class="placeholder" maxlength="20" value="{{name}}" data-id="0" bindinput="input_value" />
     </view>

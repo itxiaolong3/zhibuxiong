@@ -13,7 +13,7 @@ Page({
         hotuser:[],
         hotread: [],
         pianstatus:'',
-        shareimg:[]
+        share:[]
     },
 
     onLoad: function () {
@@ -36,13 +36,13 @@ Page({
 
     onShareAppMessage: function () {
       return{
-        title:'织布熊故事',
+        title:this.data.share.sharetitle,
         path:'/pages/indexx/indexx',
-        imageUrl: this.data.shareimg.img,
+        imageUrl: this.data.share.img,
         success(e){
            console.log('分享成功'); 
         },fail(e){
-        console.log('分享失败');
+           console.log('分享失败');
         }
       }
     },
@@ -76,8 +76,9 @@ Page({
       url: api.index.shareimg,
       success: (ret) => {
         if (ret.status == 1) {
+          console.log(ret.result)
           this.setData({
-            shareimg: ret.result,
+            share: ret.result,
           })
         }
       }
@@ -277,25 +278,35 @@ Page({
       }
     })
   },
-  goother:function(e){
-    let getappid = e.currentTarget.dataset.appid;
-    let getaid = e.currentTarget.dataset.aid;
-    if(getappid=="#"){
+  goother:function(event){
+    let type = event.currentTarget.dataset.type
+    switch (Number(type)) {
+      case 0:
+        let getzjid = event.currentTarget.dataset.zjid
         wx.navigateTo({
-          url: '/pages/bannerimg/bannerimg?id='+getaid,
+          url: '/pages/activity/activity?id='+getzjid
         })
-    }else {
-      wx.navigateToMiniProgram({
-        appId: getappid,
-        path: '',
-        extraData: {
-          foo: 'release'
-        },
-        envVersion: 'release',
-        success(res) {
-          console.log('跳转成功');
-        }
-      })
+        break
+      case 1:
+        let getadid = event.currentTarget.dataset.adid;
+        wx.navigateTo({
+          url: '/pages/bannerimg/bannerimg?id='+getadid
+        })
+        break
+      case 2:
+        let getappid = event.currentTarget.dataset.appid
+        wx.navigateToMiniProgram({
+          appId: getappid,
+          path: '',
+          extraData: {
+            foo: 'release'
+          },
+          envVersion: 'release',
+          success(res) {
+            console.log('跳转成功');
+          }
+        })
+        break
     }
   },
 

@@ -3,7 +3,7 @@
     <!-- <image class="ad" src="/images/other/story_ad.jpg" /> -->
     <swiper class="swiper-container" autoplay="true" circular="true" wx:if="{{swiper.length != 0}}">
         <swiper-item style="background-color: #ddd;" wx:for="{{swiper}}" wx:key="key">
-        <image src="{{item.img}}" lazy-load="true" bindtap='goother' data-aid="{{item.adid}}"/>
+        <image src="{{item.img}}" lazy-load="true" bindtap='goother' data-aid="{{item.adid}}" mode="aspectFill"/>
         </swiper-item>
     </swiper>
 
@@ -14,7 +14,7 @@
         <view class="cover">
           <swiper class="swiper-container" autoplay="true" circular="true" vertical="true">
             <swiper-item style="background-color: #ddd;" wx:for="{{imgs}}" wx:key="key">
-                <image src="{{item}}" lazy-load="true" />
+                <image src="{{item}}" lazy-load="true" mode="aspectFill" />
             </swiper-item>
            </swiper>
            <text>{{gushi.title}}</text>
@@ -38,7 +38,7 @@
 
     <view class="body-container" wx:if="{{!list_state}}">
         <view class="info">
-            <image class="left" src="{{gushi.headerimg}}" />
+            <image class="left" src="{{gushi.headerimg}}" lazy-load="true" mode="aspectFill" />
             <view class="middle">
                 <view class="top">
                     <text>{{gushi.nickname}}</text>
@@ -101,7 +101,7 @@
         </view>
        <block wx:for="{{pinlunlist}}" wx:for-item="pl">
         <view class="comment-item">
-            <image class="avatar" src="{{pl.headerimg}}" />
+            <image class="avatar" src="{{pl.headerimg}}" lazy-load="true" mode="aspectFill" />
             <view class="content">
                 <view class="left">
                     <text class="top">{{pl.nickname}}</text>

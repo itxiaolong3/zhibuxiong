@@ -23,7 +23,7 @@
         <view class="list-container">
             <view class="item" wx:for="{{items}}" wx:key="key" catchtap="tap_item" data-id="{{item.r_id}}">
                 <view class="left">
-                    <image class="avatar" src="{{item.headerimg}}"/>
+                    <image class="avatar" src="{{item.headerimg}}" lazy-load="true" mode="aspectFill"/>
                     <view class="info">
                         <view class="top">
                             <text class="author">{{item.nickname}}</text>的阅读

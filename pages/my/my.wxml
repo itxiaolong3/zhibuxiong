@@ -2,7 +2,7 @@
   <view class="header-container">
     <image class="bg" src="/images/other/my_bg.jpg" />
     <view class="header" catchtap="tap_item" data-id="0">
-      <image class="avatar" src="{{avatar ? avatar : '/images/other/avatar.jpg'}}" />
+      <image class="avatar" src="{{avatar ? avatar : '/images/other/avatar.jpg'}}" lazy-load="true" mode="aspectFill" />
       <text class="name">{{name ? name : '请点击登录'}}</text>
     </view>
   </view>

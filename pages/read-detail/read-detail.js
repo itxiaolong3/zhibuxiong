@@ -27,7 +27,7 @@ Page({
      this.setData({
        id: options.id,
        shoucangstatus: options.shoucangstatus,
-       zjid: options.zjid
+       zjid: options.zjid ? options.zjid : 0
      })
     //this.getad(1)
     this.get_detail()
@@ -161,7 +161,7 @@ Page({
   },
   escape2Html: function (str) {
     var arrEntities = { 'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"' };
-    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; }).replace(/\<img/gi, '<img style="margin-left: -20px;"');
+    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; });
   },
   // getad:function(id){
   //   let that=this;

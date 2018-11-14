@@ -11,7 +11,7 @@
         <view class="list-container">
         <block wx:for="{{gushi}}" wx:for-item="gs">
             <view class="item border-b" data-id="{{isread?gs.p_id:gs.id}}" data-checked="{{gs.checked}}" bindtap='detail'>
-                <image class="image" src="{{gs.img[0]}}"  />
+                <image class="image" src="{{gs.img[0]}}" lazy-load="true" mode="aspectFill" />
                 <view class="info">
                    <text class="name" wx:if="{{isread}}">{{gs.p_title}}</text>
                     <text class="name" wx:else>{{gs.title}}</text>

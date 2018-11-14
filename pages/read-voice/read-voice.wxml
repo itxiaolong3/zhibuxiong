@@ -9,11 +9,11 @@
         <image src="/images/icon/close.png" catchtap="set_mask" />
     </view>
     <!-- <image class="ad" src="/images/other/story_ad.jpg" /> -->
-     <swiper class="swiper-container" autoplay="true" circular="true">
-    <swiper-item style="background-color: #ddd;" wx:for="{{swiper}}" wx:key="key">
-     <image src="{{item.img}}" lazy-load="true" bindtap='goother' data-aid="{{item.adid}}"/>
-    </swiper-item>
-  </swiper>
+     <swiper class="swiper-container" autoplay="true" circular="true" wx:if="{{swiper.length != 0}}">
+        <swiper-item style="background-color: #ddd;" wx:for="{{swiper}}" wx:key="key">
+            <image src="{{item.img}}" lazy-load="true" mode="aspectFill" bindtap='goother' data-aid="{{item.adid}}"/>
+        </swiper-item>
+    </swiper>
     <view class="header-container">
         <view class="title">{{gushi.p_title}}</view>
         <view class="author">作者：{{gushi.p_auther}}</view>
@@ -90,7 +90,7 @@
         <view class="list-container">
             <view class="item">
                 <view class="left">
-                    <image class="avatar" src="{{music.headerimg}}"/>
+                    <image class="avatar" src="{{music.headerimg}}" lazy-load="true" mode="aspectFill"/>
                     <view class="info">
                         <view class="top">
                             <text class="author">{{music.nickname}}</text>的阅读
@@ -127,7 +127,7 @@
         </view>
        <block wx:for="{{pinlunlist}}" wx:for-item="pl">
         <view class="comment-item">
-            <image class="avatar" src="{{pl.headerimg}}" />
+            <image class="avatar" src="{{pl.headerimg}}" lazy-load="true" mode="aspectFill" />
             <view class="content">
                 <view class="left">
                     <text class="top">{{pl.nickname}}</text>

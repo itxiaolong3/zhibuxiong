@@ -15,13 +15,13 @@
         <text>公司介绍</text>
     </view>
     <view class="content">
-       织布熊总部位于长江中游地区重要的中心城市，一直秉承着把快乐分享给世界的宗旨，一切为了孩子，如果您对我们的服务有兴趣，请拨打我们的电话，热诚欢迎各界朋友前来参观、考察、洽谈业务。
+       织布熊致力于儿童美术衍生品开发和生产，只为了让所有的孩子们都拥有独一无二的成长纪念品。如果您对我们的产品和服务有兴趣，欢迎前来参观、考察、洽谈合作。
     </view>
 </view>
 <view class="list-container">
     <view class="item border-b">
         <image src="/images/icon/feedback.png" />
-        <text>合作电话：18933284405</text>
+        <text>合作电话：15367912848</text>
     </view>
     <view class="item border-b">
         <image src="/images/icon/my-collect.png" />
