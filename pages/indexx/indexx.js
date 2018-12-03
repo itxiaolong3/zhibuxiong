@@ -79,8 +79,6 @@ Page({
           position:0
         },
         success: (ret) => {
-          console.log('定制=')
-          console.log(ret)
           if (ret.status == 1) {
             ret.data.map((value,index) => {
               if (value.type == 3) {
