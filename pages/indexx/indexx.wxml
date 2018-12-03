@@ -139,5 +139,5 @@
       没有更多了
     </view>
   </view>
-  <image class="ad" src="/images/other/story_ad.jpg" catchtap="godingzhi" />
+  <image class="ad" src="{{dingzhi.img}}" catchtap="godingzhi" />
 </view>

@@ -13,13 +13,15 @@ Page({
         hotuser:[],
         hotread: [],
         pianstatus:'',
-        share:[]
+        share:[],
+        dingzhi: {}
     },
 
     onLoad: function () {
       
         this.getshen();
         wx.showNavigationBarLoading()
+        this.get_dingzhi()
         this.get_swiper()
         this.get_shoucangid()
         this.get_readshoucangid()
@@ -70,6 +72,27 @@ Page({
           }
         })
     },
+    get_dingzhi: function () {
+      app.request({
+        url: api.index.getbanner,
+        data:{
+          position:0
+        },
+        success: (ret) => {
+          console.log('定制=')
+          console.log(ret)
+          if (ret.status == 1) {
+            ret.data.map((value,index) => {
+              if (value.type == 3) {
+                this.setData({
+                  dingzhi: value
+                })
+              }
+            })
+          }
+        }
+      })
+  },
     //获取首页分享封面
   get_shareimg: function () {
     app.request({
@@ -312,7 +335,7 @@ Page({
 
   godingzhi: function (event) {
       wx.navigateToMiniProgram({
-        appId: 'wx3d5c463c7d74066c',
+        appId: this.data.dingzhi.gourl,
         path: '',
         extraData: {
           foo: 'release'
