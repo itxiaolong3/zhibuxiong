@@ -57,5 +57,8 @@
     "color": "#666",
     "selectedColor": "#ffb300"
   },
-  "navigateToMiniProgramAppIdList": ["wx3d5c463c7d74066c"]
+  "navigateToMiniProgramAppIdList": [
+    "wx3d5c463c7d74066c"
+  ],
+  "sitemapLocation": "sitemap.json"
 }
